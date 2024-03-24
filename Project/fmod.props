@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros">
+    <FMOD_DIR>$(SolutionDir)Library\FMOD\</FMOD_DIR>
+    <FMOD_BIN>$(SolutionDir)Library\FMOD\lib\</FMOD_BIN>
+  </PropertyGroup>
+  <PropertyGroup>
+    <IncludePath>$(FMOD_DIR)\inc\;$(IncludePath)</IncludePath>
+    <LibraryPath>$(FMOD_DIR)\lib\;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup />
+  <ItemGroup>
+    <BuildMacro Include="FMOD_DIR">
+      <Value>$(FMOD_DIR)</Value>
+    </BuildMacro>
+    <BuildMacro Include="FMOD_BIN">
+      <Value>$(FMOD_BIN)</Value>
+      <EnvironmentVariable>true</EnvironmentVariable>
+    </BuildMacro>
+  </ItemGroup>
+</Project>
