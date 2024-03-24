@@ -1,187 +1,58 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source File">
-      <UniqueIdentifier>{430da70b-7fd1-409b-9718-713b3c0410c8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source File\pch">
-      <UniqueIdentifier>{516a062a-cdf8-4a1c-bee6-7e040e947d43}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source File\Window">
-      <UniqueIdentifier>{5a9c752c-bc47-4d39-9444-aceb5c4f4085}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source File\2D">
-      <UniqueIdentifier>{4db2f7b1-54c8-4ae8-b83a-0291b126088b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource">
-      <UniqueIdentifier>{3583420d-ddd8-4662-ba14-78859150666f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource\Shader">
-      <UniqueIdentifier>{de0bafa2-1cf4-4a36-bb9a-4cf76484fece}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource\Shader\files">
-      <UniqueIdentifier>{6d5d3081-bfe3-4ae1-a202-343e322da17d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source File\Game">
-      <UniqueIdentifier>{3e67c144-d381-49f4-99c8-0e1640ecf6a7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source File\utill">
-      <UniqueIdentifier>{1ed6a913-8dc8-4424-a628-c19922514ca0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource\Font">
-      <UniqueIdentifier>{74243047-2e7d-4999-8ad6-b54776d9955b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource\Font\files">
-      <UniqueIdentifier>{735a43ee-0a1c-4715-80d7-03b307ab0462}</UniqueIdentifier>
-    </Filter>
+    <ClCompile Include="SoundManager.cpp" />
+    <ClCompile Include="ResourceManager.cpp" />
+    <ClCompile Include="Line.cpp" />
+    <ClCompile Include="Quad.cpp" />
+    <ClCompile Include="Sprite.cpp" />
+    <ClCompile Include="TextRendering.cpp" />
+    <ClCompile Include="Texture2D.cpp" />
+    <ClCompile Include="VertexBuffer2D.cpp" />
+    <ClCompile Include="glad.cpp" />
+    <ClCompile Include="pch.cpp" />
+    <ClCompile Include="stb_image.cpp" />
+    <ClCompile Include="MainWindow.cpp" />
+    <ClCompile Include="OpenGLWindow.cpp" />
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>Source File</Filter>
-    </ClCompile>
-    <ClCompile Include="pch.cpp">
-      <Filter>Source File\pch</Filter>
-    </ClCompile>
-    <ClCompile Include="glad.cpp">
-      <Filter>Source File\pch</Filter>
-    </ClCompile>
-    <ClCompile Include="MainWindow.cpp">
-      <Filter>Source File\Window</Filter>
-    </ClCompile>
-    <ClCompile Include="OpenGLWindow.cpp">
-      <Filter>Source File\Window</Filter>
-    </ClCompile>
-    <ClCompile Include="stb_image.cpp">
-      <Filter>Source File\pch</Filter>
-    </ClCompile>
-    <ClCompile Include="Sprite.cpp">
-      <Filter>Source File\2D</Filter>
-    </ClCompile>
-    <ClCompile Include="Texture2D.cpp">
-      <Filter>Source File\2D</Filter>
-    </ClCompile>
-    <ClCompile Include="VertexBuffer2D.cpp">
-      <Filter>Source File\2D</Filter>
-    </ClCompile>
-    <ClCompile Include="ResourceManager.cpp">
-      <Filter>Resource</Filter>
-    </ClCompile>
-    <ClCompile Include="Line.cpp">
-      <Filter>Source File\2D</Filter>
-    </ClCompile>
-    <ClCompile Include="Quad.cpp">
-      <Filter>Source File\2D</Filter>
-    </ClCompile>
-    <ClCompile Include="SoundManager.cpp">
-      <Filter>Source File\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="TextRendering.cpp">
-      <Filter>Source File\2D</Filter>
-    </ClCompile>
+    <ClInclude Include="SoundManager.h" />
+    <ClInclude Include="shader_resource.h" />
+    <ClInclude Include="font_resource.h" />
+    <ClInclude Include="ResourceManager.h" />
+    <ClInclude Include="Line.h" />
+    <ClInclude Include="Quad.h" />
+    <ClInclude Include="Sprite.h" />
+    <ClInclude Include="TextRendering.h" />
+    <ClInclude Include="Texture2D.h" />
+    <ClInclude Include="Transform2D.h" />
+    <ClInclude Include="Transform2D_Macro.h" />
+    <ClInclude Include="VertexBuffer2D.h" />
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="stb_image.h" />
+    <ClInclude Include="delete_macro.h" />
+    <ClInclude Include="Shader.h" />
+    <ClInclude Include="string_converter.h" />
+    <ClInclude Include="MainWindow.h" />
+    <ClInclude Include="OpenGLWindow.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="pch.h">
-      <Filter>Source File\pch</Filter>
-    </ClInclude>
-    <ClInclude Include="MainWindow.h">
-      <Filter>Source File\Window</Filter>
-    </ClInclude>
-    <ClInclude Include="OpenGLWindow.h">
-      <Filter>Source File\Window</Filter>
-    </ClInclude>
-    <ClInclude Include="stb_image.h">
-      <Filter>Source File\pch</Filter>
-    </ClInclude>
-    <ClInclude Include="Sprite.h">
-      <Filter>Source File\2D</Filter>
-    </ClInclude>
-    <ClInclude Include="Texture2D.h">
-      <Filter>Source File\2D</Filter>
-    </ClInclude>
-    <ClInclude Include="VertexBuffer2D.h">
-      <Filter>Source File\2D</Filter>
-    </ClInclude>
-    <ClInclude Include="Transform2D.h">
-      <Filter>Source File\2D</Filter>
-    </ClInclude>
-    <ClInclude Include="ResourceManager.h">
-      <Filter>Resource</Filter>
-    </ClInclude>
-    <ClInclude Include="shader_resource.h">
-      <Filter>Resource\Shader</Filter>
-    </ClInclude>
-    <ClInclude Include="Line.h">
-      <Filter>Source File\2D</Filter>
-    </ClInclude>
-    <ClInclude Include="Quad.h">
-      <Filter>Source File\2D</Filter>
-    </ClInclude>
-    <ClInclude Include="delete_macro.h">
-      <Filter>Source File\utill</Filter>
-    </ClInclude>
-    <ClInclude Include="string_converter.h">
-      <Filter>Source File\utill</Filter>
-    </ClInclude>
-    <ClInclude Include="Transform2D_Macro.h">
-      <Filter>Source File\2D</Filter>
-    </ClInclude>
-    <ClInclude Include="SoundManager.h">
-      <Filter>Source File\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="TextRendering.h">
-      <Filter>Source File\2D</Filter>
-    </ClInclude>
-    <ClInclude Include="font_resource.h">
-      <Filter>Resource\Font</Filter>
-    </ClInclude>
-    <ClInclude Include="Shader.h">
-      <Filter>Source File\utill</Filter>
-    </ClInclude>
+    <None Include="Shader\checkboard_fs.bin" />
+    <None Include="Shader\checkboard_vs.bin" />
+    <None Include="Shader\colored_fs.bin" />
+    <None Include="Shader\colored_vs.bin" />
+    <None Include="Shader\normal_fs.bin" />
+    <None Include="Shader\normal_vs.bin" />
+    <None Include="Shader\text_fs.bin" />
+    <None Include="Shader\text_vs.bin" />
+    <None Include="Shader\textured_fs.bin" />
+    <None Include="Shader\textured_vs.bin" />
+    <None Include="Font\arial.bin" />
+    <None Include="cpp.hint" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Shader\checkboard_fs.bin">
-      <Filter>Resource\Shader\files</Filter>
-    </None>
-    <None Include="Shader\checkboard_vs.bin">
-      <Filter>Resource\Shader\files</Filter>
-    </None>
-    <None Include="Shader\colored_fs.bin">
-      <Filter>Resource\Shader\files</Filter>
-    </None>
-    <None Include="Shader\colored_vs.bin">
-      <Filter>Resource\Shader\files</Filter>
-    </None>
-    <None Include="Shader\textured_fs.bin">
-      <Filter>Resource\Shader\files</Filter>
-    </None>
-    <None Include="Shader\textured_vs.bin">
-      <Filter>Resource\Shader\files</Filter>
-    </None>
-    <None Include="Shader\normal_vs.bin">
-      <Filter>Resource\Shader\files</Filter>
-    </None>
-    <None Include="Shader\normal_fs.bin">
-      <Filter>Resource\Shader\files</Filter>
-    </None>
-    <None Include="Shader\text_vs.bin">
-      <Filter>Resource\Shader\files</Filter>
-    </None>
-    <None Include="Shader\text_fs.bin">
-      <Filter>Resource\Shader\files</Filter>
-    </None>
-    <None Include="cpp.hint">
-      <Filter>Resource</Filter>
-    </None>
-    <None Include="Font\arial.bin">
-      <Filter>Resource\Font\files</Filter>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="ShaderResource.rc">
-      <Filter>Resource\Shader</Filter>
-    </ResourceCompile>
-    <ResourceCompile Include="font_resource.rc">
-      <Filter>Resource\Font</Filter>
-    </ResourceCompile>
+    <ResourceCompile Include="ShaderResource.rc" />
+    <ResourceCompile Include="font_resource.rc" />
   </ItemGroup>
 </Project>
