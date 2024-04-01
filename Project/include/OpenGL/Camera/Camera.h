@@ -15,12 +15,13 @@ public:
 
 	glm::mat4 Get_Projection();
 
-	void Update(std::function<bool(int)> key_input_function);
+	void Update(std::function<bool(int)> key_input_function, double delta_time);
 	void Update_Viewport(int new_width, int new_height);
 
 private:
-	glm::mat4 projection;
-	glm::vec2 position;
+	glm::mat4 mProjection;
+	glm::vec2 mPosition;
+	int mWidth, mHeight;
 };
 
 

@@ -62,13 +62,13 @@ void MainWindow::renderScene()
 	
 	mpCamera->Update_Viewport(getScreenWidth(), getScreenHeight());
 	mpCheckboard->use();
-	mpCheckboard->setMat4("projection", mpCamera->Get_Projection());
+	mpCheckboard->setMat4("projection", getOrthoProjectionMatrix());
 	mpCheckboard->setMat4("model_matrx", glm::scale(glm::mat4(1), glm::vec3(getScreenWidth(), getScreenHeight(), 1)));
 	mpCheckboard->setVec2("resolution", glm::vec2(getScreenWidth(), getScreenHeight()));
 	rect.draw();
 
 	mpTextureShader->use();
-	mpTextureShader->setMat4("projection", getOrthoProjectionMatrix());
+	mpTextureShader->setMat4("projection", mpCamera->Get_Projection());
 	mpSprite->Draw();
 }
 
@@ -78,6 +78,7 @@ void MainWindow::updateScene()
 	if (keyPressedOnce(GLFW_KEY_F3)) {
 		setVerticalSynchronization(!isVerticalSynchronizationEnabled());
 	}
+	mpCamera->Update([this](int key) {return this->keyPressed(key); }, getTimeDelta());
 
 	std::string windowTitleWithFPS = "FPS: "
 		+ std::to_string(getFPS()) +
