@@ -66,15 +66,17 @@
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="opengl.props" />
-    <Import Project="fmod.props" />
-    <Import Project="freetype.props" />
+    <Import Project="VsProps\opengl.props" />
+    <Import Project="VsProps\freetype.props" />
+    <Import Project="VsProps\fmod.props" />
+    <Import Project="VsProps\assimp_debug.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="opengl.props" />
-    <Import Project="fmod.props" />
-    <Import Project="freetype.props" />
+    <Import Project="VsProps\opengl.props" />
+    <Import Project="VsProps\freetype.props" />
+    <Import Project="VsProps\fmod.props" />
+    <Import Project="VsProps\assimp.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -85,13 +87,13 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(IncludePath)</IncludePath>
     <LibraryPath>$(LibraryPath)</LibraryPath>
     <IntDir>$(SolutionDir)Build\$(Configuration)\</IntDir>
+    <IncludePath>.\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(SolutionDir)Library\freetype-2.12.1\include;$(IncludePath)</IncludePath>
+    <IncludePath>.\include;$(IncludePath)</IncludePath>
     <IntDir>$(SolutionDir)Build\$(Configuration)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -157,49 +159,58 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="glad.cpp" />
-    <ClCompile Include="Line.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="MainWindow.cpp" />
-    <ClCompile Include="OpenGLWindow.cpp" />
-    <ClCompile Include="pch.cpp" />
-    <ClCompile Include="Quad.cpp" />
-    <ClCompile Include="ResourceManager.cpp" />
-    <ClCompile Include="SoundManager.cpp" />
-    <ClCompile Include="Sprite.cpp" />
-    <ClCompile Include="stb_image.cpp" />
-    <ClCompile Include="Texture2D.cpp" />
-    <ClCompile Include="TextRendering.cpp" />
-    <ClCompile Include="VertexBuffer2D.cpp" />
+    <ClCompile Include="source\OpenGL\Animation2D\Animation2D.cpp" />
+    <ClCompile Include="source\OpenGL\QuadTree\QuadTreeNode.cpp" />
+    <ClCompile Include="source\OpenGL\Camera\Camera.cpp" />
+    <ClCompile Include="source\OpenGL\Model3D\Mesh.cpp" />
+    <ClCompile Include="source\OpenGL\Model3D\Model3D.cpp" />
+    <ClCompile Include="source\glad.cpp" />
+    <ClCompile Include="source\main.cpp" />
+    <ClCompile Include="source\OpenGL\Window\MainWindow.cpp" />
+    <ClCompile Include="source\OpenGL\Window\OpenGLWindow.cpp" />
+    <ClCompile Include="include\pch.cpp" />
+    <ClCompile Include="source\OpenGL\Quad\Quad.cpp" />
+    <ClCompile Include="source\Manager\ResourceManager.cpp" />
+    <ClCompile Include="source\Manager\SoundManager.cpp" />
+    <ClCompile Include="source\OpenGL\Sprite\Sprite.cpp" />
+    <ClCompile Include="include\utill\stb_image.cpp" />
+    <ClCompile Include="source\OpenGL\Texture2D\Texture2D.cpp" />
+    <ClCompile Include="source\OpenGL\TextRender\TextRendering.cpp" />
+    <ClCompile Include="source\OpenGL\VertexBuffer2D\VertexBuffer2D.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="delete_macro.h" />
-    <ClInclude Include="Line.h" />
-    <ClInclude Include="MainWindow.h" />
-    <ClInclude Include="OpenGLWindow.h" />
-    <ClInclude Include="pch.h" />
-    <ClInclude Include="Quad.h" />
-    <ClInclude Include="font_resource.h" />
-    <ClInclude Include="SoundManager.h" />
-    <ClInclude Include="shader_resource.h" />
-    <ClInclude Include="ResourceManager.h" />
-    <ClInclude Include="Shader.h" />
-    <ClInclude Include="Sprite.h" />
-    <ClInclude Include="stb_image.h" />
-    <ClInclude Include="string_converter.h" />
-    <ClInclude Include="Texture2D.h" />
-    <ClInclude Include="TextRendering.h" />
-    <ClInclude Include="Transform2D.h" />
-    <ClInclude Include="Transform2D_Macro.h" />
-    <ClInclude Include="VertexBuffer2D.h" />
+    <ClInclude Include="include\OpenGL\Animation2D\Animation2D.h" />
+    <ClInclude Include="include\OpenGL\Camera\Camera.h" />
+    <ClInclude Include="include\Macro\delete_macro.h" />
+    <ClInclude Include="include\OpenGL\Model3D\Mesh.h" />
+    <ClInclude Include="include\OpenGL\Model3D\Model3D.h" />
+    <ClInclude Include="include\OpenGL\Window\MainWindow.h" />
+    <ClInclude Include="include\OpenGL\Window\OpenGLWindow.h" />
+    <ClInclude Include="include\pch.h" />
+    <ClInclude Include="include\OpenGL\Quad\Quad.h" />
+    <ClInclude Include="include\rc\font_resource.h" />
+    <ClInclude Include="include\Manager\SoundManager.h" />
+    <ClInclude Include="include\rc\shader_resource.h" />
+    <ClInclude Include="include\Manager\ResourceManager.h" />
+    <ClInclude Include="include\OpenGL\Shader\Shader.h" />
+    <ClInclude Include="include\OpenGL\Sprite\Sprite.h" />
+    <ClInclude Include="include\utill\stb_image.h" />
+    <ClInclude Include="include\utill\string_converter.h" />
+    <ClInclude Include="include\OpenGL\Texture2D\Texture2D.h" />
+    <ClInclude Include="include\OpenGL\TextRender\TextRendering.h" />
+    <ClInclude Include="include\OpenGL\Transform2D\Transform2D.h" />
+    <ClInclude Include="include\Macro\Transform2D_Macro.h" />
+    <ClInclude Include="include\OpenGL\VertexBuffer2D\VertexBuffer2D.h" />
+    <ClInclude Include="include\OpenGL\QuadTree\QuadTreeNode.h" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="font_resource.rc" />
-    <ResourceCompile Include="ShaderResource.rc" />
+    <ResourceCompile Include="include\rc\font_resource.rc" />
+    <ResourceCompile Include="include\rc\ShaderResource.rc" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="cpp.hint" />
     <None Include="Font\arial.bin" />
+    <None Include="Shader\model_loading_fs.bin" />
+    <None Include="Shader\model_loading_vs.bin" />
     <None Include="Shader\normal_fs.bin" />
     <None Include="Shader\checkboard_fs.bin" />
     <None Include="Shader\checkboard_vs.bin" />

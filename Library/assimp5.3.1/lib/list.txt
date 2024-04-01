@@ -1,0 +1,8 @@
+assimp-vc143-mt.lib
+draco.lib
+kubazip.lib
+minizip.lib
+poly2tri.lib
+polyclipping.lib
+pugixml.lib
+zlib.lib

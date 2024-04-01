@@ -1,58 +1,67 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="SoundManager.cpp" />
-    <ClCompile Include="ResourceManager.cpp" />
-    <ClCompile Include="Line.cpp" />
-    <ClCompile Include="Quad.cpp" />
-    <ClCompile Include="Sprite.cpp" />
-    <ClCompile Include="TextRendering.cpp" />
-    <ClCompile Include="Texture2D.cpp" />
-    <ClCompile Include="VertexBuffer2D.cpp" />
-    <ClCompile Include="glad.cpp" />
-    <ClCompile Include="pch.cpp" />
-    <ClCompile Include="stb_image.cpp" />
-    <ClCompile Include="MainWindow.cpp" />
-    <ClCompile Include="OpenGLWindow.cpp" />
-    <ClCompile Include="main.cpp" />
+    <ClCompile Include="source\Manager\SoundManager.cpp" />
+    <ClCompile Include="source\OpenGL\Quad\Quad.cpp" />
+    <ClCompile Include="source\OpenGL\Sprite\Sprite.cpp" />
+    <ClCompile Include="source\OpenGL\TextRender\TextRendering.cpp" />
+    <ClCompile Include="source\OpenGL\Texture2D\Texture2D.cpp" />
+    <ClCompile Include="source\OpenGL\VertexBuffer2D\VertexBuffer2D.cpp" />
+    <ClCompile Include="source\glad.cpp" />
+    <ClCompile Include="include\pch.cpp" />
+    <ClCompile Include="include\utill\stb_image.cpp" />
+    <ClCompile Include="source\OpenGL\Window\MainWindow.cpp" />
+    <ClCompile Include="source\OpenGL\Window\OpenGLWindow.cpp" />
+    <ClCompile Include="source\main.cpp" />
+    <ClCompile Include="source\Manager\ResourceManager.cpp" />
+    <ClCompile Include="source\OpenGL\Model3D\Mesh.cpp" />
+    <ClCompile Include="source\OpenGL\Model3D\Model3D.cpp" />
+    <ClCompile Include="source\OpenGL\Camera\Camera.cpp" />
+    <ClCompile Include="source\OpenGL\QuadTree\QuadTreeNode.cpp" />
+    <ClCompile Include="source\OpenGL\Animation2D\Animation2D.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="SoundManager.h" />
-    <ClInclude Include="shader_resource.h" />
-    <ClInclude Include="font_resource.h" />
-    <ClInclude Include="ResourceManager.h" />
-    <ClInclude Include="Line.h" />
-    <ClInclude Include="Quad.h" />
-    <ClInclude Include="Sprite.h" />
-    <ClInclude Include="TextRendering.h" />
-    <ClInclude Include="Texture2D.h" />
-    <ClInclude Include="Transform2D.h" />
-    <ClInclude Include="Transform2D_Macro.h" />
-    <ClInclude Include="VertexBuffer2D.h" />
-    <ClInclude Include="pch.h" />
-    <ClInclude Include="stb_image.h" />
-    <ClInclude Include="delete_macro.h" />
-    <ClInclude Include="Shader.h" />
-    <ClInclude Include="string_converter.h" />
-    <ClInclude Include="MainWindow.h" />
-    <ClInclude Include="OpenGLWindow.h" />
+    <ClInclude Include="include\Manager\SoundManager.h" />
+    <ClInclude Include="include\rc\shader_resource.h" />
+    <ClInclude Include="include\rc\font_resource.h" />
+    <ClInclude Include="include\OpenGL\Quad\Quad.h" />
+    <ClInclude Include="include\OpenGL\Sprite\Sprite.h" />
+    <ClInclude Include="include\OpenGL\TextRender\TextRendering.h" />
+    <ClInclude Include="include\OpenGL\Texture2D\Texture2D.h" />
+    <ClInclude Include="include\OpenGL\Transform2D\Transform2D.h" />
+    <ClInclude Include="include\Macro\Transform2D_Macro.h" />
+    <ClInclude Include="include\OpenGL\VertexBuffer2D\VertexBuffer2D.h" />
+    <ClInclude Include="include\pch.h" />
+    <ClInclude Include="include\utill\stb_image.h" />
+    <ClInclude Include="include\Macro\delete_macro.h" />
+    <ClInclude Include="include\OpenGL\Shader\Shader.h" />
+    <ClInclude Include="include\utill\string_converter.h" />
+    <ClInclude Include="include\OpenGL\Window\MainWindow.h" />
+    <ClInclude Include="include\OpenGL\Window\OpenGLWindow.h" />
+    <ClInclude Include="include\Manager\ResourceManager.h" />
+    <ClInclude Include="include\OpenGL\Model3D\Mesh.h" />
+    <ClInclude Include="include\OpenGL\Model3D\Model3D.h" />
+    <ClInclude Include="include\OpenGL\Camera\Camera.h" />
+    <ClInclude Include="include\OpenGL\QuadTree\QuadTreeNode.h" />
+    <ClInclude Include="include\OpenGL\Animation2D\Animation2D.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Shader\normal_fs.bin" />
+    <None Include="Shader\normal_vs.bin" />
+    <None Include="Shader\textured_fs.bin" />
+    <None Include="Shader\textured_vs.bin" />
+    <None Include="Font\arial.bin" />
     <None Include="Shader\checkboard_fs.bin" />
     <None Include="Shader\checkboard_vs.bin" />
     <None Include="Shader\colored_fs.bin" />
     <None Include="Shader\colored_vs.bin" />
-    <None Include="Shader\normal_fs.bin" />
-    <None Include="Shader\normal_vs.bin" />
     <None Include="Shader\text_fs.bin" />
     <None Include="Shader\text_vs.bin" />
-    <None Include="Shader\textured_fs.bin" />
-    <None Include="Shader\textured_vs.bin" />
-    <None Include="Font\arial.bin" />
-    <None Include="cpp.hint" />
+    <None Include="Shader\model_loading_fs.bin" />
+    <None Include="Shader\model_loading_vs.bin" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="ShaderResource.rc" />
-    <ResourceCompile Include="font_resource.rc" />
+    <ResourceCompile Include="include\rc\ShaderResource.rc" />
+    <ResourceCompile Include="include\rc\font_resource.rc" />
   </ItemGroup>
 </Project>

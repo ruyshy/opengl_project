@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros">
+    <ASSIMP_DIR>$(SolutionDir)Library\assimp5.3.1\</ASSIMP_DIR>
+  </PropertyGroup>
+  <PropertyGroup>
+    <IncludePath>$(ASSIMP_DIR)include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ASSIMP_DIR)lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <Link>
+      <AdditionalDependencies>assimp-vc143-mt.lib;draco.lib;kubazip.lib;minizip.lib;poly2tri.lib;polyclipping.lib;pugixml.lib;zlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <BuildMacro Include="ASSIMP_DIR">
+      <Value>$(ASSIMP_DIR)</Value>
+    </BuildMacro>
+  </ItemGroup>
+</Project>
