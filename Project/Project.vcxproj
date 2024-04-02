@@ -159,6 +159,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="source\Game\Event\DemoEvent.cpp" />
+    <ClCompile Include="source\Game\Event\Dispatcher.cpp" />
+    <ClCompile Include="source\Game\Event\Event.cpp" />
+    <ClCompile Include="source\Game\Object\Character\Character.cpp" />
+    <ClCompile Include="source\Game\Object\GObjectBase.cpp" />
     <ClCompile Include="source\OpenGL\Animation2D\Animation2D.cpp" />
     <ClCompile Include="source\OpenGL\QuadTree\QuadTreeNode.cpp" />
     <ClCompile Include="source\OpenGL\Camera\Camera.cpp" />
@@ -179,6 +184,11 @@
     <ClCompile Include="source\OpenGL\VertexBuffer2D\VertexBuffer2D.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\Game\Event\DemoEvent.h" />
+    <ClInclude Include="include\Game\Event\Dispatcher.h" />
+    <ClInclude Include="include\Game\Event\Event.h" />
+    <ClInclude Include="include\Game\Object\Character\Character.h" />
+    <ClInclude Include="include\Game\Object\GObjectBase.h" />
     <ClInclude Include="include\OpenGL\Animation2D\Animation2D.h" />
     <ClInclude Include="include\OpenGL\Camera\Camera.h" />
     <ClInclude Include="include\Macro\delete_macro.h" />

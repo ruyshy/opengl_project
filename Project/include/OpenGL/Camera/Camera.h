@@ -10,18 +10,20 @@ using namespace std;
 class Camera
 {
 public:
-	Camera(int window_width, int window_height);
+	Camera(shared_ptr<int> window_width, shared_ptr<int> window_height);
 	~Camera();
 
 	glm::mat4 Get_Projection();
 
-	void Update(std::function<bool(int)> key_input_function, double delta_time);
-	void Update_Viewport(int new_width, int new_height);
+	void SetPosition(glm::vec2 position);
+	void Update();
+
+	void Key_Update(std::function<bool(int)> key_input_function, double delta_time);
 
 private:
 	glm::mat4 mProjection;
 	glm::vec2 mPosition;
-	int mWidth, mHeight;
+	shared_ptr<const int> mpWidth, mpHeight;
 };
 
 

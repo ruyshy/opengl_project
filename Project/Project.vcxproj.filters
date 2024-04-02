@@ -19,6 +19,11 @@
     <ClCompile Include="source\OpenGL\Camera\Camera.cpp" />
     <ClCompile Include="source\OpenGL\QuadTree\QuadTreeNode.cpp" />
     <ClCompile Include="source\OpenGL\Animation2D\Animation2D.cpp" />
+    <ClCompile Include="source\Game\Event\Event.cpp" />
+    <ClCompile Include="source\Game\Event\Dispatcher.cpp" />
+    <ClCompile Include="source\Game\Event\DemoEvent.cpp" />
+    <ClCompile Include="source\Game\Object\GObjectBase.cpp" />
+    <ClCompile Include="source\Game\Object\Character\Character.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Manager\SoundManager.h" />
@@ -44,6 +49,11 @@
     <ClInclude Include="include\OpenGL\Camera\Camera.h" />
     <ClInclude Include="include\OpenGL\QuadTree\QuadTreeNode.h" />
     <ClInclude Include="include\OpenGL\Animation2D\Animation2D.h" />
+    <ClInclude Include="include\Game\Event\Event.h" />
+    <ClInclude Include="include\Game\Event\Dispatcher.h" />
+    <ClInclude Include="include\Game\Event\DemoEvent.h" />
+    <ClInclude Include="include\Game\Object\GObjectBase.h" />
+    <ClInclude Include="include\Game\Object\Character\Character.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Shader\normal_fs.bin" />

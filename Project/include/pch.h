@@ -30,6 +30,21 @@ using namespace std;
 #define WIN32_LEAN_AND_MEAN
 
 
+class OpenGLWindow;
+class MainWindow;
+
+class GObjectBase;
+class GSceneBase;
+class MainScene;
+
+class Shader;
+
+class Camera;
+
+class VertexBufferObject2D;
+class Texture2D;
+class Sprite;
+
 // opengl
 #pragma comment(lib, "OpenGL32.lib")
 #pragma comment(lib, "glew32.lib")
@@ -51,19 +66,12 @@ using namespace glm;
 
 #pragma comment(lib, "fmod_vc.lib")
 
+// user include
+#include <OpenGL/Window/MainWindow.h>
+
 // user utill
 #include <Macro/delete_macro.h>
 #include <Macro/Transform2D_Macro.h>
-
-class Shader;
-
-class Texture2D;
-class Shader;
-class VertexBufferObject2D;
-class Sprite;
-
-class Mesh;
-class Model3D;
 
 
 #endif // !PCH_H

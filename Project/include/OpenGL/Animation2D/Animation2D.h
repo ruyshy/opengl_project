@@ -3,9 +3,6 @@
 #ifndef ANIMATION2D_H_
 #define ANIMATION2D_H_
 
-class VertexBufferObject2D;
-class Texture2D;
-
 
 class Animation2D
 {
