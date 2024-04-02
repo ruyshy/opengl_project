@@ -33,9 +33,8 @@ using namespace std;
 class OpenGLWindow;
 class MainWindow;
 
-class GObjectBase;
-class GSceneBase;
-class MainScene;
+class ObjectBase;
+class SceneBase;
 
 class Shader;
 
@@ -53,6 +52,7 @@ class Sprite;
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
 
 using namespace glm;
 
@@ -70,6 +70,8 @@ using namespace glm;
 #include <OpenGL/Window/MainWindow.h>
 
 // user utill
+#include <utill/stb_image.h>
+
 #include <Macro/delete_macro.h>
 #include <Macro/Transform2D_Macro.h>
 

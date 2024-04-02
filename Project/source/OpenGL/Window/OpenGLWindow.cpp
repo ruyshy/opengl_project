@@ -1,5 +1,4 @@
 #include <pch.h>
-#include <glm/gtc/matrix_transform.hpp>
 #include <OpenGL/Window/OpenGLWindow.h>
 #include <utill/string_converter.h>
 
@@ -126,12 +125,12 @@ bool OpenGLWindow::hasErrorOccured() const
     return _hasErrorOccured;
 }
 
-glm::mat4 OpenGLWindow::getProjectionMatrix() const
+mat4 OpenGLWindow::getProjectionMatrix() const
 {
     return _projectionMatrix;
 }
 
-glm::mat4 OpenGLWindow::getOrthoProjectionMatrix() const
+mat4 OpenGLWindow::getOrthoProjectionMatrix() const
 {
     return _orthoMatrix;
 }
@@ -177,11 +176,11 @@ int OpenGLWindow::getScreenHeight() const
     return screenHeight_;
 }
 
-glm::ivec2 OpenGLWindow::getOpenGLCursorPosition() const
+ivec2 OpenGLWindow::getOpenGLCursorPosition() const
 {
     double posX, posY;
     glfwGetCursorPos(_window, &posX, &posY);
-    return glm::ivec2(static_cast<int>(posX), screenHeight_ - static_cast<int>(posY));
+    return ivec2(static_cast<int>(posX), screenHeight_ - static_cast<int>(posY));
 }
 
 OpenGLWindow* OpenGLWindow::getDefaultWindow()
@@ -194,8 +193,8 @@ void OpenGLWindow::recalculateProjectionMatrix()
     int width, height;
     glfwGetWindowSize(getWindow(), &width, &height);
     if (width == 0 && height == 0)  return;
-    _projectionMatrix = glm::perspective(glm::radians(57.0f), static_cast<float>(width) / static_cast<float>(height), 0.5f, 1500.0f);
-    _orthoMatrix = glm::ortho(0.0f, static_cast<float>(width), 0.0f, static_cast<float>(height));
+    _projectionMatrix = perspective(radians(57.0f), static_cast<float>(width) / static_cast<float>(height), 0.5f, 1500.0f);
+    _orthoMatrix = ortho(0.0f, static_cast<float>(width), 0.0f, static_cast<float>(height));
 }
 
 void OpenGLWindow::updateDeltaTimeAndFPS()

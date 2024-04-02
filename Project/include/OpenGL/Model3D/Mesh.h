@@ -7,11 +7,11 @@ namespace MeshData
 #define MAX_BONE_INFLUENCE 4
 
     struct Vertex {
-        glm::vec3 Position;
-        glm::vec3 Normal;
-        glm::vec2 TexCoords;
-        glm::vec3 Tangent;
-        glm::vec3 Bitangent;
+        vec3 Position;
+        vec3 Normal;
+        vec2 TexCoords;
+        vec3 Tangent;
+        vec3 Bitangent;
         int m_BoneIDs[MAX_BONE_INFLUENCE];
         float m_Weights[MAX_BONE_INFLUENCE];
     };

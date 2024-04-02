@@ -2,7 +2,7 @@
 #include <Game/Object/Character/Character.h>
 #include <OpenGL/Sprite/Sprite.h>
 
-Character::Character(shared_ptr<Shader> shader, const char* filePath) : GObjectBase(0, "Character")
+Character::Character(shared_ptr<Shader> shader, const char* filePath) : ObjectBase(0, "Character")
 {
 	mpSprite = make_shared<Sprite>(shader, filePath);
 	mpSprite->SetPosition(0,0);

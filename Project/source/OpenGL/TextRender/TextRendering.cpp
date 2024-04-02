@@ -53,8 +53,8 @@ TextRendering::TextRendering(const char* file_path, mat4* projection_matrix) :
 
         Character character = {
             texture,
-            glm::ivec2(face->glyph->bitmap.width, face->glyph->bitmap.rows),
-            glm::ivec2(face->glyph->bitmap_left, face->glyph->bitmap_top),
+            ivec2(face->glyph->bitmap.width, face->glyph->bitmap.rows),
+            ivec2(face->glyph->bitmap_left, face->glyph->bitmap_top),
             face->glyph->advance.x
         };
         Characters.insert(std::pair<char, Character>(c, character));
@@ -121,8 +121,8 @@ TextRendering::TextRendering(UINT ID, mat4* projection_matrix) :
 
         Character character = {
             texture,
-            glm::ivec2(face->glyph->bitmap.width, face->glyph->bitmap.rows),
-            glm::ivec2(face->glyph->bitmap_left, face->glyph->bitmap_top),
+            ivec2(face->glyph->bitmap.width, face->glyph->bitmap.rows),
+            ivec2(face->glyph->bitmap_left, face->glyph->bitmap_top),
             face->glyph->advance.x
         };
         Characters.insert(std::pair<char, Character>(c, character));
@@ -149,7 +149,7 @@ TextRendering::~TextRendering()
     NULLPTR_CHECK_DELETE(mpShader);
 }
 
-void TextRendering::RenderText(std::string text, float x, float y, float scale, glm::vec3 color)
+void TextRendering::RenderText(std::string text, float x, float y, float scale, vec3 color)
 {
     if (mpProjectionMatrix == nullptr)
         return;
@@ -194,7 +194,7 @@ void TextRendering::RenderText(std::string text, float x, float y, float scale, 
     glBindTexture(GL_TEXTURE_2D, 0);
 }
 
-void TextRendering::RenderText(std::string text, vec2 pos, float scale, glm::vec3 color) 
+void TextRendering::RenderText(std::string text, vec2 pos, float scale, vec3 color) 
 { 
     RenderText(text, pos.x,pos.y, scale, color); 
 }

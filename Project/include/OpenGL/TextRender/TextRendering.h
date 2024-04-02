@@ -11,8 +11,8 @@ public:
 	~TextRendering();
 
 
-	void RenderText(std::string text, float x, float y, float scale, glm::vec3 color);
-	void RenderText(std::string text, vec2 pos, float scale, glm::vec3 color);
+	void RenderText(std::string text, float x, float y, float scale, vec3 color);
+	void RenderText(std::string text, vec2 pos, float scale, vec3 color);
 
 private:
 	Shader* mpShader;
@@ -23,8 +23,8 @@ private:
 
 	struct Character {
 		unsigned int TextureID;
-		glm::ivec2   Size;
-		glm::ivec2   Bearing;
+		ivec2   Size;
+		ivec2   Bearing;
 		unsigned int Advance;
 	};
 	std::map<GLchar, Character> Characters;

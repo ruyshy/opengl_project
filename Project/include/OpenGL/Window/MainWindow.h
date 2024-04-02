@@ -26,9 +26,10 @@ private:
     unique_ptr<VertexBufferObject2D> mpCheckboard;
     shared_ptr<Camera> mpCamera;
     shared_ptr<Character> mpCharacter;
+    shared_ptr<SceneBase> mpScene;
 
 public:
-    glm::mat4* mpProjectionMatrix;
+    mat4* mpProjectionMatrix;
     shared_ptr<int> mpWidth, mpHeight;
 
 };

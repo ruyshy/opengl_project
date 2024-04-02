@@ -3,28 +3,34 @@
 #ifndef CAMERA_H_
 #define CAMERA_H_
 
-#include <glm/gtc/matrix_transform.hpp>
-
-using namespace std;
-
 class Camera
 {
 public:
 	Camera(shared_ptr<Shader> shader, shared_ptr<int> window_width, shared_ptr<int> window_height);
 	~Camera();
 
-	glm::mat4 GetProjectionMatrix();
-	glm::mat4 GetViewMatrix();
-	void SetPosition(glm::vec3 position);
+	mat4 GetProjectionMatrix();
+	mat4 GetViewMatrix();
+	
+	vec3 GetPosition();
+	vec3 GetUpView();
+	vec3 GetDirection();
+
+	void SetPosition(vec3 position);
+	void SetDirection(vec3 direction);
+	void SetUpView(vec3 upVector);
+
 	void Update();
 
 	void Key_Update(std::function<bool(int)> key_input_function, double delta_time);
 
 private:
-	glm::mat4 mProjectionMatrix;
-	glm::mat4 mViewMatrix;
-	const glm::mat4 _ModelMatrix = glm::mat4(1.0);
-	glm::vec3 mPosition;
+	mat4 mProjectionMatrix;
+	mat4 mViewMatrix;
+	vec3 mPosition;
+	vec3 mUp;
+	vec3 mDirection;
+
 	shared_ptr<Shader> mpShader;
 	shared_ptr<const int> mpWidth, mpHeight;
 };

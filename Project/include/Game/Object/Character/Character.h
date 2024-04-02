@@ -3,9 +3,9 @@
 #ifndef CHARACTER_H_
 #define CHARACTER_H_
 
-#include <Game/Object/GObjectBase.h>
+#include <Game/Object/ObjectBase.h>
 
-class Character : public GObjectBase
+class Character : public ObjectBase
 {
 protected:
 	Character() = delete;

@@ -22,8 +22,9 @@
     <ClCompile Include="source\Game\Event\Event.cpp" />
     <ClCompile Include="source\Game\Event\Dispatcher.cpp" />
     <ClCompile Include="source\Game\Event\DemoEvent.cpp" />
-    <ClCompile Include="source\Game\Object\GObjectBase.cpp" />
+    <ClCompile Include="source\Game\Object\ObjectBase.cpp" />
     <ClCompile Include="source\Game\Object\Character\Character.cpp" />
+    <ClCompile Include="source\Game\Scene\SceneBase.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Manager\SoundManager.h" />
@@ -52,8 +53,9 @@
     <ClInclude Include="include\Game\Event\Event.h" />
     <ClInclude Include="include\Game\Event\Dispatcher.h" />
     <ClInclude Include="include\Game\Event\DemoEvent.h" />
-    <ClInclude Include="include\Game\Object\GObjectBase.h" />
+    <ClInclude Include="include\Game\Object\ObjectBase.h" />
     <ClInclude Include="include\Game\Object\Character\Character.h" />
+    <ClInclude Include="include\Game\Scene\SceneBase.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Shader\normal_fs.bin" />

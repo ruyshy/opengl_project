@@ -8,9 +8,14 @@ Camera::Camera(shared_ptr<Shader> shader, shared_ptr<int> window_width, shared_p
 	mpWidth = window_width;
 	mpHeight = window_height;
 
-	mProjectionMatrix = glm::ortho(0.0f, static_cast<float>(*mpWidth), static_cast<float>(*mpHeight), 0.0f, -1.0f, 1.0f);
+	mProjectionMatrix = ortho(0.0f, static_cast<float>(*mpWidth), static_cast<float>(*mpHeight), 0.0f, -1.0f, 1.0f);
 
 	mPosition = vec3(0, 0, 0);
+	mUp = vec3(0, 1, 0);
+	mDirection = vec3(0, 0, -10);
+
+	mProjectionMatrix = mat4();
+	mViewMatrix = mat4();
 }
 
 Camera::~Camera()
@@ -18,13 +23,17 @@ Camera::~Camera()
 
 }
 
-glm::mat4 Camera::GetProjectionMatrix() { return mProjectionMatrix; }
-glm::mat4 Camera::GetViewMatrix() { return mViewMatrix; }
+mat4 Camera::GetProjectionMatrix() { return mProjectionMatrix; }
+mat4 Camera::GetViewMatrix() { return mViewMatrix; }
 
-void Camera::SetPosition(glm::vec3 position)
-{
+vec3 Camera::GetPosition() { return mPosition; }
+vec3 Camera::GetUpView() { return mUp; }
+vec3 Camera::GetDirection() { return mDirection; }
 
-}
+void Camera::SetPosition(vec3 position) { mPosition = position; }
+void Camera::SetDirection(vec3 direction) { mDirection = direction; }
+void Camera::SetUpView(vec3 upVector) { mUp = upVector; }
+
 
 void Camera::Key_Update(std::function<bool(int)> key_input_function, double delta_time)
 {
@@ -43,12 +52,12 @@ void Camera::Key_Update(std::function<bool(int)> key_input_function, double delt
 
 void Camera::Update()
 {
-	mProjectionMatrix = glm::ortho(0.0f, static_cast<float>(*mpWidth), static_cast<float>(*mpHeight), 0.0f, -1.0f, 1.0f);
+	mProjectionMatrix = ortho(0.0f, static_cast<float>(*mpWidth), static_cast<float>(*mpHeight), 0.0f, -1.0f, 1.0f);
 
-	mViewMatrix = glm::lookAt(
-		glm::vec3(mPosition), // camera position
-		glm::vec3(mPosition.x, mPosition.y, -10), // camera direction
-		glm::vec3(0, 1, 0)  // camera up flip 0 -1 0
+	mViewMatrix = lookAt(
+		vec3(mPosition), // camera position
+		vec3(mPosition.x + mDirection.x, mPosition.y + mDirection.y, mDirection.z), // camera direction
+		vec3(mUp)  // camera up flip 0 -1 0
 	);
 
 	mpShader->use();

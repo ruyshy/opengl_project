@@ -141,7 +141,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>TurnOffAllWarnings</WarningLevel>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
@@ -163,7 +163,8 @@
     <ClCompile Include="source\Game\Event\Dispatcher.cpp" />
     <ClCompile Include="source\Game\Event\Event.cpp" />
     <ClCompile Include="source\Game\Object\Character\Character.cpp" />
-    <ClCompile Include="source\Game\Object\GObjectBase.cpp" />
+    <ClCompile Include="source\Game\Object\ObjectBase.cpp" />
+    <ClCompile Include="source\Game\Scene\SceneBase.cpp" />
     <ClCompile Include="source\OpenGL\Animation2D\Animation2D.cpp" />
     <ClCompile Include="source\OpenGL\QuadTree\QuadTreeNode.cpp" />
     <ClCompile Include="source\OpenGL\Camera\Camera.cpp" />
@@ -188,7 +189,8 @@
     <ClInclude Include="include\Game\Event\Dispatcher.h" />
     <ClInclude Include="include\Game\Event\Event.h" />
     <ClInclude Include="include\Game\Object\Character\Character.h" />
-    <ClInclude Include="include\Game\Object\GObjectBase.h" />
+    <ClInclude Include="include\Game\Object\ObjectBase.h" />
+    <ClInclude Include="include\Game\Scene\SceneBase.h" />
     <ClInclude Include="include\OpenGL\Animation2D\Animation2D.h" />
     <ClInclude Include="include\OpenGL\Camera\Camera.h" />
     <ClInclude Include="include\Macro\delete_macro.h" />

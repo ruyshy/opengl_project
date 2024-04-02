@@ -1,14 +1,14 @@
 #pragma once
 
-#ifndef GOBJECT_H_
-#define GOBJECT_H_
+#ifndef OBJECT_H_
+#define OBJECT_H_
 
-class GObjectBase
+class ObjectBase
 {
 public:
-	GObjectBase() = delete;
-	GObjectBase(unsigned int ID, string Name = "GameObject");
-	virtual ~GObjectBase();
+	ObjectBase() = delete;
+	ObjectBase(unsigned int ID, string Name = "GameObject");
+	virtual ~ObjectBase();
 
 public:
 	unsigned int GetID();

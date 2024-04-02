@@ -32,7 +32,7 @@ Animation2D::Animation2D(const char* filename)
 				result.push_back(stoi(token));
 			}
 
-			glm::vec4 frame = glm::vec4(result[0], result[1], result[2], result[3]);
+			vec4 frame = vec4(result[0], result[1], result[2], result[3]);
 			frames.push_back(frame);
 		}
 	}
@@ -57,7 +57,7 @@ void Animation2D::play(Texture2D& spritetexture, VertexBufferObject2D& rectangle
 		anim_cursor = 0;
 	}
 
-	glm::vec4 frame = frames[current_frame_indx];
+	vec4 frame = frames[current_frame_indx];
 
 	// normalization
 	frame.x /= spritetexture.width;
@@ -65,27 +65,27 @@ void Animation2D::play(Texture2D& spritetexture, VertexBufferObject2D& rectangle
 	frame.z /= spritetexture.width;
 	frame.w /= spritetexture.height;
 
-	vector<glm::vec2> uv;
+	vector<vec2> uv;
 
 	uv = {
-		glm::vec2(frame.x,frame.y),
-		glm::vec2(frame.x, frame.y + frame.w),
-		glm::vec2(frame.x + frame.z, frame.y),
-		glm::vec2(frame.x + frame.z, frame.y + frame.w)
+		vec2(frame.x,frame.y),
+		vec2(frame.x, frame.y + frame.w),
+		vec2(frame.x + frame.z, frame.y),
+		vec2(frame.x + frame.z, frame.y + frame.w)
 	};
 
 	glBindVertexArray(rectangle.VAO);
 	glBindBuffer(GL_ARRAY_BUFFER, rectangle.UVBO);
 
 	/*{ //realocation for memory
-		glBufferData(GL_ARRAY_BUFFER, 6 * sizeof(glm::vec2), &uv[0], GL_DYNAMIC_DRAW);
+		glBufferData(GL_ARRAY_BUFFER, 6 * sizeof(vec2), &uv[0], GL_DYNAMIC_DRAW);
 	}*/
 
 
 	// best practice to send data to gpu memory..
 	void* gpubuffer = nullptr;
-	gpubuffer = glMapBufferRange(GL_ARRAY_BUFFER, 0, 4 * sizeof(glm::vec2), GL_MAP_WRITE_BIT | GL_MAP_INVALIDATE_BUFFER_BIT);
-	memcpy(gpubuffer, uv.data(), 4 * sizeof(glm::vec2));
+	gpubuffer = glMapBufferRange(GL_ARRAY_BUFFER, 0, 4 * sizeof(vec2), GL_MAP_WRITE_BIT | GL_MAP_INVALIDATE_BUFFER_BIT);
+	memcpy(gpubuffer, uv.data(), 4 * sizeof(vec2));
 	glUnmapBuffer(GL_ARRAY_BUFFER);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 }

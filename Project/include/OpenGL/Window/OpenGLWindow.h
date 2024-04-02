@@ -20,8 +20,8 @@ public:
     bool keyPressedOnce(int keyCode);
     void closeWindow(bool errorHasOccured = false);
     bool hasErrorOccured() const;
-    glm::mat4 getProjectionMatrix() const;
-    glm::mat4 getOrthoProjectionMatrix() const;
+    mat4 getProjectionMatrix() const;
+    mat4 getOrthoProjectionMatrix() const;
     float sof(float value) const;
     double sof(double value) const;
     double getTimeDelta() const;
@@ -30,7 +30,7 @@ public:
     bool isVerticalSynchronizationEnabled() const;
     int getScreenWidth() const;
     int getScreenHeight() const;
-    glm::ivec2 getOpenGLCursorPosition() const;
+    ivec2 getOpenGLCursorPosition() const;
     static OpenGLWindow* getDefaultWindow();
 
 protected:
@@ -43,8 +43,8 @@ private:
     bool _keyWasPressed[512];
     bool _hasErrorOccured = false;
 
-    glm::mat4 _projectionMatrix;
-    glm::mat4 _orthoMatrix;
+    mat4 _projectionMatrix;
+    mat4 _orthoMatrix;
     void recalculateProjectionMatrix();
 
     double _lastFrameTime = 0.0;

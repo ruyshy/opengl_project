@@ -31,7 +31,7 @@ private:
 	mat4 projection_matrix;
 	mat4 model_matrx;
 	vec4 Color;
-	float Width;
+	double Width;
 
 };
 

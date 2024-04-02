@@ -22,7 +22,7 @@ protected:
 	int frames_count;
 	float speed;
 
-	vector<glm::vec4> frames;
+	vector<vec4> frames;
 };
 
 #endif // !ANIMATION2D_H_

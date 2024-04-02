@@ -8,18 +8,14 @@
 #include <Manager/ResourceManager.h>
 #include <rc/shader_resource.h>
 
-#include <glm/gtc/matrix_transform.hpp>
-#include <utill/stb_image.h>
 
-#include <OpenGL/Model3D/Mesh.h>
-#include <OpenGL/Model3D/Model3D.h>
 #include <OpenGL/Sprite/Sprite.h>
 #include <OpenGL/Camera/Camera.h>
 #include <Game/Object/Character/Character.h>
 
 MainWindow::MainWindow()
 {
-	mpProjectionMatrix = new glm::mat4(1.0f);
+	mpProjectionMatrix = new mat4(1.0f);
 	mpWidth = make_shared<int>(0);
 	mpHeight = make_shared<int>(0);
 
@@ -57,8 +53,8 @@ void MainWindow::renderScene()
 
 	mpCheckboardShader->use();
 	mpCheckboardShader->setMat4("projection", getOrthoProjectionMatrix());
-	mpCheckboardShader->setMat4("model_matrx", glm::scale(glm::mat4(1), glm::vec3(getScreenWidth(), getScreenHeight(), 1)));
-	mpCheckboardShader->setVec2("resolution", glm::vec2(getScreenWidth(), getScreenHeight()));
+	mpCheckboardShader->setMat4("model_matrx", scale(mat4(1), vec3(getScreenWidth(), getScreenHeight(), 1)));
+	mpCheckboardShader->setVec2("resolution", vec2(getScreenWidth(), getScreenHeight()));
 	mpCheckboard->draw();
 
 	mpTextureShader->use();

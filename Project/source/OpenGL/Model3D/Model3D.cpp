@@ -78,7 +78,7 @@ Mesh Model3D::processMesh(aiMesh* mesh, const aiScene* scene)
     for (unsigned int i = 0; i < mesh->mNumVertices; i++)
     {
         Vertex vertex;
-        glm::vec3 vector;
+        vec3 vector;
         vector.x = mesh->mVertices[i].x;
         vector.y = mesh->mVertices[i].y;
         vector.z = mesh->mVertices[i].z;
@@ -92,7 +92,7 @@ Mesh Model3D::processMesh(aiMesh* mesh, const aiScene* scene)
         }
         if (mesh->mTextureCoords[0])
         {
-            glm::vec2 vec;
+            vec2 vec;
             vec.x = mesh->mTextureCoords[0][i].x;
             vec.y = mesh->mTextureCoords[0][i].y;
             vertex.TexCoords = vec;
@@ -106,7 +106,7 @@ Mesh Model3D::processMesh(aiMesh* mesh, const aiScene* scene)
             vertex.Bitangent = vector;
         }
         else
-            vertex.TexCoords = glm::vec2(0.0f, 0.0f);
+            vertex.TexCoords = vec2(0.0f, 0.0f);
 
         vertices.push_back(vertex);
     }
