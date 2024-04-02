@@ -5,6 +5,7 @@
 
 #include <OpenGL/Window/OpenGLWindow.h>
 #include <OpenGL/VertexBuffer2D/VertexBuffer2D.h>
+class Character;
 
 class MainWindow : public OpenGLWindow
 {
@@ -24,6 +25,7 @@ private:
     shared_ptr<Shader> mpTextureShader;
     unique_ptr<VertexBufferObject2D> mpCheckboard;
     shared_ptr<Camera> mpCamera;
+    shared_ptr<Character> mpCharacter;
 
 public:
     glm::mat4* mpProjectionMatrix;

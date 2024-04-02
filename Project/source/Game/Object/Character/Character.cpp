@@ -4,7 +4,7 @@
 
 Character::Character(shared_ptr<Shader> shader, const char* filePath) : GObjectBase(0, "Character")
 {
-	mpSprite = make_shared<Sprite>(shader, ".\\Image\\character.png");
+	mpSprite = make_shared<Sprite>(shader, filePath);
 	mpSprite->SetPosition(0,0);
 	mpSprite->SetScale(100, 100);
 

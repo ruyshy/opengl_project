@@ -17,7 +17,6 @@
 #include <OpenGL/Camera/Camera.h>
 #include <Game/Object/Character/Character.h>
 
-//shared_ptr<Character> mpCharacter;
 MainWindow::MainWindow()
 {
 	mpProjectionMatrix = new glm::mat4(1.0f);
@@ -44,9 +43,9 @@ void MainWindow::initializeScene()
 		ResourceManager::GetResourceString(IDR_SHADER_TEXTURED_VS, Resource::SHADER),
 		ResourceManager::GetResourceString(IDR_SHADER_TEXTURED_FS, Resource::SHADER));
 
-	mpCamera = make_unique<Camera>(mpWidth, mpHeight);
+	mpCamera = make_unique<Camera>(mpTextureShader, mpWidth, mpHeight);
 
-	//mpCharacter = make_shared<Character>(mpTextureShader, "C:\\Project\\Jaehyeok\\opengl_project\\backpack\\test.png");
+	mpCharacter = make_shared<Character>(mpTextureShader, "C:\\Project\\opengl_project\\Project\\Image\\character.png");
 
 	mpCheckboard = make_unique<VertexBufferObject2D>(VertexBufferSystem2D::Generate());
 }
@@ -63,8 +62,7 @@ void MainWindow::renderScene()
 	mpCheckboard->draw();
 
 	mpTextureShader->use();
-	mpTextureShader->setMat4("projection", mpCamera->Get_Projection());
-	//mpCharacter->Draw();
+	mpCharacter->Draw();
 
 }
 
@@ -74,8 +72,8 @@ void MainWindow::updateScene()
 	if (keyPressedOnce(GLFW_KEY_F3)) {
 		setVerticalSynchronization(!isVerticalSynchronizationEnabled());
 	}
-	//mpCamera->Key_Update([this](int key) {return this->keyPressed(key); }, getTimeDelta());
-	//mpCharacter->Movement(bind(&keyPressed, this, std::placeholders::_1), getTimeDelta());
+	mpCamera->Key_Update([this](int key) {return this->keyPressed(key); }, getTimeDelta());
+	//mpCharacter->Movement([this](int key) {return this->keyPressed(key); }, getTimeDelta());
 
 	std::string windowTitleWithFPS = "FPS: "
 		+ std::to_string(getFPS()) +
