@@ -12,6 +12,8 @@
 #include <OpenGL/Sprite/Sprite.h>
 #include <OpenGL/Camera/Camera.h>
 #include <Game/Object/Character/Character.h>
+#include <OpenGL/Quad/Quad.h>
+#include <OpenGL/Line/Line.h>
 
 MainWindow::MainWindow()
 {
@@ -41,9 +43,8 @@ void MainWindow::initializeScene()
 
 	mpCamera = make_unique<Camera>(mpTextureShader, mpWidth, mpHeight);
 
-	mpCharacter = make_shared<Character>(mpTextureShader, "C:\\Project\\opengl_project\\Project\\Image\\character.png");
-
 	mpCheckboard = make_unique<VertexBufferObject2D>(VertexBufferSystem2D::Generate());
+	mpCharacter = make_shared<Character>(mpTextureShader, "C:\\Project\\opengl_project\\Project\\Image\\character.png");
 }
 
 void MainWindow::renderScene()
@@ -60,6 +61,11 @@ void MainWindow::renderScene()
 	mpTextureShader->use();
 	mpCharacter->Draw();
 
+	Quad mQuad(mpTextureShader, vec2(0, 0), 100, 100);
+	mQuad.SetColor(vec4(1.0, 0.0, 0.0, 1.0));
+	mQuad.Draw();
+	Line mLine(vec3(0,0,0),vec3(100,100,0), mpTextureShader);
+	mLine.Draw();
 }
 
 void MainWindow::updateScene()
@@ -68,8 +74,8 @@ void MainWindow::updateScene()
 	if (keyPressedOnce(GLFW_KEY_F3)) {
 		setVerticalSynchronization(!isVerticalSynchronizationEnabled());
 	}
-	mpCamera->Key_Update([this](int key) {return this->keyPressed(key); }, getTimeDelta());
-	//mpCharacter->Movement([this](int key) {return this->keyPressed(key); }, getTimeDelta());
+	//mpCamera->Key_Update([this](int key) {return this->keyPressed(key); }, getTimeDelta());
+	mpCharacter->Movement([this](int key) {return this->keyPressed(key); }, getTimeDelta());
 
 	std::string windowTitleWithFPS = "FPS: "
 		+ std::to_string(getFPS()) +

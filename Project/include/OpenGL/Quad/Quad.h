@@ -6,8 +6,9 @@
 class Quad
 {
 public:
-	Quad();
-	Quad(vec2 position, double width = 1.0f);
+	Quad() = delete;
+	Quad(shared_ptr<Shader> shader, vec2 position, double size);
+	Quad(shared_ptr<Shader> shader, vec2 position, double width, double height);
 	~Quad();
 
 	void SetColor(vec4 color);
@@ -15,7 +16,7 @@ public:
 	vec4 GetColor();
 
 	void Draw();
-	void Draw(mat4 _projection_matrix);
+	void DrawOutline();
 
 	Transform2DHeaderMacro();
 
@@ -24,13 +25,12 @@ private:
 	unsigned int VBO;  // vertex buffer object
 	unsigned int EBO;	// Element Buffer Object
 private:
-	Shader* mpShader = nullptr;
+	shared_ptr<Shader> mpShader = nullptr;
 	Transform2D* mpTransfrom = nullptr;
 
-	vector<vec2> points;
-	mat4 projection_matrix;
+	vector<vec2> mPoints;
 	mat4 model_matrx;
-	vec4 Color;
+	vec4 mColor;
 	double Width;
 
 };

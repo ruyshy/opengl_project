@@ -7,32 +7,25 @@
 
 #include <OpenGL/Transform2D/Transform2D.h>
 
-Quad::Quad()
+Quad::Quad(shared_ptr<Shader> shader, vec2 position, double size)
 {
-	mpTransfrom = new Transform2D();
+	mpShader = shader;
 
-	mpShader = new Shader(
-		ResourceManager::GetResourceString(IDR_NORMAL_VS, Resource::SHADER),
-		ResourceManager::GetResourceString(IDR_NORMAL_FS, Resource::SHADER)
-	);
+	mPoints = vector<vec2>();
 
-	points = vector<vec2>();
-
-	projection_matrix = mat4(1.0f);
 	model_matrx = mat4(1.0f);
 
-	Width = 1.0f;
-	Color = vec4(1.0f, 0.0f, 0.0f, 0.75f);
+	mColor = vec4(0.6f, 0.6f, 0, 1.0f);
 
-	vec2 r = vec2(0, 0);
-	vec2 e = vec2(0, 1);
-	vec2 c = vec2(1, 0);
-	vec2 t = vec2(1, 1);
+	vec2 r = vec2(position.x + size, position.y + size);
+	vec2 e = vec2(position.x - size, position.y + size);
+	vec2 c = vec2(position.x + size, position.y - size);
+	vec2 t = vec2(position.x - size, position.y - size);
 
-	points.push_back(r);
-	points.push_back(e);
-	points.push_back(c);
-	points.push_back(t);
+	mPoints.push_back(r);
+	mPoints.push_back(e);
+	mPoints.push_back(c);
+	mPoints.push_back(t);
 
 	unsigned int indices[] = { 0,1,2,2,1,3 };
 
@@ -43,7 +36,7 @@ Quad::Quad()
 	glBindVertexArray(VAO);
 
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
-	glBufferData(GL_ARRAY_BUFFER, 4 * sizeof(points), points.data(), GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, mPoints.size() * sizeof(vec2), mPoints.data(), GL_STATIC_DRAW);
 
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, 6 * sizeof(indices), indices, GL_STATIC_DRAW);
@@ -52,32 +45,25 @@ Quad::Quad()
 	glEnableVertexAttribArray(0);
 }
 
-Quad::Quad(vec2 position, double width)
+Quad::Quad(shared_ptr<Shader> shader, vec2 position, double width, double height)
 {
-	mpShader = new Shader(
-		ResourceManager::GetResourceString(IDR_NORMAL_VS, Resource::SHADER),
-		ResourceManager::GetResourceString(IDR_NORMAL_FS, Resource::SHADER)
-	);
+	mpShader = shader;
 
-	points = vector<vec2>();
+	mPoints = vector<vec2>();
 
-	projection_matrix = mat4(1.0f);
 	model_matrx = mat4(1.0f);
 
-	Color = vec4(0.6f, 0.6f, 0, 1.0f);
+	mColor = vec4(0.6f, 0.6f, 0, 1.0f);
 
-	Width = width / 2.0f;
-	double Height = Width / 4.0f;
+	vec2 r = vec2(position.x + width, position.y + height);
+	vec2 e = vec2(position.x - width, position.y + height);
+	vec2 c = vec2(position.x + width, position.y - height);
+	vec2 t = vec2(position.x - width, position.y - height);
 
-	vec2 r = vec2(position.x + Width, position.y + Height);
-	vec2 e = vec2(position.x - Width, position.y + Height);
-	vec2 c = vec2(position.x + Width, position.y - Height);
-	vec2 t = vec2(position.x - Width, position.y - Height);
-
-	points.push_back(r);
-	points.push_back(e);
-	points.push_back(c);
-	points.push_back(t);
+	mPoints.push_back(r);
+	mPoints.push_back(e);
+	mPoints.push_back(c);
+	mPoints.push_back(t);
 
 	unsigned int indices[] = { 0,1,2,2,1,3 };
 
@@ -88,7 +74,7 @@ Quad::Quad(vec2 position, double width)
 	glBindVertexArray(VAO);
 
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
-	glBufferData(GL_ARRAY_BUFFER, 4 * sizeof(points), points.data(), GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, mPoints.size() * sizeof(vec2), mPoints.data(), GL_STATIC_DRAW);
 
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, 6 * sizeof(indices), indices, GL_STATIC_DRAW);
@@ -104,41 +90,35 @@ Quad::~Quad()
 	glDeleteBuffers(1, &EBO);
 	
 	NULLPTR_CHECK_DELETE(mpTransfrom);
-	NULLPTR_CHECK_DELETE(mpShader);
 }
 
-void Quad::SetColor(vec4 color) { Color = color; }
-void Quad::SetColor(float r, float g, float b, float a) { Color = vec4(r, g, b, a); }
-vec4 Quad::GetColor() { return Color; }
+void Quad::SetColor(vec4 color) { mColor = color; }
+void Quad::SetColor(float r, float g, float b, float a) { mColor = vec4(r, g, b, a); }
+
+vec4 Quad::GetColor() { return mColor; }
 
 void Quad::Draw()
 {
 	if (mpTransfrom != nullptr)model_matrx = GetTransform();
 
 	mpShader->use();
-	mpShader->setMat4("projection", projection_matrix);
 	mpShader->setMat4("model_matrx", model_matrx);
-	mpShader->setVec4("color", Color);
-
-
+	mpShader->setVec4("color", mColor);
 
 	glBindVertexArray(VAO);
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 }
-
-void Quad::Draw(mat4 _projection_matrix)
+void Quad::DrawOutline() 
 {
-	projection_matrix = _projection_matrix;
 	if (mpTransfrom != nullptr)model_matrx = GetTransform();
 
 	mpShader->use();
-	mpShader->setMat4("projection", projection_matrix);
 	mpShader->setMat4("model_matrx", model_matrx);
-	mpShader->setVec4("color", Color);
-
+	mpShader->setVec4("color", mColor);
 
 	glBindVertexArray(VAO);
-	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+	glDrawArrays(GL_LINE_LOOP, 0, 4);
+	glBindVertexArray(0);
 }
 
 Transform2DPointerCppMacro(Quad, mpTransfrom);
