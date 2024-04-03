@@ -11,7 +11,7 @@ public:
 
 	~Sprite();
 
-	//QuadtreeNode::Rect getBounds() const;
+	QuadtreeNode::Rect getBounds() const;
 	void Draw();
 
 	Transform2DHeaderMacro();

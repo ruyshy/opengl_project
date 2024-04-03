@@ -2,13 +2,15 @@
 #include <Game/Game.h>
 
 #include <OpenGL/Camera/Camera.h>
-#include <OpenGL/Sprite/Sprite.h>
-#include <Game/Scene/SceneBase.h>
-
 #include <OpenGL/VertexBuffer2D/VertexBuffer2D.h>
+#include <OpenGL/Sprite/Sprite.h>
 
 #include <Manager/ResourceManager.h>
 #include <rc/shader_resource.h>
+
+
+#include <Game/Scene/SceneBase.h>
+#include <Game/Scene/TestScene.h>
 
 Game::Game(MainWindow* mainWindow)
 {
@@ -34,24 +36,33 @@ void Game::initialize()
 		ResourceManager::GetResourceString(IDR_NORMAL_FS, Resource::SHADER));
 	mpCheckboard = make_unique<VertexBufferObject2D>(VertexBufferSystem2D::Generate());
 
+	mpScene = make_unique<TestScene>(this, 1, "Test");
 	mpCamera = make_unique<Camera>(mpTextureShader, mpMainWindow->GetWidth(), mpMainWindow->GetHeight());
-
-	//mpCharacter = make_shared<Character>(mpTextureShader, "C:\\Project\\opengl_project\\Project\\Image\\character.png");
 }
 
 void Game::Render() const
 {
-	mpCamera->Update();
 	mpCheckboardShader->use();
 	mpCheckboardShader->setMat4("projection", mpMainWindow->getOrthoProjectionMatrix());
 	mpCheckboardShader->setMat4("model_matrx", scale(mat4(1), vec3(mpMainWindow->getScreenWidth(), mpMainWindow->getScreenHeight(), 1)));
 	mpCheckboardShader->setVec2("resolution", vec2(mpMainWindow->getScreenWidth(), mpMainWindow->getScreenHeight()));
 	mpCheckboard->Draw();
 
+	mpCamera->Update();
+	
+	mpNormalShader->use();
+	mpNormalShader->setMat4("projection", mpCamera->GetProjectionMatrix());
+	mpNormalShader->setMat4("view_matrx", mpCamera->GetViewMatrix());
+
+	mpScene->renderScene();
 }
 
 void Game::Update() const
 {
-	//mpCamera->Movement([this](int key) {return this->keyPressed(key); }, getTimeDelta());
-	//mpCharacter->Movement([this](int key) {return this->keyPressed(key); }, getTimeDelta());
+	mpScene->updateScene();
 }
+
+MainWindow* Game::GetWindow() { return mpMainWindow; }
+shared_ptr<Shader> Game::GetTextureShader() { return mpTextureShader; }
+shared_ptr<Shader> Game::GetNormalShader() { return mpNormalShader; }
+shared_ptr<Camera> Game::GetCamera() { return mpCamera; }

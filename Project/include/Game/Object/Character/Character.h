@@ -13,9 +13,12 @@ public:
 	Character(shared_ptr<Shader> shader, const char* filePath);
 	virtual ~Character();
 
-	void Movement(std::function<bool(int)> keyFunction, double delta_time);
-
 public:
+	void Movement(std::function<bool(int)> keyFunction, double delta_time);
+	shared_ptr<Sprite> GetSprite();
+	QuadtreeNode::Rect getBounds() const;
+
+
 	void Draw();
 
 private:

@@ -27,16 +27,17 @@ Sprite::~Sprite()
 	VertexBufferSystem2D::Delete(*mpVertexBufferObject);
 }
 
-//QuadtreeNode::Rect Sprite::getBounds() const
-//{
-//	return QuadtreeNode::Rect(mpTransformation->GetPosition().x, mpTransformation->GetPosition().y, mpTransformation->GetScale().x, mpTransformation->GetScale().y);
-//}
+QuadtreeNode::Rect Sprite::getBounds() const
+{
+	return QuadtreeNode::Rect(mpTransformation->GetPosition().x, mpTransformation->GetPosition().y, mpTransformation->GetScale().x, mpTransformation->GetScale().y);
+}
 
 void Sprite::Draw()
 {
 	if (!mVisible)return;
 
 	mpShader->use();
+	//mpShader->setFloat("zDepth", 1.0f);
 	mpShader->setMat4("model_matrx", GetTransform());
 	mpTextured->use();
 	mpVertexBufferObject->Draw();

@@ -8,26 +8,34 @@ QuadtreeNode::QuadtreeNode(float x, float y, float width, float height, int dept
 
 void QuadtreeNode::insert(const Rect& obj)
 {
-    if (depth == maxDepth) {
+    if (depth == maxDepth) 
+    {
         objects.push_back(obj);
         return;
     }
 
-    if (!children.empty()) {
-        for (auto& child : children) {
-            if (child.bounds.intersects(obj)) {
+    if (!children.empty()) 
+    {
+        for (auto& child : children)
+        {
+            if (child.bounds.intersects(obj)) 
+            {
                 child.insert(obj);
                 return;
             }
         }
     }
 
-    if (objects.size() >= maxObjects) {
-        if (children.empty()) {
+    if (objects.size() >= maxObjects) 
+    {
+        if (children.empty())
+        {
             split();
         }
-        for (auto& child : children) {
-            if (child.bounds.intersects(obj)) {
+        for (auto& child : children)
+        {
+            if (child.bounds.intersects(obj)) 
+            {
                 child.insert(obj);
                 return;
             }
@@ -41,18 +49,22 @@ std::vector<QuadtreeNode::Rect> QuadtreeNode::queryRange(const Rect& range) cons
 {
     std::vector<Rect> found;
 
-    if (!bounds.intersects(range)) {
+    if (!bounds.intersects(range)) 
+    {
         return found;
     }
 
-    for (const auto& obj : objects) {
+    for (const auto& obj : objects) 
+    {
         if (obj.intersects(range)) {
             found.push_back(obj);
         }
     }
 
-    if (!children.empty()) {
-        for (const auto& child : children) {
+    if (!children.empty()) 
+    {
+        for (const auto& child : children) 
+        {
             auto childFound = child.queryRange(range);
             found.insert(found.end(), childFound.begin(), childFound.end());
         }

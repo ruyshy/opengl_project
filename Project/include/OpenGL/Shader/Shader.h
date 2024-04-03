@@ -4,38 +4,39 @@
 class Shader
 {
 public:
-    unsigned int ID;
-    // constructor generates the shader on the fly
-    // ------------------------------------------------------------------------
+    unsigned int ID; // 셰이더 프로그램 ID
+
+    // 생성자: 셰이더 파일 경로를 받아 셰이더를 생성
     Shader(const char* vertexPath, const char* fragmentPath, const char* geometryPath = nullptr)
     {
-        // 1. retrieve the vertex/fragment source code from filePath
+        // 1. 버텍스/프래그먼트 셰이더 소스 코드를 파일에서 읽어옴
         string vertexCode;
         string fragmentCode;
         string geometryCode;
         ifstream vShaderFile;
         ifstream fShaderFile;
         ifstream gShaderFile;
-        // ensure ifstream objects can throw exceptions:
+
+        // ifstream 객체들이 예외처리
         vShaderFile.exceptions(ifstream::failbit | ifstream::badbit);
         fShaderFile.exceptions(ifstream::failbit | ifstream::badbit);
         gShaderFile.exceptions(ifstream::failbit | ifstream::badbit);
         try
         {
-            // open files
+            // 파일 열기
             vShaderFile.open(vertexPath);
             fShaderFile.open(fragmentPath);
             stringstream vShaderStream, fShaderStream;
-            // read file's buffer contents into streams
+            // 파일의 버퍼 내용을 스트림으로 읽기
             vShaderStream << vShaderFile.rdbuf();
             fShaderStream << fShaderFile.rdbuf();
-            // close file handlers
+            // 파일 핸들러 닫기
             vShaderFile.close();
             fShaderFile.close();
-            // convert stream into string
+            // 스트림을 문자열로 변환
             vertexCode = vShaderStream.str();
             fragmentCode = fShaderStream.str();
-            // if geometry shader path is present, also load a geometry shader
+            // 지오메트리 셰이더 경로가 제공되면 지오메트리 셰이더도 로드
             if (geometryPath != nullptr)
             {
                 gShaderFile.open(geometryPath);
@@ -51,19 +52,18 @@ public:
         }
         const char* vShaderCode = vertexCode.c_str();
         const char* fShaderCode = fragmentCode.c_str();
-        // 2. compile shaders
+
         unsigned int vertex, fragment;
-        // vertex shader
         vertex = glCreateShader(GL_VERTEX_SHADER);
         glShaderSource(vertex, 1, &vShaderCode, NULL);
         glCompileShader(vertex);
         checkCompileErrors(vertex, "VERTEX");
-        // fragment Shader
+
         fragment = glCreateShader(GL_FRAGMENT_SHADER);
         glShaderSource(fragment, 1, &fShaderCode, NULL);
         glCompileShader(fragment);
         checkCompileErrors(fragment, "FRAGMENT");
-        // if geometry shader is given, compile geometry shader
+
         unsigned int geometry;
         if (geometryPath != nullptr)
         {
@@ -73,21 +73,27 @@ public:
             glCompileShader(geometry);
             checkCompileErrors(geometry, "GEOMETRY");
         }
-        // shader Program
+
         ID = glCreateProgram();
         glAttachShader(ID, vertex);
         glAttachShader(ID, fragment);
+
         if (geometryPath != nullptr)
             glAttachShader(ID, geometry);
+
         glLinkProgram(ID);
         checkCompileErrors(ID, "PROGRAM");
-        // delete the shaders as they're linked into our program now and no longer necessery
+
         glDeleteShader(vertex);
         glDeleteShader(fragment);
+
         if (geometryPath != nullptr)
             glDeleteShader(geometry);
 
+        // 셰이더 컴파일 및 링크 관련 코드
     }
+
+    // 문자열로 셰이더를 생성하는 생성자
     Shader(string vertex_string, string fragment_string, string geometry_string = "")
     {
         string vertexCode = vertex_string;
@@ -96,19 +102,18 @@ public:
 
         const char* vShaderCode = vertexCode.c_str();
         const char* fShaderCode = fragmentCode.c_str();
-        // 2. compile shaders
+
         unsigned int vertex, fragment;
-        // vertex shader
         vertex = glCreateShader(GL_VERTEX_SHADER);
         glShaderSource(vertex, 1, &vShaderCode, NULL);
         glCompileShader(vertex);
         checkCompileErrors(vertex, "VERTEX");
-        // fragment Shader
+
         fragment = glCreateShader(GL_FRAGMENT_SHADER);
         glShaderSource(fragment, 1, &fShaderCode, NULL);
         glCompileShader(fragment);
         checkCompileErrors(fragment, "FRAGMENT");
-        // if geometry shader is given, compile geometry shader
+
         unsigned int geometry;
         if (!geometryCode.empty())
         {
@@ -118,29 +123,29 @@ public:
             glCompileShader(geometry);
             checkCompileErrors(geometry, "GEOMETRY");
         }
-        // shader Program
         ID = glCreateProgram();
         glAttachShader(ID, vertex);
         glAttachShader(ID, fragment);
+
         if (!geometryCode.empty())
             glAttachShader(ID, geometry);
         glLinkProgram(ID);
+
         checkCompileErrors(ID, "PROGRAM");
-        // delete the shaders as they're linked into our program now and no longer necessery
         glDeleteShader(vertex);
         glDeleteShader(fragment);
         if (!geometryCode.empty())
             glDeleteShader(geometry);
 
     }
-    // activate the shader
-    // ------------------------------------------------------------------------
+
+    // 셰이더 프로그램 사용
     void use()
     {
         glUseProgram(ID);
     } 
-    // utility uniform functions
-    // ------------------------------------------------------------------------
+
+    //유니폼 변수 설정 관련 함수들
     void setBool(const std::string& name, bool value) const
     {
         glUniform1i(glGetUniformLocation(ID, name.c_str()), (int)value);
@@ -199,8 +204,7 @@ public:
     }
 
 private:
-    // utility function for checking shader compilation/linking errors.
-    // ------------------------------------------------------------------------
+    // 셰이더 컴파일/링킹 오류 체크 함수
     void checkCompileErrors(GLuint shader, std::string type)
     {
         GLint success;
@@ -225,4 +229,5 @@ private:
         }
     }
 };
+
 #endif  //!SHADER_H_

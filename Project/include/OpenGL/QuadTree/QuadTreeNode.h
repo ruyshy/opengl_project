@@ -5,15 +5,18 @@
 #endif // !QUADTREENODE_H_
 
 
-class QuadtreeNode {
+class QuadtreeNode 
+{
 public:
-    struct Rect {
+    struct Rect
+    {
         float x, y, width, height;
 
         Rect(float x, float y, float width, float height)
             : x(x), y(y), width(width), height(height) {}
 
-        bool intersects(const Rect& other) const {
+        bool intersects(const Rect& other) const 
+        {
             return !(x + width < other.x || x > other.x + other.width ||
                 y + height < other.y || y > other.y + other.height);
         }

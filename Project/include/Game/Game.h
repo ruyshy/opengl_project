@@ -14,6 +14,10 @@ public:
 	void Render() const;
 	void Update() const;
 
+	MainWindow* GetWindow();
+	shared_ptr<Shader> GetTextureShader();
+	shared_ptr<Shader> GetNormalShader();
+	shared_ptr<Camera> GetCamera();
 private:
 	unique_ptr<Shader> mpCheckboardShader;
 	shared_ptr<Shader> mpTextureShader;

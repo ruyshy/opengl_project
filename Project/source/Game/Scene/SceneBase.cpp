@@ -1,13 +1,6 @@
 #include <pch.h>
 #include <Game/Scene/SceneBase.h>
 
-SceneBase::SceneBase(MainWindow* mainWindow) : mpMainWindow(mainWindow), mID(0), mName("")
-{
-
-}
-
-SceneBase::SceneBase(MainWindow* mainWindow, unsigned int id, string name) : mpMainWindow(mainWindow), mID(id), mName(name)
-{
-
-}
+SceneBase::SceneBase(Game* game) : mpGame(game), mID(0), mName("") { initializeScene(); }
+SceneBase::SceneBase(Game* game, unsigned int id, string name) : mpGame(game), mID(id), mName(name) { initializeScene(); }
 

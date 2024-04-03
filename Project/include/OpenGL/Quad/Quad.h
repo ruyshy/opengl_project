@@ -28,7 +28,6 @@ private:
 	shared_ptr<Shader> mpShader = nullptr;
 	Transform2D* mpTransfrom = nullptr;
 
-	vector<vec2> mPoints;
 	mat4 model_matrx;
 	vec4 mColor;
 	double Width;
