@@ -7,12 +7,15 @@ uniform mat4 projection;
 uniform mat4 model_matrx;
 uniform mat4 view_matrx;
 
+uniform float zDepth;
+
 out vec4 vertex_color;
 out vec2 vertex_uv;
 
 void main()
 {
-	gl_Position = projection * view_matrx * model_matrx * vec4(point.x, point.y, 0.0, 1.0);
+	 float clampedZDepth = clamp(zDepth, 0.0, 1.0);
+	gl_Position = projection * view_matrx * model_matrx * vec4(point.x, point.y, clampedZDepth, 1.0);
 	vertex_color = color;
 	vertex_uv = uv;
 };

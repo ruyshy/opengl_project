@@ -4,7 +4,6 @@
 
 Line::Line(const glm::vec3& start, const glm::vec3& end, std::shared_ptr<Shader> shader)
     : mStart(start), mEnd(end), mpShader(shader) {
-
     Initialize();
     UpdateVertices();
 }

@@ -1,8 +1,13 @@
 #version 460 core
 layout (location = 0) in vec2 aPos;
+
 uniform mat4 projection;
 uniform mat4 model_matrx;
+uniform mat4 view_matrx;
+
+uniform float z_buf;
+
 void main()
 {
-	gl_Position = projection * model_matrx * vec4(aPos.x, aPos.y, 0.0, 1.0);
+	gl_Position = projection * view_matrx * model_matrx * vec4(aPos.x, aPos.y, z_buf + 0.00001f, 1.0);
 };

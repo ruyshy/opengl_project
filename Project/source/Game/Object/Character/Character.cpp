@@ -33,7 +33,7 @@ void Character::Movement(std::function<bool(int)> keyFunction, double delta_time
 	if (keyFunction(GLFW_KEY_A))
 	{
 		double speed = mSpeed * delta_time;
-		vec2 movement = mpSprite->GetPosition() + vec2(-speed,0);
+		vec2 movement = mpSprite->GetPosition() + vec2(-speed, 0);
 		mpSprite->SetPosition(movement);
 	}
 	if (keyFunction(GLFW_KEY_D))

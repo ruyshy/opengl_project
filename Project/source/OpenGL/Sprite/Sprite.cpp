@@ -39,7 +39,7 @@ void Sprite::Draw()
 	mpShader->use();
 	mpShader->setMat4("model_matrx", GetTransform());
 	mpTextured->use();
-	mpVertexBufferObject->draw();
+	mpVertexBufferObject->Draw();
 }
 
 Transform2DPointerCppMacro(Sprite, mpTransformation);

@@ -32,6 +32,8 @@ void MainWindow::initializeScene()
 {
 	glClearColor(0.0f, 0.5f, 1.0f, 1.0f);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glEnable(GL_DEPTH_TEST);
+	glDepthFunc(GL_LESS);
 	glEnable(GL_BLEND);
 
 	mpCheckboardShader = make_unique<Shader>(
@@ -40,6 +42,9 @@ void MainWindow::initializeScene()
 	mpTextureShader = make_shared<Shader>(
 		ResourceManager::GetResourceString(IDR_SHADER_TEXTURED_VS, Resource::SHADER),
 		ResourceManager::GetResourceString(IDR_SHADER_TEXTURED_FS, Resource::SHADER));
+	mpNormalShader= make_shared<Shader>(
+		ResourceManager::GetResourceString(IDR_NORMAL_VS, Resource::SHADER),
+		ResourceManager::GetResourceString(IDR_NORMAL_FS, Resource::SHADER));
 
 	mpCamera = make_unique<Camera>(mpTextureShader, mpWidth, mpHeight);
 
@@ -56,16 +61,20 @@ void MainWindow::renderScene()
 	mpCheckboardShader->setMat4("projection", getOrthoProjectionMatrix());
 	mpCheckboardShader->setMat4("model_matrx", scale(mat4(1), vec3(getScreenWidth(), getScreenHeight(), 1)));
 	mpCheckboardShader->setVec2("resolution", vec2(getScreenWidth(), getScreenHeight()));
-	mpCheckboard->draw();
+	mpCheckboard->Draw();
 
 	mpTextureShader->use();
+	mpTextureShader->setFloat("zDepth", 1.0f);
 	mpCharacter->Draw();
 
-	Quad mQuad(mpTextureShader, vec2(0, 0), 100, 100);
+	mpNormalShader->use();
+	mpNormalShader->setMat4("projection", mpCamera->GetProjectionMatrix());
+	mpNormalShader->setMat4("view_matrx", mpCamera->GetViewMatrix());
+	Quad mQuad(mpNormalShader, vec2(0, 0), 150, 100);
 	mQuad.SetColor(vec4(1.0, 0.0, 0.0, 1.0));
 	mQuad.Draw();
-	Line mLine(vec3(0,0,0),vec3(100,100,0), mpTextureShader);
-	mLine.Draw();
+	//Line mLine(vec3(0,0,0),vec3(100,100,0), mpTextureShader);
+	//mLine.Draw();
 }
 
 void MainWindow::updateScene()

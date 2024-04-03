@@ -12,7 +12,7 @@ public:
 	unsigned int CBO;  // color buffer object
 	unsigned int UVBO; // uv buffer object
 
-	void draw();
+	void Draw();
 };
 
 class VertexBufferSystem2D

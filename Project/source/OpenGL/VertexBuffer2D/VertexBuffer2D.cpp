@@ -80,7 +80,7 @@ void VertexBufferSystem2D::Delete(VertexBufferObject2D& obj)
 	glDeleteBuffers(1, &obj.UVBO);
 }
 
-void VertexBufferObject2D::draw()
+void VertexBufferObject2D::Draw()
 {
 	glBindVertexArray(VAO);
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);

@@ -8,7 +8,7 @@ class Quad
 public:
 	Quad() = delete;
 	Quad(shared_ptr<Shader> shader, vec2 position, double size);
-	Quad(shared_ptr<Shader> shader, vec2 position, double width, double height);
+	Quad(shared_ptr<Shader> shader, vec2 position, float width, float height);
 	~Quad();
 
 	void SetColor(vec4 color);
