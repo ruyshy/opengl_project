@@ -3,8 +3,6 @@
 #ifndef MAINWINDOW_H_
 #define MAINWINDOW_H_
 
-#include <OpenGL/Window/OpenGLWindow.h>
-#include <OpenGL/VertexBuffer2D/VertexBuffer2D.h>
 class Character;
 
 class MainWindow : public OpenGLWindow
@@ -19,17 +17,15 @@ public:
     void onWindowSizeChanged(int width, int height) override;
     void onMouseButtonPressed(int button, int action) override;
 
+public:
+    mat4* GetProjectionMatrix();
+    shared_ptr<int> GetWidth();
+    shared_ptr<int>GetHeight();
 
 private:
-    unique_ptr<Shader> mpCheckboardShader;
-    shared_ptr<Shader> mpTextureShader;
-    shared_ptr<Shader> mpNormalShader;
-    unique_ptr<VertexBufferObject2D> mpCheckboard;
-    shared_ptr<Camera> mpCamera;
-    shared_ptr<Character> mpCharacter;
-    shared_ptr<SceneBase> mpScene;
+    unique_ptr<Game> mpGame;
 
-public:
+private:
     mat4* mpProjectionMatrix;
     shared_ptr<int> mpWidth, mpHeight;
 

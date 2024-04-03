@@ -162,6 +162,7 @@
     <ClCompile Include="source\Game\Event\DemoEvent.cpp" />
     <ClCompile Include="source\Game\Event\Dispatcher.cpp" />
     <ClCompile Include="source\Game\Event\Event.cpp" />
+    <ClCompile Include="source\Game\Game.cpp" />
     <ClCompile Include="source\Game\Object\Character\Character.cpp" />
     <ClCompile Include="source\Game\Object\ObjectBase.cpp" />
     <ClCompile Include="source\Game\Scene\SceneBase.cpp" />
@@ -189,6 +190,7 @@
     <ClInclude Include="include\Game\Event\DemoEvent.h" />
     <ClInclude Include="include\Game\Event\Dispatcher.h" />
     <ClInclude Include="include\Game\Event\Event.h" />
+    <ClInclude Include="include\Game\Game.h" />
     <ClInclude Include="include\Game\Object\Character\Character.h" />
     <ClInclude Include="include\Game\Object\ObjectBase.h" />
     <ClInclude Include="include\Game\Scene\SceneBase.h" />

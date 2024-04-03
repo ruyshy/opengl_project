@@ -1,5 +1,4 @@
 #include <pch.h>
-#include <OpenGL/QuadTree/QuadTreeNode.h>
 
 QuadtreeNode::QuadtreeNode(float x, float y, float width, float height, int depth, int maxDepth, int maxObjects)
     : bounds(x, y, width, height), depth(depth), maxDepth(maxDepth), maxObjects(maxObjects)

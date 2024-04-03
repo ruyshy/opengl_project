@@ -35,7 +35,7 @@ void Camera::SetDirection(vec3 direction) { mDirection = direction; }
 void Camera::SetUpView(vec3 upVector) { mUp = upVector; }
 
 
-void Camera::Key_Update(std::function<bool(int)> key_input_function, double delta_time)
+void Camera::Movement(std::function<bool(int)> key_input_function, double delta_time)
 {
 	if (key_input_function(GLFW_KEY_UP))
 		mPosition.y -= 100 * delta_time;
@@ -45,9 +45,6 @@ void Camera::Key_Update(std::function<bool(int)> key_input_function, double delt
 		mPosition.x -= 100 * delta_time;
 	else if (key_input_function(GLFW_KEY_RIGHT))
 		mPosition.x += 100 * delta_time;
-
-	//mpShader->use();
-	//mpShader->setMat4("view_matrx", mViewMatrix);
 }
 
 void Camera::Update()

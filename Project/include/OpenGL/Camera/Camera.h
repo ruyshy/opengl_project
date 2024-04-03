@@ -22,7 +22,7 @@ public:
 
 	void Update();
 
-	void Key_Update(std::function<bool(int)> key_input_function, double delta_time);
+	void Movement(std::function<bool(int)> key_input_function, double delta_time);
 
 private:
 	mat4 mProjectionMatrix;

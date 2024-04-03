@@ -26,6 +26,7 @@
     <ClCompile Include="source\Game\Object\Character\Character.cpp" />
     <ClCompile Include="source\Game\Scene\SceneBase.cpp" />
     <ClCompile Include="source\OpenGL\Line\Line.cpp" />
+    <ClCompile Include="source\Game\Game.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Manager\SoundManager.h" />
@@ -58,6 +59,7 @@
     <ClInclude Include="include\Game\Object\Character\Character.h" />
     <ClInclude Include="include\Game\Scene\SceneBase.h" />
     <ClInclude Include="include\OpenGL\Line\Line.h" />
+    <ClInclude Include="include\Game\Game.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Shader\normal_fs.bin" />

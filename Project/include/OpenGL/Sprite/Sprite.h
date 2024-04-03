@@ -3,8 +3,6 @@
 #ifndef SPRITE_H_
 #define SPRITE_H_
 
-#include <OpenGL/QuadTree/QuadTreeNode.h>
-
 class Sprite
 {
 public:

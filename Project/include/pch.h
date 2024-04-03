@@ -32,17 +32,16 @@ using namespace std;
 
 class OpenGLWindow;
 class MainWindow;
-
-class ObjectBase;
-class SceneBase;
-
-class Shader;
-
 class Camera;
-
 class VertexBufferObject2D;
 class Texture2D;
 class Sprite;
+
+class ObjectBase;
+class SceneBase;
+class Game;
+
+
 
 // opengl
 #pragma comment(lib, "OpenGL32.lib")
@@ -67,7 +66,12 @@ using namespace glm;
 #pragma comment(lib, "fmod_vc.lib")
 
 // user include
+#include <OpenGL/Window/OpenGLWindow.h>
 #include <OpenGL/Window/MainWindow.h>
+
+#include <OpenGL/Shader/Shader.h>
+
+#include <OpenGL/QuadTree/QuadTreeNode.h>
 
 // user utill
 #include <utill/stb_image.h>

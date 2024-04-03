@@ -17,7 +17,6 @@ Character::~Character()
 
 void Character::Movement(std::function<bool(int)> keyFunction, double delta_time)
 {
-
 	if (keyFunction(GLFW_KEY_W))
 	{
 		double speed = mSpeed * delta_time;
