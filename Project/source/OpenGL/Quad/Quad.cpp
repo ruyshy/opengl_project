@@ -88,8 +88,6 @@ Quad::~Quad()
 	glDeleteVertexArrays(1, &VAO);
 	glDeleteBuffers(1, &VBO);
 	glDeleteBuffers(1, &EBO);
-	
-	NULLPTR_CHECK_DELETE(mpTransfrom);
 }
 
 void Quad::SetColor(vec4 color) { mColor = color; }
@@ -99,7 +97,6 @@ vec4 Quad::GetColor() { return mColor; }
 
 void Quad::Draw()
 {
-	if (mpTransfrom != nullptr)model_matrx = GetTransform();
 
 	mpShader->use();
 	mpShader->setVec4("color", mColor);
@@ -110,7 +107,6 @@ void Quad::Draw()
 }
 void Quad::DrawOutline() 
 {
-	if (mpTransfrom != nullptr)model_matrx = GetTransform();
 	mpShader->use();
 	mpShader->setVec4("color", mColor);
 	mpShader->setMat4("model_matrx", model_matrx);
@@ -121,4 +117,3 @@ void Quad::DrawOutline()
 	glBindVertexArray(0);
 }
 
-Transform2DPointerCppMacro(Quad, mpTransfrom);

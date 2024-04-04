@@ -27,7 +27,8 @@
     <ClCompile Include="source\Game\Scene\SceneBase.cpp" />
     <ClCompile Include="source\OpenGL\Line\Line.cpp" />
     <ClCompile Include="source\Game\Game.cpp" />
-    <ClCompile Include="source\Game\Scene\TestScene.cpp" />
+    <ClCompile Include="source\Game\Scene\TestQuadTreeCollisionScene.cpp" />
+    <ClCompile Include="source\Game\Scene\TestCameraScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Manager\SoundManager.h" />
@@ -38,7 +39,6 @@
     <ClInclude Include="include\OpenGL\TextRender\TextRendering.h" />
     <ClInclude Include="include\OpenGL\Texture2D\Texture2D.h" />
     <ClInclude Include="include\OpenGL\Transform2D\Transform2D.h" />
-    <ClInclude Include="include\Macro\Transform2D_Macro.h" />
     <ClInclude Include="include\OpenGL\VertexBuffer2D\VertexBuffer2D.h" />
     <ClInclude Include="include\pch.h" />
     <ClInclude Include="include\utill\stb_image.h" />
@@ -61,7 +61,8 @@
     <ClInclude Include="include\Game\Scene\SceneBase.h" />
     <ClInclude Include="include\OpenGL\Line\Line.h" />
     <ClInclude Include="include\Game\Game.h" />
-    <ClInclude Include="include\Game\Scene\TestScene.h" />
+    <ClInclude Include="include\Game\Scene\TestQuadTreeCollisionScene.h" />
+    <ClInclude Include="include\Game\Scene\TestCameraScene.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Shader\normal_fs.bin" />

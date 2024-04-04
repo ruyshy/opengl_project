@@ -1,16 +1,16 @@
 #pragma once
 
-#ifndef TESTSCENE_H_
-#define TESTSCENE_H_
+#ifndef TESTQUADTREECOLLISIONSCENE_H_
+#define TESTQUADTREECOLLISIONSCENE_H_
 #include <Game/Scene/SceneBase.h>
 
 class Character;
 class Quad;
 
-class TestScene : public SceneBase
+class TestQuadTreeCollisionScene : public SceneBase
 {
 public:
-	SceneCreator(TestScene);
+	SceneCreator(TestQuadTreeCollisionScene);
 
 	void initializeScene() override;
 	void renderScene()override;
@@ -31,5 +31,5 @@ private:
 
 };
 
-#endif // !TESTSCENE_H_
+#endif // !TESTQUADTREECOLLISIONSCENE_H_
 

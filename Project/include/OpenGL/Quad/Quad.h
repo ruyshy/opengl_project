@@ -3,6 +3,8 @@
 #ifndef QUAD_H_
 #define QUAD_H_
 
+//class Transform2D;
+
 class Quad
 {
 public:
@@ -18,15 +20,13 @@ public:
 	void Draw();
 	void DrawOutline();
 
-	Transform2DHeaderMacro();
-
 private:
 	unsigned int VAO;  //vertex array object
 	unsigned int VBO;  // vertex buffer object
 	unsigned int EBO;	// Element Buffer Object
 private:
 	shared_ptr<Shader> mpShader = nullptr;
-	Transform2D* mpTransfrom = nullptr;
+	//Transform2D* mpTransform = nullptr;
 
 	mat4 model_matrx;
 	vec4 mColor;

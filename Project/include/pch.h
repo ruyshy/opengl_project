@@ -77,7 +77,6 @@ using namespace glm;
 #include <utill/stb_image.h>
 
 #include <Macro/delete_macro.h>
-#include <Macro/Transform2D_Macro.h>
 
 
 #endif // !PCH_H

@@ -46,6 +46,7 @@ public:
 	}
 
 	vec2 GetPosition() { return mPosition; }
+	vec2 GetCenter() { return vec2((mPosition.x - (mScale.x / 2)), (mPosition.y - (mScale.y / 2))); }
 	vec2 GetScale() { return mScale; }
 	float GetAngle() { return mAngle; }
 	bool GetFlipX() { return mFlipX; }
