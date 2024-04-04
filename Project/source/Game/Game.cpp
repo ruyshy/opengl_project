@@ -10,8 +10,8 @@
 
 
 #include <Game/Scene/SceneBase.h>
-#include <Game/Scene/TestQuadTreeCollisionScene.h>
-#include <Game/Scene/TestCameraScene.h>
+#include <Test/TestQuadTreeCollisionScene.h>
+#include <Test/TestCameraScene.h>
 
 Game::Game(MainWindow* mainWindow)
 {

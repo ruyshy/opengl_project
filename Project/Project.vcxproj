@@ -89,7 +89,7 @@
     <LinkIncremental>true</LinkIncremental>
     <LibraryPath>$(LibraryPath)</LibraryPath>
     <IntDir>$(SolutionDir)Build\$(Configuration)\</IntDir>
-    <IncludePath>.\include;$(IncludePath)</IncludePath>
+    <IncludePath>.\include;.\Test;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -166,8 +166,8 @@
     <ClCompile Include="source\Game\Object\Character\Character.cpp" />
     <ClCompile Include="source\Game\Object\ObjectBase.cpp" />
     <ClCompile Include="source\Game\Scene\SceneBase.cpp" />
-    <ClCompile Include="source\Game\Scene\TestCameraScene.cpp" />
-    <ClCompile Include="source\Game\Scene\TestQuadTreeCollisionScene.cpp" />
+    <ClCompile Include="source\Test\TestCameraScene.cpp" />
+    <ClCompile Include="source\Test\TestQuadTreeCollisionScene.cpp" />
     <ClCompile Include="source\OpenGL\Animation2D\Animation2D.cpp" />
     <ClCompile Include="source\OpenGL\Line\Line.cpp" />
     <ClCompile Include="source\OpenGL\QuadTree\QuadTreeNode.cpp" />
@@ -196,8 +196,8 @@
     <ClInclude Include="include\Game\Object\Character\Character.h" />
     <ClInclude Include="include\Game\Object\ObjectBase.h" />
     <ClInclude Include="include\Game\Scene\SceneBase.h" />
-    <ClInclude Include="include\Game\Scene\TestCameraScene.h" />
-    <ClInclude Include="include\Game\Scene\TestQuadTreeCollisionScene.h" />
+    <ClInclude Include="include\Test\TestCameraScene.h" />
+    <ClInclude Include="include\Test\TestQuadTreeCollisionScene.h" />
     <ClInclude Include="include\OpenGL\Animation2D\Animation2D.h" />
     <ClInclude Include="include\OpenGL\Camera\Camera.h" />
     <ClInclude Include="include\Macro\delete_macro.h" />

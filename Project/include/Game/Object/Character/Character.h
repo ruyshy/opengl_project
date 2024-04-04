@@ -18,12 +18,13 @@ public:
 	shared_ptr<Sprite> GetSprite();
 	QuadtreeNode::Rect getBounds() const;
 
+	void SetSpeed(float speed);
 
 	void Draw();
 
 private:
 	shared_ptr<Sprite> mpSprite;
-	double mSpeed = 100.0f;
+	float mSpeed = 100.0f;
 
 };
 

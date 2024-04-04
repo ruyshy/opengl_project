@@ -46,6 +46,8 @@ void Character::Movement(std::function<bool(int)> keyFunction, double delta_time
 shared_ptr<Sprite> Character::GetSprite() { return mpSprite; }
 QuadtreeNode::Rect Character::getBounds() const { return mpSprite->getBounds(); }
 
+void Character::SetSpeed(float speed) { mSpeed = speed; }
+
 void Character::Draw()
 {
 	mpSprite->Draw();
