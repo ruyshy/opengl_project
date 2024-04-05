@@ -22,6 +22,7 @@
 #include <Windows.h>
 #include <cstring>
 #include <mmsystem.h>
+#include <time.h>
 
 #pragma comment(lib,"winmm.lib")
 
@@ -71,7 +72,7 @@ using namespace glm;
 
 #include <OpenGL/Shader/Shader.h>
 
-#include <OpenGL/QuadTree/QuadTreeNode.h>
+#include <OpenGL/QuadTree/QuadTree.h>
 
 // user utill
 #include <utill/stb_image.h>

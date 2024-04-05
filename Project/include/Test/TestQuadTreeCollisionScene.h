@@ -4,6 +4,7 @@
 #define TESTQUADTREECOLLISIONSCENE_H_
 #include <Game/Scene/SceneBase.h>
 
+class QuadTree;
 class Character;
 class Quad;
 
@@ -18,13 +19,13 @@ public:
 	void releaseScene()override;
 
 private:
-	void checkCollisions(QuadtreeNode& rootNode, const Sprite& target, std::vector<std::shared_ptr<Sprite>>& potentialCollisions);
+	void checkCollisions();
 
 private:
 	shared_ptr<Character> mpCharacter;
 	shared_ptr<Sprite> mpSprite;
 
-	shared_ptr<QuadtreeNode> mRootNode;
+	shared_ptr<QuadTree> mpQuadTree;
 	vector<shared_ptr<Sprite>> mSprites;
 	
 

@@ -31,11 +31,23 @@ void Sprite::Draw()
 	mpVertexBufferObject->Draw();
 }
 
-//Get
-QuadtreeNode::Rect Sprite::getBounds() const
+bool Sprite::checkCollision(shared_ptr<Sprite> other)
 {
-	return QuadtreeNode::Rect(mpTransform->GetPosition().x, mpTransform->GetPosition().y, mpTransform->GetScale().x, mpTransform->GetScale().y);
+	return GetPosition().x < other->GetPosition().x + other->GetScale().x && GetPosition().x + GetScale().x > other->GetPosition().x &&
+		GetPosition().y < other->GetPosition().y + other->GetScale().y && GetPosition().y + GetScale().y > other->GetPosition().y;
 }
+
+bool Sprite::hasMoved()
+{
+	return GetPosition().x != lastX || GetPosition().y != lastY;
+}
+
+void Sprite::update()
+{
+	lastX = GetPosition().x;
+	lastY = GetPosition().y;
+}
+
 shared_ptr<Transform2D> Sprite::GetTransform() { return mpTransform; }
 bool Sprite::GetVisible() { return mVisible; }
 vec2 Sprite::GetPosition() { return mpTransform->GetPosition(); }

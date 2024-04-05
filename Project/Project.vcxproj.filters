@@ -9,7 +9,7 @@
     <ClCompile Include="source\OpenGL\VertexBuffer2D\VertexBuffer2D.cpp" />
     <ClCompile Include="source\glad.cpp" />
     <ClCompile Include="include\pch.cpp" />
-    <ClCompile Include="include\utill\stb_image.cpp" />
+    <ClCompile Include="source\utill\stb_image.cpp" />
     <ClCompile Include="source\OpenGL\Window\MainWindow.cpp" />
     <ClCompile Include="source\OpenGL\Window\OpenGLWindow.cpp" />
     <ClCompile Include="source\main.cpp" />
@@ -17,7 +17,6 @@
     <ClCompile Include="source\OpenGL\Model3D\Mesh.cpp" />
     <ClCompile Include="source\OpenGL\Model3D\Model3D.cpp" />
     <ClCompile Include="source\OpenGL\Camera\Camera.cpp" />
-    <ClCompile Include="source\OpenGL\QuadTree\QuadTreeNode.cpp" />
     <ClCompile Include="source\OpenGL\Animation2D\Animation2D.cpp" />
     <ClCompile Include="source\Game\Event\Event.cpp" />
     <ClCompile Include="source\Game\Event\Dispatcher.cpp" />
@@ -29,6 +28,8 @@
     <ClCompile Include="source\Game\Game.cpp" />
     <ClCompile Include="source\Test\TestQuadTreeCollisionScene.cpp" />
     <ClCompile Include="source\Test\TestCameraScene.cpp" />
+    <ClCompile Include="source\OpenGL\QuadTree\QuadTree.cpp" />
+    <ClCompile Include="source\utill\TimeMeasure.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Manager\SoundManager.h" />
@@ -51,7 +52,6 @@
     <ClInclude Include="include\OpenGL\Model3D\Mesh.h" />
     <ClInclude Include="include\OpenGL\Model3D\Model3D.h" />
     <ClInclude Include="include\OpenGL\Camera\Camera.h" />
-    <ClInclude Include="include\OpenGL\QuadTree\QuadTreeNode.h" />
     <ClInclude Include="include\OpenGL\Animation2D\Animation2D.h" />
     <ClInclude Include="include\Game\Event\Event.h" />
     <ClInclude Include="include\Game\Event\Dispatcher.h" />
@@ -63,6 +63,8 @@
     <ClInclude Include="include\Game\Game.h" />
     <ClInclude Include="include\Test\TestQuadTreeCollisionScene.h" />
     <ClInclude Include="include\Test\TestCameraScene.h" />
+    <ClInclude Include="include\OpenGL\QuadTree\QuadTree.h" />
+    <ClInclude Include="include\utill\TimeMeasure.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Shader\normal_fs.bin" />

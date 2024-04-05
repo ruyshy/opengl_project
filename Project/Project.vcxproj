@@ -166,11 +166,11 @@
     <ClCompile Include="source\Game\Object\Character\Character.cpp" />
     <ClCompile Include="source\Game\Object\ObjectBase.cpp" />
     <ClCompile Include="source\Game\Scene\SceneBase.cpp" />
+    <ClCompile Include="source\OpenGL\QuadTree\QuadTree.cpp" />
     <ClCompile Include="source\Test\TestCameraScene.cpp" />
     <ClCompile Include="source\Test\TestQuadTreeCollisionScene.cpp" />
     <ClCompile Include="source\OpenGL\Animation2D\Animation2D.cpp" />
     <ClCompile Include="source\OpenGL\Line\Line.cpp" />
-    <ClCompile Include="source\OpenGL\QuadTree\QuadTreeNode.cpp" />
     <ClCompile Include="source\OpenGL\Camera\Camera.cpp" />
     <ClCompile Include="source\OpenGL\Model3D\Mesh.cpp" />
     <ClCompile Include="source\OpenGL\Model3D\Model3D.cpp" />
@@ -183,10 +183,11 @@
     <ClCompile Include="source\Manager\ResourceManager.cpp" />
     <ClCompile Include="source\Manager\SoundManager.cpp" />
     <ClCompile Include="source\OpenGL\Sprite\Sprite.cpp" />
-    <ClCompile Include="include\utill\stb_image.cpp" />
+    <ClCompile Include="source\utill\stb_image.cpp" />
     <ClCompile Include="source\OpenGL\Texture2D\Texture2D.cpp" />
     <ClCompile Include="source\OpenGL\TextRender\TextRendering.cpp" />
     <ClCompile Include="source\OpenGL\VertexBuffer2D\VertexBuffer2D.cpp" />
+    <ClCompile Include="source\utill\TimeMeasure.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Game\Event\DemoEvent.h" />
@@ -196,6 +197,7 @@
     <ClInclude Include="include\Game\Object\Character\Character.h" />
     <ClInclude Include="include\Game\Object\ObjectBase.h" />
     <ClInclude Include="include\Game\Scene\SceneBase.h" />
+    <ClInclude Include="include\OpenGL\QuadTree\QuadTree.h" />
     <ClInclude Include="include\Test\TestCameraScene.h" />
     <ClInclude Include="include\Test\TestQuadTreeCollisionScene.h" />
     <ClInclude Include="include\OpenGL\Animation2D\Animation2D.h" />
@@ -220,7 +222,7 @@
     <ClInclude Include="include\OpenGL\TextRender\TextRendering.h" />
     <ClInclude Include="include\OpenGL\Transform2D\Transform2D.h" />
     <ClInclude Include="include\OpenGL\VertexBuffer2D\VertexBuffer2D.h" />
-    <ClInclude Include="include\OpenGL\QuadTree\QuadTreeNode.h" />
+    <ClInclude Include="include\utill\TimeMeasure.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="include\rc\font_resource.rc" />

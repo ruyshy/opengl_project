@@ -37,8 +37,8 @@ void Game::initialize()
 		ResourceManager::GetResourceString(IDR_NORMAL_FS, Resource::SHADER));
 	mpCheckboard = make_unique<VertexBufferObject2D>(VertexBufferSystem2D::Generate());
 
-	//mpScene = make_unique<TestQuadTreeCollisionScene>(this, 1, "Test");
-	mpScene = make_unique<TestCameraScene>(this, 1, "Test");
+	//mpScene = make_unique<TestCameraScene>(this, 1, "Test");
+	mpScene = make_unique<TestQuadTreeCollisionScene>(this, 1, "Test");
 
 	mpCamera = make_unique<Camera>(mpTextureShader, mpMainWindow->GetWidth(), mpMainWindow->GetHeight());
 }

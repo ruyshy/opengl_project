@@ -11,9 +11,13 @@ public:
 	Sprite(shared_ptr<Shader> shader, const char* filename);
 	~Sprite();
 
+
 	void Draw();
 
-	QuadtreeNode::Rect getBounds() const;
+	bool checkCollision(shared_ptr<Sprite> other);
+	bool hasMoved();
+	void update();
+
 	bool GetVisible();
 	
 	shared_ptr<Transform2D> GetTransform();
@@ -38,6 +42,8 @@ public:
 private:
 	shared_ptr<VertexBufferObject2D> mpVertexBufferObject;
 	shared_ptr<Transform2D> mpTransform;
+	float lastX, lastY;
+
 	bool mVisible = true;
 
 	shared_ptr<Shader> mpShader = nullptr;

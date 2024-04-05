@@ -16,7 +16,6 @@ public:
 public:
 	void Movement(std::function<bool(int)> keyFunction, double delta_time);
 	shared_ptr<Sprite> GetSprite();
-	QuadtreeNode::Rect getBounds() const;
 
 	void SetSpeed(float speed);
 
