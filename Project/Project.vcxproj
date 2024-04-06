@@ -159,6 +159,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="source\Game\Object\Enemy\Enemy.cpp" />
+    <ClCompile Include="source\Game\Object\Enemy\EnemyTrooper1.cpp" />
     <ClCompile Include="source\Game\Event\DemoEvent.cpp" />
     <ClCompile Include="source\Game\Event\Dispatcher.cpp" />
     <ClCompile Include="source\Game\Event\Event.cpp" />
@@ -194,6 +196,8 @@
     <ClInclude Include="include\Game\Event\Dispatcher.h" />
     <ClInclude Include="include\Game\Event\Event.h" />
     <ClInclude Include="include\Game\Game.h" />
+    <ClInclude Include="include\Game\Object\Enemy\Enemy.h" />
+    <ClInclude Include="include\Game\Object\Enemy\EnemyTrooper1.h" />
     <ClInclude Include="include\Game\Object\Player\Player.h" />
     <ClInclude Include="include\Game\Object\ObjectBase.h" />
     <ClInclude Include="include\Game\Scene\SceneBase.h" />

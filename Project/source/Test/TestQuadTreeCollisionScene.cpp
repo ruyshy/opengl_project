@@ -56,7 +56,7 @@ void TestQuadTreeCollisionScene::checkCollisions(shared_ptr<QuadTree> quadtree) 
 
         for (auto& target : potentialCollisions) {
             if (sprite != target && sprite->checkCollision(target)) {
-                std::cout << "Sprite " << sprite->GetName() << "와(과) Sprite " << target->GetName() << "가 충돌했습니다." << std::endl;
+                std::cout << "Sprite " << sprite->GetName() << "와 Sprite " << target->GetName() << "가 충돌했습니다." << std::endl;
             }
         }
     }
