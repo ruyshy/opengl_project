@@ -2,10 +2,9 @@
 
 #ifndef SPRITE_H_
 #define SPRITE_H_
+#include <Game/Object/ObjectBase.h>
 
-class Transform2D;
-
-class Sprite
+class Sprite : public ObjectBase
 {
 public:
 	Sprite(shared_ptr<Shader> shader, const char* filename);

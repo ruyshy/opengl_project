@@ -3,15 +3,13 @@
 #ifndef CHARACTER_H_
 #define CHARACTER_H_
 
-#include <Game/Object/ObjectBase.h>
-
-class Character : public ObjectBase
+class Player
 {
 protected:
-	Character() = delete;
+	Player() = delete;
 public:
-	Character(shared_ptr<Shader> shader, const char* filePath);
-	virtual ~Character();
+	Player(shared_ptr<Shader> shader, const char* filePath);
+	virtual ~Player();
 
 public:
 	void Movement(std::function<bool(int)> keyFunction, double delta_time);

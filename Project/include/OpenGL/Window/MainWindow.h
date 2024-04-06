@@ -3,7 +3,7 @@
 #ifndef MAINWINDOW_H_
 #define MAINWINDOW_H_
 
-class Character;
+class Player;
 
 class MainWindow : public OpenGLWindow
 {

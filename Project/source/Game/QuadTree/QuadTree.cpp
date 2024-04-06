@@ -1,5 +1,5 @@
 #include <pch.h>
-#include <OpenGL/QuadTree/QuadTree.h>
+#include <Game/QuadTree/QuadTree.h>
 
 #include <OpenGL/Sprite/Sprite.h>
 #include <OpenGL/Transform2D/Transform2D.h>
@@ -40,6 +40,21 @@ void QuadTree::clear()
             child->clear();
             delete child;
             child = nullptr;
+        }
+    }
+}
+
+void QuadTree::retrieve(std::vector<shared_ptr<Sprite>>& returnSprites, shared_ptr<Sprite> sprite)
+{
+    if (!bounds.contains(sprite)) return;
+
+    returnSprites.insert(returnSprites.end(), sprites.begin(), sprites.end());
+
+    if (!children[0]) return;
+
+    for (int i = 0; i < 4; i++) {
+        if (children[i]->bounds.contains(sprite)) {
+            children[i]->retrieve(returnSprites, sprite);
         }
     }
 }

@@ -1,21 +1,22 @@
 #include <pch.h>
-#include <Game/Object/Character/Character.h>
+#include <Game/Object/Player/Player.h>
 #include <OpenGL/Sprite/Sprite.h>
 
-Character::Character(shared_ptr<Shader> shader, const char* filePath) : ObjectBase(0, "Character")
+Player::Player(shared_ptr<Shader> shader, const char* filePath)
 {
 	mpSprite = make_shared<Sprite>(shader, filePath);
 	mpSprite->SetPosition(0,0);
 	mpSprite->SetScale(100, 100);
-
+	mpSprite->SetID(0);
+	mpSprite->SetName("Player");
 }
 
-Character::~Character()
+Player::~Player()
 {
 
 }
 
-void Character::Movement(std::function<bool(int)> keyFunction, double delta_time)
+void Player::Movement(std::function<bool(int)> keyFunction, double delta_time)
 {
 	if (keyFunction(GLFW_KEY_W))
 	{
@@ -43,11 +44,11 @@ void Character::Movement(std::function<bool(int)> keyFunction, double delta_time
 	}
 }
 
-shared_ptr<Sprite> Character::GetSprite() { return mpSprite; }
+shared_ptr<Sprite> Player::GetSprite() { return mpSprite; }
 
-void Character::SetSpeed(float speed) { mSpeed = speed; }
+void Player::SetSpeed(float speed) { mSpeed = speed; }
 
-void Character::Draw()
+void Player::Draw()
 {
 	mpSprite->Draw();
 }

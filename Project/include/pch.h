@@ -33,16 +33,13 @@ using namespace std;
 
 class OpenGLWindow;
 class MainWindow;
-class Camera;
 class VertexBufferObject2D;
 class Texture2D;
-class Sprite;
+class Transform2D;
 
+class Game;
 class ObjectBase;
 class SceneBase;
-class Game;
-
-
 
 // opengl
 #pragma comment(lib, "OpenGL32.lib")
@@ -69,10 +66,12 @@ using namespace glm;
 // user include
 #include <OpenGL/Window/OpenGLWindow.h>
 #include <OpenGL/Window/MainWindow.h>
-
 #include <OpenGL/Shader/Shader.h>
+#include <OpenGL/Camera/Camera.h>
 
-#include <OpenGL/QuadTree/QuadTree.h>
+#include <OpenGL/Sprite/Sprite.h>
+#include <Game/QuadTree/QuadTree.h>
+
 
 // user utill
 #include <utill/stb_image.h>

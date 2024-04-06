@@ -7,11 +7,11 @@
 #include <OpenGL/Transform2D/Transform2D.h>
 #include <OpenGL/Quad/Quad.h>
 
-#include <Game/Object/Character/Character.h>
+#include <Game/Object/Player/Player.h>
 
 void TestCameraScene::initializeScene()
 {
-	mpCharacter = make_shared<Character>(mpGame->GetTextureShader(), ".\\Image\\character.png");
+	mpCharacter = make_shared<Player>(mpGame->GetTextureShader(), ".\\Image\\character.png");
 	vec2 center = vec2((*mpGame->GetWindow()->GetWidth() / 2) - 50, (*mpGame->GetWindow()->GetHeight() / 2) + 100);
 	mpCharacter->GetSprite()->SetPosition(center);
 	mpCharacter->SetSpeed(300.0f);

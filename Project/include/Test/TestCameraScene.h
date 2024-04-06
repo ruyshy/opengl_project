@@ -4,7 +4,7 @@
 #define TESTCAMERASCENE_H_
 #include <Game/Scene/SceneBase.h>
 
-class Character;
+class Player;
 class Quad;
 
 class TestCameraScene : public SceneBase
@@ -18,7 +18,7 @@ public:
 	void releaseScene()override;
 
 private:
-	shared_ptr<Character> mpCharacter;
+	shared_ptr<Player> mpCharacter;
 	shared_ptr<Quad> mpGround;
 };
 

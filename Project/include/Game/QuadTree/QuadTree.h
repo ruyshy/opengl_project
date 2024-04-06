@@ -29,8 +29,9 @@ public:
     void insert(shared_ptr<Sprite> sprite);
     void clear();
 
-private:
+    void retrieve(std::vector<shared_ptr<Sprite>>& returnSprites, shared_ptr<Sprite> sprite);
     void subdivide();
+private:
 };
 
 

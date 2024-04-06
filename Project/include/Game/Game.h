@@ -25,7 +25,7 @@ private:
 	unique_ptr<VertexBufferObject2D> mpCheckboard;
 
 	shared_ptr<Camera> mpCamera;
-	shared_ptr<SceneBase> mpScene;
+	unique_ptr<SceneBase> mpScene;
 
 private:
 	MainWindow* mpMainWindow;

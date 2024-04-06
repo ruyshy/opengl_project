@@ -2,10 +2,11 @@
 
 #ifndef TESTQUADTREECOLLISIONSCENE_H_
 #define TESTQUADTREECOLLISIONSCENE_H_
+
 #include <Game/Scene/SceneBase.h>
 
 class QuadTree;
-class Character;
+class Player;
 class Quad;
 
 class TestQuadTreeCollisionScene : public SceneBase
@@ -19,10 +20,10 @@ public:
 	void releaseScene()override;
 
 private:
-	void checkCollisions();
+	void checkCollisions(shared_ptr<QuadTree> quadtree);
 
 private:
-	shared_ptr<Character> mpCharacter;
+	shared_ptr<Player> mpPlayer;
 	shared_ptr<Sprite> mpSprite;
 
 	shared_ptr<QuadTree> mpQuadTree;
