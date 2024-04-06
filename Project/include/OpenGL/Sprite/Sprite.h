@@ -16,6 +16,7 @@ public:
 
 	bool checkCollision(shared_ptr<Sprite> other);
 	bool hasMoved();
+	bool hasScreen();
 	bool hasScreen(float width, float height);
 	void update();
 

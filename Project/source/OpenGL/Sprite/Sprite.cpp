@@ -51,9 +51,22 @@ bool Sprite::hasMoved()
 	return GetPosition().x != mLastX || GetPosition().y != mLastY;
 }
 
+bool Sprite::hasScreen()
+{
+	return
+		GetPosition().x + GetScale().x >= (mScreenX + GetScale().x) &&
+		GetPosition().x <= (mScreenW - GetScale().x) &&
+		GetPosition().y + GetScale().y >= (mScreenY + GetScale().y) &&
+		GetPosition().y <= (mScreenH - GetScale().y);
+}
+
 bool Sprite::hasScreen(float width, float height)
 {
-	return (GetPosition().x > 0 && GetPosition().x < width && GetPosition().y > 0 && GetPosition().y < height);
+	return 
+		GetPosition().x + GetScale().x >= (width + GetScale().x) &&
+		GetPosition().x <= (width - GetScale().x) &&
+		GetPosition().y + GetScale().y >= (height + GetScale().y) &&
+		GetPosition().y <= (height - GetScale().y);
 }
 
 void Sprite::update()

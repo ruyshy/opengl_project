@@ -21,6 +21,7 @@ public:
 private:
 	unique_ptr<Shader> mpCheckboardShader;
 	shared_ptr<Shader> mpTextureShader;
+	shared_ptr<Shader> mpTextShader;
 	shared_ptr<Shader> mpNormalShader;
 	unique_ptr<VertexBufferObject2D> mpCheckboard;
 

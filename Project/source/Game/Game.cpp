@@ -10,7 +10,7 @@
 
 
 #include <Game/Scene/SceneBase.h>
-#include <Test/TestQuadTreeCollisionScene.h>
+#include <Game/Scene/Bullets_dodge_Scene.h>
 #include <Test/TestCameraScene.h>
 
 Game::Game(MainWindow* mainWindow)
@@ -29,6 +29,9 @@ void Game::initialize()
 	mpCheckboardShader = make_unique<Shader>(
 		ResourceManager::GetResourceString(IDR_SHADER_CHECKBOARD_VS, Resource::SHADER),
 		ResourceManager::GetResourceString(IDR_SHADER_CHECKBOARD_FS, Resource::SHADER));
+	mpTextShader = make_unique<Shader>(
+		ResourceManager::GetResourceString(IDR_SHADER_TEXT_VS, Resource::SHADER),
+		ResourceManager::GetResourceString(IDR_SHADER_TEXT_FS, Resource::SHADER));
 	mpTextureShader = make_shared<Shader>(
 		ResourceManager::GetResourceString(IDR_SHADER_TEXTURED_VS, Resource::SHADER),
 		ResourceManager::GetResourceString(IDR_SHADER_TEXTURED_FS, Resource::SHADER));
@@ -40,7 +43,7 @@ void Game::initialize()
 	mpCamera = make_unique<Camera>(mpTextureShader, mpMainWindow->GetWidth(), mpMainWindow->GetHeight());
 	
 	//mpScene = make_unique<TestCameraScene>(this, 1, "Test");
-	mpScene = make_unique<TestQuadTreeCollisionScene>(this, 1, "Test");
+	mpScene = make_unique<Bullets_dodge_Scene>(this, 1, "Test");
 
 }
 

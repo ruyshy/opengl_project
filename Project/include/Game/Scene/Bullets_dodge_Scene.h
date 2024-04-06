@@ -9,10 +9,10 @@ class QuadTree;
 class Player;
 class Quad;
 
-class TestQuadTreeCollisionScene : public SceneBase
+class Bullets_dodge_Scene : public SceneBase
 {
 public:
-	SceneCreator(TestQuadTreeCollisionScene);
+	SceneCreator(Bullets_dodge_Scene);
 
 	void initializeScene() override;
 	void renderScene()override;
@@ -21,10 +21,11 @@ public:
 
 private:
 	void checkCollisions(shared_ptr<QuadTree> quadtree);
+	void checkPlayerCollsions(shared_ptr<QuadTree> quadtree);
 
 private:
+	shared_ptr<Sprite> mpBackGround;
 	shared_ptr<Player> mpPlayer;
-	shared_ptr<Sprite> mpSprite;
 
 	shared_ptr<QuadTree> mpQuadTree;
 	vector<shared_ptr<Sprite>> mSprites;
