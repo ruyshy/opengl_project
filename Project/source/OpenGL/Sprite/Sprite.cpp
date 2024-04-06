@@ -7,7 +7,16 @@
 #include <OpenGL/VertexBuffer2D/VertexBuffer2D.h>
 #include<OpenGL/Transform2D/Transform2D.h>
 
-Sprite::Sprite(shared_ptr<Shader> shader, const char* filename) : mpShader(shader), ObjectBase(0, "Sprite")
+Sprite::Sprite(shared_ptr<Shader> shader, const char* filename)
+	: mpShader(shader), ObjectBase(0, "Sprite"), mScreenX(0), mScreenY(0), mScreenW(800), mScreenH(600)
+{
+	mpTextured = make_shared<Texture2D>(TextureSystem::Generate(filename));
+	mpVertexBufferObject = make_shared<VertexBufferObject2D>(VertexBufferSystem2D::Generate());
+	mpTransform = make_shared<Transform2D>();
+}
+
+Sprite::Sprite(shared_ptr<Shader> shader, const char* filename, float x, float y, float xx, float yy)
+	: mpShader(shader), ObjectBase(0, "Sprite"), mScreenX(x), mScreenY(y), mScreenW(xx), mScreenH(yy)
 {
 	mpTextured = make_shared<Texture2D>(TextureSystem::Generate(filename));
 	mpVertexBufferObject = make_shared<VertexBufferObject2D>(VertexBufferSystem2D::Generate());
@@ -25,7 +34,7 @@ void Sprite::Draw()
 	if (!mVisible)return;
 
 	mpShader->use();
-	//mpShader->setFloat("zDepth", 1.0f);
+	mpShader->setFloat("zDepth", mZDepth);
 	mpShader->setMat4("model_matrx", mpTransform->Get());
 	mpTextured->use();
 	mpVertexBufferObject->Draw();
@@ -39,13 +48,18 @@ bool Sprite::checkCollision(shared_ptr<Sprite> other)
 
 bool Sprite::hasMoved()
 {
-	return GetPosition().x != lastX || GetPosition().y != lastY;
+	return GetPosition().x != mLastX || GetPosition().y != mLastY;
+}
+
+bool Sprite::hasScreen(float width, float height)
+{
+	return (GetPosition().x > 0 && GetPosition().x < width && GetPosition().y > 0 && GetPosition().y < height);
 }
 
 void Sprite::update()
 {
-	lastX = GetPosition().x;
-	lastY = GetPosition().y;
+	mLastX = GetPosition().x;
+	mLastY = GetPosition().y;
 }
 
 shared_ptr<Transform2D> Sprite::GetTransform() { return mpTransform; }
@@ -57,6 +71,8 @@ mat4 Sprite::GetMatrix() { return mpTransform->Get(); }
 float Sprite::GetAngle() { return mpTransform->GetAngle(); }
 bool Sprite::GetFlipX() { return mpTransform->GetFlipX(); }
 bool Sprite::GetFlipY() { return mpTransform->GetFlipY(); }
+vec4 Sprite::GetScreen() { return vec4(mScreenX, mScreenY, mScreenW, mScreenH); }
+
 
 //Set
 void Sprite::SetTransform(Transform2D transform)
@@ -70,6 +86,7 @@ void Sprite::SetTransform(Transform2D transform)
 void Sprite::SetVisible(bool visible) { mVisible = visible; }
 void Sprite::SetPosition(vec2 position) { mpTransform->SetPosition(position); }
 void Sprite::SetPosition(float x, float y) { mpTransform->SetPosition(vec2(x, y)); }
+void Sprite::SetDepth(float value) { mZDepth = value; }
 void Sprite::SetScale(vec2 scale) { mpTransform->SetScale(scale); }
 void Sprite::SetScale(float x, float y) { mpTransform->SetScale(vec2(x, y)); }
 void Sprite::SetAngle(float angle) { mpTransform->SetAngle(angle); }

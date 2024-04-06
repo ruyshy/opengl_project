@@ -19,10 +19,17 @@ MainWindow::~MainWindow()
 void MainWindow::initializeScene()
 {
 	glClearColor(0.0f, 0.5f, 1.0f, 1.0f);
+	
+	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	
+	glEnable(GL_SCISSOR_TEST);
+
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LESS);
-	glEnable(GL_BLEND);
+	
+	glEnable(GL_SAMPLE_ALPHA_TO_COVERAGE);
+
 	mpGame->initialize();
 }
 

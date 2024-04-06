@@ -41,6 +41,7 @@ class Game;
 class ObjectBase;
 class SceneBase;
 
+
 // opengl
 #pragma comment(lib, "OpenGL32.lib")
 #pragma comment(lib, "glew32.lib")
@@ -68,6 +69,8 @@ using namespace glm;
 #include <OpenGL/Window/MainWindow.h>
 #include <OpenGL/Shader/Shader.h>
 #include <OpenGL/Camera/Camera.h>
+
+#include <Game/Event/Dispatcher.h>
 
 #include <OpenGL/Sprite/Sprite.h>
 #include <Game/QuadTree/QuadTree.h>

@@ -8,8 +8,16 @@
 class Enemy : public ObjectBase
 {
 public:
-	Enemy();
-	~Enemy();
+	Enemy(shared_ptr<Shader> shader, const char* filePath);
+	virtual ~Enemy();
+
+	shared_ptr<Sprite> GetSprite();
+
+protected:
+	shared_ptr<Sprite> mpSprite;
+	float mHp, mSpeed;
+
+
 };
 
 #endif

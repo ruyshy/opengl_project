@@ -22,5 +22,5 @@ private:
 	string mName;
 };
 
-#endif // !GOBJECT_H_
+#endif // !OBJECT_H_
 

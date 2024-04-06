@@ -8,6 +8,7 @@ class Sprite : public ObjectBase
 {
 public:
 	Sprite(shared_ptr<Shader> shader, const char* filename);
+	Sprite(shared_ptr<Shader> shader, const char* filename, float x, float y, float xx, float yy);
 	~Sprite();
 
 
@@ -15,6 +16,7 @@ public:
 
 	bool checkCollision(shared_ptr<Sprite> other);
 	bool hasMoved();
+	bool hasScreen(float width, float height);
 	void update();
 
 	bool GetVisible();
@@ -28,10 +30,13 @@ public:
 	bool GetFlipX();
 	bool GetFlipY();
 
+	vec4 GetScreen();
+
 	void SetTransform(Transform2D transform);
 	void SetVisible(bool visible);
 	void SetPosition(vec2 position);
 	void SetPosition(float x, float y);
+	void SetDepth(float value);
 	void SetScale(vec2 scale);
 	void SetScale(float x, float y);
 	void SetAngle(float angle);
@@ -41,7 +46,9 @@ public:
 private:
 	shared_ptr<VertexBufferObject2D> mpVertexBufferObject;
 	shared_ptr<Transform2D> mpTransform;
-	float lastX, lastY;
+	float mScreenX, mScreenY, mScreenW, mScreenH ;
+	float mLastX, mLastY;
+	float mZDepth = 0.0f;
 
 	bool mVisible = true;
 

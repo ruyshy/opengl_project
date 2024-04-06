@@ -9,22 +9,25 @@ void TestQuadTreeCollisionScene::initializeScene()
 {
     QuadTree::Rect rect(0, 0, *mpGame->GetWindow()->GetWidth(), *mpGame->GetWindow()->GetHeight());
     mpQuadTree = make_shared<QuadTree>(nullptr, rect, 0);
-	mpPlayer = make_shared<Player>(mpGame->GetTextureShader(), ".\\Image\\character.png");
-    mpPlayer->SetSpeed(300.0f);
+	mpPlayer = make_shared<Player>(mpGame->GetTextureShader(), ".\\Image\\Player.png");
+    mpPlayer->GetSprite()->SetDepth(0.1);
+    mpPlayer->SetSpeed(250.0f);
 
     mpSprite = make_shared<Sprite>(mpGame->GetTextureShader(), "");
     mpSprite->SetPosition(100, 300);
     mpSprite->SetScale(200, 200);
+    mpSprite->SetDepth(0.01);
 
     mSprites = vector<shared_ptr<Sprite>>();
     mSprites.push_back(mpPlayer->GetSprite());
     mSprites.push_back(mpSprite);
+
 }
 
 void TestQuadTreeCollisionScene::renderScene()
 {
-	mpPlayer->Draw();
     mpSprite->Draw();
+	mpPlayer->Draw();
 }
 
 void TestQuadTreeCollisionScene::updateScene()

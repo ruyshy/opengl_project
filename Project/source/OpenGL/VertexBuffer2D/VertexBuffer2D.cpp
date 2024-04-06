@@ -42,24 +42,24 @@ VertexBufferObject2D VertexBufferSystem2D::Generate()
 
 	// for vertex buffer ..
 	glBindBuffer(GL_ARRAY_BUFFER, result.VBO);
-	glBufferData(GL_ARRAY_BUFFER, 4 * sizeof(vec2), arr, GL_DYNAMIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, 4 * sizeof(vec2), arr, GL_STATIC_DRAW);
 
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, result.EBO);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_DYNAMIC_DRAW);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
 	glEnableVertexAttribArray(0);
 	glVertexAttribPointer(0, 2, GL_FLOAT, false, 0, NULL);
 
 	// for color buffer ..
 	glBindBuffer(GL_ARRAY_BUFFER, result.CBO);
-	glBufferData(GL_ARRAY_BUFFER, 4 * sizeof(vec4), colors, GL_DYNAMIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, 4 * sizeof(vec4), colors, GL_STATIC_DRAW);
 
 	glEnableVertexAttribArray(1);
 	glVertexAttribPointer(1, 4, GL_FLOAT, false, 0, NULL);
 
 	// for uv buffer ..
 	glBindBuffer(GL_ARRAY_BUFFER, result.UVBO);
-	glBufferData(GL_ARRAY_BUFFER, 4 * sizeof(vec2), uv, GL_DYNAMIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, 4 * sizeof(vec2), uv, GL_STATIC_DRAW);
 
 	glEnableVertexAttribArray(2);
 	glVertexAttribPointer(2, 2, GL_FLOAT, false, 0, NULL);
