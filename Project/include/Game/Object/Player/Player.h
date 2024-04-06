@@ -21,7 +21,7 @@ public:
 
 private:
 	shared_ptr<Sprite> mpSprite;
-	float mSpeed = 100.0f;
+	float mHp = 10.0f, mSpeed = 100.0f;
 
 };
 
