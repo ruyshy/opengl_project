@@ -8,7 +8,7 @@ class dodge_bullet
 protected:
 	dodge_bullet() = delete;
 public:
-	dodge_bullet(shared_ptr<Shader> shader, const char* filePath, vec2 direction, float speed);
+	dodge_bullet(shared_ptr<Shader> shader, const char* filePath, vec2 start, vec2 end, float speed);
 	virtual ~dodge_bullet();
 
 	void Movement(double delta_time);
@@ -18,7 +18,7 @@ public:
 
 private:
 	shared_ptr<Sprite> mpSprite;
-	vec2 mDirection_vector;
+	vec2 start, end, direction;
 	float mSpeed = 100.0f;
 };
 
