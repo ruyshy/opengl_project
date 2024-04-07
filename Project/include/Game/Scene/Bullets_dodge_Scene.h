@@ -43,14 +43,15 @@ private:
 	vector<shared_ptr<Sprite>> mSprites;
 	
 	std::mt19937 gen;
-	unique_ptr<dodge_bullet> mpBullet[2000];
-	const int mBulletMaxCount = 2000;
+	unique_ptr<dodge_bullet> mpBullet[1000];
+	const int mBulletMaxCount = 1000;
 	queue<int> mBulletEndIndexQueue;
 	const double mBulletCreateTime = 2.0f;
-	double mBulletCreateTimer = 0.0f;
+	double mBulletCreateTimer = 100.0f;
 	int mBullet_count = 0;
 	vec2 boxMin, boxMax;
-	vec4 front_vec, back_vec, right_vec, left_vec;
+	float mBulletMinX, mBulletMaxX;
+	float mBulletMinY, mBulletMaxY;
 
 };
 

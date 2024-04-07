@@ -54,7 +54,7 @@ bool dodge_bullet::isNearDestination(const vec2& current, const vec2& destinatio
 
 bool dodge_bullet::EndGoal()
 {
-	if (isNearDestination(mpSprite->GetPosition(), mEnd, 1.0f)) 
+	if (isNearDestination(mpSprite->GetPosition(), mEnd, 10))
 		return true;
 	return false;
 }

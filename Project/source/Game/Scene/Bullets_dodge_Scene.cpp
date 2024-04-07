@@ -12,11 +12,10 @@ void Bullets_dodge_Scene::initializeScene()
     
     boxMin = vec2(rect.x, rect.y);
     boxMax = vec2(rect.width, rect.height);
-    
-    front_vec = vec4(rect.x - 5, rect.y - 5, rect.x, rect.y);
-    back_vec = vec4(rect.width, rect.height, rect.width + 5, rect.height + 5);
-    right_vec = vec4(rect.x - 5, rect.y, rect.x, rect.height + 5);
-    left_vec = vec4(rect.width, rect.y, rect.width + 5, rect.height);
+
+    mBulletMinX = mBulletMinY = -20;
+    mBulletMaxX = rect.width + 20;
+    mBulletMaxY = rect.height + 20;
 
     mpBackGround = make_shared<Sprite>(mpGame->GetTextureShader(), ".\\Image\\back_ground.png");
     mpBackGround->SetPosition(0,0);
@@ -28,6 +27,16 @@ void Bullets_dodge_Scene::initializeScene()
     mpPlayer->GetSprite()->SetPosition(vec2(*mpGame->GetWindow()->GetWidth() / 2, *mpGame->GetWindow()->GetHeight() / 2) - mpPlayer->GetSprite()->GetScale());
     mpPlayer->GetSprite()->SetDepth(0.1);
     mpPlayer->SetSpeed(250.0f);
+
+    for (int x = 0; x < mBulletMaxCount; x++)
+    {
+        mpBullet[x] = make_unique<dodge_bullet>(
+            mpGame->GetTextureShader(),
+            ".\\Image\\bullet1.png",
+            vec2(-20,-20),
+            vec2(-20,-20),
+            0);
+    }
 
     mSprites = vector<shared_ptr<Sprite>>();
 }
@@ -59,17 +68,17 @@ void Bullets_dodge_Scene::updateScene()
         mBulletCreateTimer = 0;
     }
 
-    for (int x = 0; x < mBullet_count; x++) 
+    for (int x = 0; x < mBulletMaxCount; x++) 
     {
         if (mpBullet[x]->EndGoal())
         {
             if (mpBullet[x]->GetState())
                 continue;
-
             mpBullet[x]->SetState(true);
-            mBulletEndIndexQueue.push(mBullet_count);
+            mBulletEndIndexQueue.push(x);
         }
-        mpBullet[x]->Movement(mpGame->GetWindow()->getTimeDelta());
+        else
+            mpBullet[x]->Movement(mpGame->GetWindow()->getTimeDelta());
     }
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -137,27 +146,23 @@ void Bullets_dodge_Scene::bullet_position_create(int num, vec2& start, vec2& end
 {
     if (num > 30 && num <= 40)
     {
-        cout << "num : " << num << endl;
-        start = vec2(randomFloat(front_vec.x, front_vec.z), randomFloat(front_vec.y, front_vec.w));
-        end = vec2(randomFloat(back_vec.x, back_vec.z), randomFloat(back_vec.y, back_vec.w));
+        start = vec2(mBulletMinX, randomFloat(mBulletMinY, mBulletMaxY));
+        end = vec2(mBulletMaxX, randomFloat(mBulletMinY, mBulletMaxY));
     }
     else if (num > 20 && num <= 30)
     {
-        cout << "num : " << num << endl;
-        start = vec2(randomFloat(left_vec.x, left_vec.z), randomFloat(left_vec.y, left_vec.w));
-        end = vec2(randomFloat(right_vec.x, right_vec.z), randomFloat(right_vec.y, right_vec.w));
+        start = vec2(randomFloat(mBulletMinX, mBulletMaxX), mBulletMinY);
+        end = vec2(randomFloat(mBulletMinX, mBulletMaxX), mBulletMaxY);
     }
     else if (num > 10 && num <= 20)
     {
-        cout << "num : " << num << endl;
-        start = vec2(randomFloat(back_vec.x, back_vec.z), randomFloat(back_vec.y, back_vec.w));
-        end = vec2(randomFloat(front_vec.x, front_vec.z), randomFloat(front_vec.y, front_vec.w));
+        start = vec2(mBulletMaxX, randomFloat(mBulletMinY, mBulletMaxY));
+        end = vec2(mBulletMinX, randomFloat(mBulletMinY,mBulletMaxY));
     }
     else if( num > 0 && num <= 10)
     {
-        cout << "num : " << num << endl;
-        start = vec2(randomFloat(right_vec.x, right_vec.z), randomFloat(right_vec.y, right_vec.w));
-        end = vec2(randomFloat(left_vec.x, left_vec.z), randomFloat(left_vec.y, left_vec.w));
+        start = vec2(randomFloat(mBulletMinX, mBulletMaxX), mBulletMaxY);
+        end = vec2(randomFloat(mBulletMinX, mBulletMaxX), mBulletMinY);
     }
 }
 
@@ -198,27 +203,35 @@ bool Bullets_dodge_Scene::isIntersecting2D(vec2 rayOrigin, vec2 rayDirection)
 
 void Bullets_dodge_Scene::bullet_create()
 {
-    uniform_int_distribution<int> random_count(16, 24);
+    uniform_int_distribution<int> random_count(24, 40);
     int random_number = random_count(gen);
-    for (int x = 0; x < random_number; x++)
+    if (mBulletMaxCount > (mBullet_count + random_number))
     {
-        if (mBulletMaxCount <= mBullet_count)
-            return;
+        for (int x = 0; x < random_number; x++)
+        {
+            if (mBulletMaxCount <= mBullet_count)
+                return;
+
+            vec2 start, end;
+            bullet_position_create(randomInt(0, 40), start, end);
+            double speed = (static_cast<double>(randomInt(600, 2500)) / 10.0f);
+
+            mpBullet[mBullet_count]->reload(start, end, speed);
+            mSprites.push_back(mpBullet[mBullet_count]->GetSprite());
+            mBullet_count++;
+        }
+        return;
+    }
+    for (int x = 0; x < mBulletEndIndexQueue.size(); x++)
+    {
+        int pop_index = mBulletEndIndexQueue.front();
+        mBulletEndIndexQueue.pop();
 
         vec2 start, end;
         bullet_position_create(randomInt(0, 40), start, end);
         double speed = (static_cast<double>(randomInt(600, 2500)) / 10.0f);
-        cout << "start.x : " << start.x << " start.y : " << start.y << endl;
-        cout << "end.x : " << end.x << " end.y : " << end.y << endl;
 
-        mpBullet[mBullet_count] = make_unique<dodge_bullet>(
-            mpGame->GetTextureShader(),
-            ".\\Image\\bullet1.png",
-            start,
-            end,
-            speed);
-
-        mSprites.push_back(mpBullet[mBullet_count]->GetSprite());
-        mBullet_count++;
+        mpBullet[pop_index]->reload(start, end, speed);
+        mpBullet[pop_index]->SetState(false);
     }
 }
