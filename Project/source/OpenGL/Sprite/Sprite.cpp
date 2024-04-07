@@ -8,7 +8,7 @@
 #include<OpenGL/Transform2D/Transform2D.h>
 
 Sprite::Sprite(shared_ptr<Shader> shader, const char* filename)
-	: mpShader(shader), ObjectBase(0, "Sprite"), mScreenX(0), mScreenY(0), mScreenW(800), mScreenH(600)
+	: mpShader(shader), ObjectBase(0, "Sprite"), mScreenX(0), mScreenY(0), mScreenW(800), mScreenH(600), mLastX(0), mLastY(0)
 {
 	mpTextured = make_shared<Texture2D>(TextureSystem::Generate(filename));
 	mpVertexBufferObject = make_shared<VertexBufferObject2D>(VertexBufferSystem2D::Generate());
@@ -40,10 +40,13 @@ void Sprite::Draw()
 	mpVertexBufferObject->Draw();
 }
 
-bool Sprite::checkCollision(shared_ptr<Sprite> other)
+bool Sprite::checkCollision(shared_ptr<Sprite> other, double offset)
 {
-	return GetPosition().x < other->GetPosition().x + other->GetScale().x && GetPosition().x + GetScale().x > other->GetPosition().x &&
-		GetPosition().y < other->GetPosition().y + other->GetScale().y && GetPosition().y + GetScale().y > other->GetPosition().y;
+	return 
+		(GetPosition().x + offset) < (other->GetPosition().x + other->GetScale().x) &&
+		(GetPosition().x + GetScale().x - offset) > other->GetPosition().x &&
+		(GetPosition().y + offset) < other->GetPosition().y + other->GetScale().y &&
+		(GetPosition().y + GetScale().y - offset) > other->GetPosition().y;
 }
 
 bool Sprite::hasMoved()
@@ -51,9 +54,22 @@ bool Sprite::hasMoved()
 	return GetPosition().x != mLastX || GetPosition().y != mLastY;
 }
 
+bool Sprite::hasScreen()
+{
+	return
+		GetPosition().x + GetScale().x >= (mScreenX + GetScale().x) &&
+		GetPosition().x <= (mScreenW - GetScale().x) &&
+		GetPosition().y + GetScale().y >= (mScreenY + GetScale().y) &&
+		GetPosition().y <= (mScreenH - GetScale().y);
+}
+
 bool Sprite::hasScreen(float width, float height)
 {
-	return (GetPosition().x > 0 && GetPosition().x < width && GetPosition().y > 0 && GetPosition().y < height);
+	return 
+		GetPosition().x + GetScale().x >= (width + GetScale().x) &&
+		GetPosition().x <= (width - GetScale().x) &&
+		GetPosition().y + GetScale().y >= (height + GetScale().y) &&
+		GetPosition().y <= (height - GetScale().y);
 }
 
 void Sprite::update()

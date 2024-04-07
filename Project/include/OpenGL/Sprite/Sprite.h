@@ -14,8 +14,9 @@ public:
 
 	void Draw();
 
-	bool checkCollision(shared_ptr<Sprite> other);
+	bool checkCollision(shared_ptr<Sprite> other, double offset = 0.0f);
 	bool hasMoved();
+	bool hasScreen();
 	bool hasScreen(float width, float height);
 	void update();
 
