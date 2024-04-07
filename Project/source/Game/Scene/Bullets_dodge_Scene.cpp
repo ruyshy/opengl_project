@@ -22,17 +22,39 @@ void Bullets_dodge_Scene::initializeScene()
     mSprites = vector<shared_ptr<Sprite>>();
     mSprites.push_back(mpPlayer->GetSprite());
 
+    mt19937 gen(mRandomDevice());
+    uniform_int_distribution<int> a(0, 99);
 }
 
 void Bullets_dodge_Scene::renderScene()
 {
     mpBackGround->Draw();
+    for (int x = 0; x < mBullet_count; x++)
+    {
+        mpBullet[x]->Draw();
+    }
 	mpPlayer->Draw();
 }
 
 void Bullets_dodge_Scene::updateScene()
 {
-	mpPlayer->Movement([this](int key) {return mpGame->GetWindow()->keyPressed(key); }, mpGame->GetWindow()->getTimeDelta());
+    double timer = mpGame->GetWindow()->getTimeDelta();
+	mpPlayer->Movement([this](int key) {return mpGame->GetWindow()->keyPressed(key); }, timer);
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    mBulletCreateTimer += (timer / 2.0f);
+    if (mBulletCreateTimer >= mBulletCreateTime)
+    {
+        bullet_create();
+        mBulletCreateTimer = 0;
+    }
+
+    for (int x = 0; x < mBullet_count; x++) 
+    {
+        mpBullet[x]->Movement(mpGame->GetWindow()->getTimeDelta());
+    }
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     mpQuadTree->clear();
     for (shared_ptr<Sprite> sprite : mSprites) 
@@ -78,4 +100,14 @@ void Bullets_dodge_Scene::checkPlayerCollsions(shared_ptr<QuadTree> quadtree)
             cout << player->GetName() << " && " << sprite->GetName() << "충돌했습니다."  << endl;
         }
     }
+}
+
+void Bullets_dodge_Scene::bullet_create()
+{
+    if (mBulletMaxCount <= mBullet_count)
+        return;
+
+    mpBullet[mBullet_count] = make_unique<dodge_bullet>(mpGame->GetTextureShader(), ".\\Image\\bullet1.png", vec2(mpPlayer->GetSprite()->GetPosition().x, mpPlayer->GetSprite()->GetPosition().y), 0.01f);
+    mSprites.push_back(mpBullet[mBullet_count]->GetSprite());
+    mBullet_count++;
 }

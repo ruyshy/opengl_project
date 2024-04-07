@@ -11,9 +11,12 @@ public:
 	dodge_bullet(shared_ptr<Shader> shader, const char* filePath, vec2 direction, float speed);
 	virtual ~dodge_bullet();
 
-	void Movement();
+	void Movement(double delta_time);
+	void Draw();
 
-public:
+	shared_ptr<Sprite> GetSprite();
+
+private:
 	shared_ptr<Sprite> mpSprite;
 	vec2 mDirection_vector;
 	float mSpeed = 100.0f;

@@ -18,6 +18,7 @@
 #include <map>
 #include <algorithm>
 #include <stddef.h>
+#include <random>
 
 #include <Windows.h>
 #include <cstring>

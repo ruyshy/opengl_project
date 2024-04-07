@@ -5,7 +5,7 @@ dodge_bullet::dodge_bullet(shared_ptr<Shader> shader, const char* filePath, vec2
 {
 	mpSprite = make_shared<Sprite>(shader, filePath);
 	mpSprite->SetPosition(0, 0);
-	mpSprite->SetScale(100, 100);
+	mpSprite->SetScale(10, 10);
 	mpSprite->SetID(1);
 	mpSprite->SetName("dodge_bullet");
 
@@ -17,9 +17,15 @@ dodge_bullet::~dodge_bullet()
 {
 }
 
-void dodge_bullet::Movement()
+void dodge_bullet::Movement(double delta_time)
 {
 	mpSprite->SetDepth(0.01);
-	mpSprite->SetPosition(vec2(mpSprite->GetPosition() + mDirection_vector));
+	mpSprite->SetPosition(vec2(mpSprite->GetPosition() + vec2(mDirection_vector.x * delta_time, mDirection_vector.y * delta_time)));
+}
+
+void dodge_bullet::Draw()
+{
 	mpSprite->Draw();
 }
+
+shared_ptr<Sprite> dodge_bullet::GetSprite() { return mpSprite; }
