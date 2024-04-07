@@ -5,11 +5,19 @@
 #include <OpenGL/Quad/Quad.h>
 #include <utill/TimeMeasure.h>
 
+#include <rc/font_resource.h>
+
 void Bullets_dodge_Scene::initializeScene()
 {
     QuadTree::Rect rect(0, 0, *mpGame->GetWindow()->GetWidth(), *mpGame->GetWindow()->GetHeight());
     mpQuadTree = make_shared<QuadTree>(nullptr, rect, 0);
     
+    mpGameStartText = make_unique<TextRendering>(IDB_FONT_ARIAL,
+        mpGame->GetWindow()->getOrthoProjectionMatrix(),
+        mpGame->GetCamera()->GetViewMatrix(),
+        vec2(0,0),
+        0.4f);
+
     boxMin = vec2(rect.x, rect.y);
     boxMax = vec2(rect.width, rect.height);
 
@@ -24,7 +32,8 @@ void Bullets_dodge_Scene::initializeScene()
 
 	mpPlayer = make_shared<Player>(mpGame->GetTextureShader(), ".\\Image\\Player.png");
     mpPlayer->GetSprite()->SetScale(vec2(50, 50));
-    mpPlayer->GetSprite()->SetPosition(vec2(*mpGame->GetWindow()->GetWidth() / 2, *mpGame->GetWindow()->GetHeight() / 2) - mpPlayer->GetSprite()->GetScale());
+    vec2 half_size = vec2(mpPlayer->GetSprite()->GetScale().x / 2, mpPlayer->GetSprite()->GetScale().y / 2);
+    mpPlayer->GetSprite()->SetPosition(vec2(*mpGame->GetWindow()->GetWidth() / 2, *mpGame->GetWindow()->GetHeight() / 2) - half_size);
     mpPlayer->GetSprite()->SetDepth(0.1);
     mpPlayer->SetSpeed(250.0f);
 
@@ -49,12 +58,27 @@ void Bullets_dodge_Scene::renderScene()
         mpBullet[x]->Draw();
 	mpPlayer->Draw();
 
+    if (!mGameStart)
+    {
+        mpGameStartText->RenderText(mStartTextContexts,
+            (*mpGame->GetWindow()->GetWidth() / 2) - 200,
+            (*mpGame->GetWindow()->GetHeight() / 2),
+            vec3(1, 1, 1));
+    }
 
     mpScore->Draw(mScore);
 }
 
 void Bullets_dodge_Scene::updateScene()
 {
+    if (!mGameStart)
+    {
+        if(mpGame->GetWindow()->keyPressed(GLFW_KEY_ENTER) ||
+            mpGame->GetWindow()->keyPressed(GLFW_KEY_SPACE))
+            mGameStart = true;
+        return;
+    }
+
     double timer = mpGame->GetWindow()->getTimeDelta();
 	mpPlayer->Movement([this](int key) {return mpGame->GetWindow()->keyPressed(key); }, timer);
 

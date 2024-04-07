@@ -14,8 +14,6 @@
     <ClCompile Include="source\OpenGL\Window\OpenGLWindow.cpp" />
     <ClCompile Include="source\main.cpp" />
     <ClCompile Include="source\Manager\ResourceManager.cpp" />
-    <ClCompile Include="source\OpenGL\Model3D\Mesh.cpp" />
-    <ClCompile Include="source\OpenGL\Model3D\Model3D.cpp" />
     <ClCompile Include="source\OpenGL\Camera\Camera.cpp" />
     <ClCompile Include="source\OpenGL\Animation2D\Animation2D.cpp" />
     <ClCompile Include="source\Game\Event\Event.cpp" />
@@ -53,8 +51,6 @@
     <ClInclude Include="include\OpenGL\Window\MainWindow.h" />
     <ClInclude Include="include\OpenGL\Window\OpenGLWindow.h" />
     <ClInclude Include="include\Manager\ResourceManager.h" />
-    <ClInclude Include="include\OpenGL\Model3D\Mesh.h" />
-    <ClInclude Include="include\OpenGL\Model3D\Model3D.h" />
     <ClInclude Include="include\OpenGL\Camera\Camera.h" />
     <ClInclude Include="include\OpenGL\Animation2D\Animation2D.h" />
     <ClInclude Include="include\Game\Event\Event.h" />

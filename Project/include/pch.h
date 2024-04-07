@@ -69,6 +69,8 @@ using namespace glm;
 #include <OpenGL/Window/OpenGLWindow.h>
 #include <OpenGL/Window/MainWindow.h>
 #include <OpenGL/Shader/Shader.h>
+#include <OpenGL/TextRender/TextRendering.h>
+
 #include <OpenGL/Camera/Camera.h>
 
 #include <Game/Event/Dispatcher.h>

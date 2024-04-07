@@ -5,8 +5,8 @@
 #include <rc/shader_resource.h>
 #include <rc/font_resource.h>
 
-TextRendering::TextRendering(UINT ID, mat4 projection_matrix, mat4 view_matrix) :
-    mpFile_path(0), mpProjectionMatrix(projection_matrix), mpViewMatrix(view_matrix)
+TextRendering::TextRendering(UINT ID, mat4 projection_matrix, mat4 view_matrix, vec2 position, float scale) :
+    mpFile_path(0), mpProjectionMatrix(projection_matrix), mpViewMatrix(view_matrix), mTextScale(scale), mPosition(position)
 {
     mpShader = new Shader(
         ResourceManager::GetResourceString(IDR_SHADER_TEXT_VS, Resource::SHADER),
@@ -58,6 +58,15 @@ TextRendering::TextRendering(UINT ID, mat4 projection_matrix, mat4 view_matrix) 
             face->glyph->advance.x
         };
         Characters.insert(std::pair<char, Character>(c, character));
+
+        float xpos = mPosition.x + character.Bearing.x * mTextScale;
+        float ypos = mPosition.y - (character.Size.y - character.Bearing.y) * mTextScale;
+        float w = character.Size.x * mTextScale;
+        float h = character.Size.y * mTextScale;
+        
+        mSize.x = character.Size.x;
+        mSize.y = character.Size.y;
+
     }
     FT_Done_Face(face);
     FT_Done_FreeType(ft);
@@ -79,6 +88,22 @@ TextRendering::~TextRendering()
     glDeleteBuffers(1, &VBO);
 
     NULLPTR_CHECK_DELETE(mpShader);
+}
+
+void TextRendering::SetPosition(vec2 position) { mPosition = position; }
+void TextRendering::SetSize(vec2 size) { mSize = size; }
+
+vec2 TextRendering::GetPosition() { return mPosition; }
+vec2 TextRendering::GetSize() { return mSize; }
+
+void TextRendering::RenderText(std::string text, glm::vec3 color)
+{
+    RenderText(text, mPosition.x, mPosition.y, mTextScale, color);
+}
+
+void TextRendering::RenderText(std::string text, float x, float y, glm::vec3 color)
+{
+    RenderText(text, x, y, mTextScale, color);
 }
 
 void TextRendering::RenderText(std::string text, float x, float y, float scale, glm::vec3 color)

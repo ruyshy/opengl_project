@@ -12,7 +12,9 @@ Score_dodge::Score_dodge(Game* game)
 	//IDB_FONT_ARIAL
 	mpTextRendering = make_unique<TextRendering>(IDB_FONT_ARIAL,
 		mpGame->GetWindow()->getOrthoProjectionMatrix(),
-		mpGame->GetCamera()->GetViewMatrix());
+		mpGame->GetCamera()->GetViewMatrix(),
+		vec2(0.0f, *mpGame->GetWindow()->GetHeight() - 25),
+		0.5f);
 }
 
 Score_dodge::~Score_dodge()

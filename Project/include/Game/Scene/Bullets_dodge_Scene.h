@@ -32,8 +32,10 @@ private:
 	void bullet_create();
 
 private:
+	bool mGameStart = false;
+	unique_ptr<TextRendering> mpGameStartText;
+	const string mStartTextContexts = "Press the space bar or enter to start the game.";
 	shared_ptr<Sprite> mpBackGround;
-	
 	unique_ptr<Score_dodge> mpScore;
 	float mScore = 0.0f;
 

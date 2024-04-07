@@ -3,7 +3,6 @@
 #ifndef SCORE_DODGE_H_
 #define SCORE_DODGE_H_
 
-#include <OpenGL/TextRender/TextRendering.h>
 
 class Score_dodge
 {
