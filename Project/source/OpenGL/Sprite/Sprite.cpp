@@ -40,10 +40,13 @@ void Sprite::Draw()
 	mpVertexBufferObject->Draw();
 }
 
-bool Sprite::checkCollision(shared_ptr<Sprite> other)
+bool Sprite::checkCollision(shared_ptr<Sprite> other, double offset)
 {
-	return GetPosition().x < other->GetPosition().x + other->GetScale().x && GetPosition().x + GetScale().x > other->GetPosition().x &&
-		GetPosition().y < other->GetPosition().y + other->GetScale().y && GetPosition().y + GetScale().y > other->GetPosition().y;
+	return 
+		(GetPosition().x + offset) < (other->GetPosition().x + other->GetScale().x) &&
+		(GetPosition().x + GetScale().x - offset) > other->GetPosition().x &&
+		(GetPosition().y + offset) < other->GetPosition().y + other->GetScale().y &&
+		(GetPosition().y + GetScale().y - offset) > other->GetPosition().y;
 }
 
 bool Sprite::hasMoved()

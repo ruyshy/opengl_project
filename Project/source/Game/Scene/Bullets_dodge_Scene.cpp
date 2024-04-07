@@ -22,7 +22,6 @@ void Bullets_dodge_Scene::initializeScene()
     mpPlayer->SetSpeed(250.0f);
 
     mSprites = vector<shared_ptr<Sprite>>();
-    mSprites.push_back(mpPlayer->GetSprite());
 
     mt19937 gen(mRandomDevice());
     uniform_int_distribution<int> a(0, 99);
@@ -71,7 +70,7 @@ void Bullets_dodge_Scene::updateScene()
         sprite->update();
     }
     mpQuadTree->subdivide();
-    checkCollisions(mpQuadTree);
+    checkPlayerCollsions(mpQuadTree);
 }
 
 void Bullets_dodge_Scene::releaseScene()
@@ -103,7 +102,7 @@ void Bullets_dodge_Scene::checkPlayerCollsions(shared_ptr<QuadTree> quadtree)
         if (!sprite->hasScreen())
             continue;
 
-        if (sprite->checkCollision(player)) {
+        if (sprite->checkCollision(player, 15)) {
             cout << player->GetName() << " && " << sprite->GetName() << "충돌했습니다."  << endl;
         }
     }
