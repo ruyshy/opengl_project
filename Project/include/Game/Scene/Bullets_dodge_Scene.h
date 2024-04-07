@@ -20,6 +20,8 @@ public:
 	void updateScene()override;
 	void releaseScene()override;
 
+	void game_over_initialize();
+
 private:
 	void checkCollisions(shared_ptr<QuadTree> quadtree);
 	void checkPlayerCollsions(shared_ptr<QuadTree> quadtree);
@@ -32,7 +34,8 @@ private:
 	void bullet_create();
 
 private:
-	bool mGameStart = false, mGameEnd = false;
+	bool mGameStart = false, mGameEnd = false, mLose = false;
+	int mLastIndex = -1;
 	unique_ptr<TextRendering> mpGameStartText;
 
 	const string mStartTextContexts = "Press the space bar or enter to start the game.";

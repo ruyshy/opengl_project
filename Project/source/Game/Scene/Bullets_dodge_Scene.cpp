@@ -46,12 +46,13 @@ void Bullets_dodge_Scene::initializeScene()
             vec2(-20,-20),
             0);
     }
-
     mSprites = vector<shared_ptr<Sprite>>();
 
     mScore = 0;
     mGameStart = false;
     mGameEnd = false;
+    mLose = false;
+    mBulletCreateTimer = mBulletCreateTime - 0.25f;
 }
 
 void Bullets_dodge_Scene::renderScene()
@@ -60,6 +61,7 @@ void Bullets_dodge_Scene::renderScene()
 
     for (int x = 0; x < mBullet_count; x++)
         mpBullet[x]->Draw();
+
 	mpPlayer->Draw();
 
     if (!mGameStart)
@@ -87,8 +89,7 @@ void Bullets_dodge_Scene::updateScene()
         if (mpGame->GetWindow()->keyPressed(GLFW_KEY_ENTER) ||
             mpGame->GetWindow()->keyPressed(GLFW_KEY_SPACE))
         {
-            initializeScene();
-            mGameStart = true;
+            game_over_initialize();
             return;
         }
         return;
@@ -107,7 +108,7 @@ void Bullets_dodge_Scene::updateScene()
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     mBulletCreateTimer += (timer / 2.0f);
-    mScore += timer;
+    mScore += (timer * 2);
     if (mBulletCreateTimer >= mBulletCreateTime)
     {
         bullet_create();
@@ -142,6 +143,33 @@ void Bullets_dodge_Scene::updateScene()
 void Bullets_dodge_Scene::releaseScene()
 {
 
+}
+
+void Bullets_dodge_Scene::game_over_initialize()
+{
+    mpBackGround->SetPosition(0, 0);
+
+    mScore = 0;
+    mGameStart = true;
+    mGameEnd = false;
+    mBulletCreateTimer = mBulletCreateTime;
+
+    mpPlayer->GetSprite()->SetScale(vec2(50, 50));
+    vec2 half_size = vec2(mpPlayer->GetSprite()->GetScale().x / 2, mpPlayer->GetSprite()->GetScale().y / 2);
+    mpPlayer->GetSprite()->SetPosition(vec2(*mpGame->GetWindow()->GetWidth() / 2, *mpGame->GetWindow()->GetHeight() / 2) - half_size);
+    mpPlayer->GetSprite()->SetDepth(0.1);
+    mpPlayer->SetSpeed(200.0f);
+
+   for (int x = 0; x < mBulletMaxCount; x++)
+   {
+       if (!mpBullet[x]->GetSprite()->hasScreen())
+           continue;
+       mpBullet[x]->GetSprite()->SetPosition(-20, -20);
+       mpBullet[x]->SetState(true);
+   }
+
+
+    mSprites = vector<shared_ptr<Sprite>>();
 }
 
 void Bullets_dodge_Scene::checkCollisions(shared_ptr<QuadTree> quadtree) {
@@ -227,9 +255,7 @@ bool Bullets_dodge_Scene::isIntersecting2D(vec2 rayOrigin, vec2 rayDirection)
         if (std::abs(rayDirectionCoord) < std::numeric_limits<float>::epsilon())
         {
             if (rayOriginCoord < boxMinCoord || rayOriginCoord > boxMaxCoord)
-            {
                 return false;
-            }
         }
         else 
         {
@@ -240,9 +266,7 @@ bool Bullets_dodge_Scene::isIntersecting2D(vec2 rayOrigin, vec2 rayDirection)
             tMax = std::min(tMax, std::max(t1, t2));
 
             if (tMin > tMax)
-            {
                 return false;
-            }
         }
     }
     return true;
