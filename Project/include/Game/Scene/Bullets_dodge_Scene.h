@@ -5,6 +5,7 @@
 
 #include <Game/Scene/SceneBase.h>
 #include <Game/Object/dodge_bullet/dodge_bullet.h>
+#include <Game/Score/Score_dodge.h>
 
 class QuadTree;
 class Player;
@@ -27,6 +28,10 @@ private:
 
 private:
 	shared_ptr<Sprite> mpBackGround;
+	
+	unique_ptr<Score_dodge> mpScore;
+	float mScore = 0.0f;
+
 	shared_ptr<Player> mpPlayer;
 
 	shared_ptr<QuadTree> mpQuadTree;

@@ -1,80 +1,12 @@
 #include <pch.h>
 #include <OpenGL/TextRender/TextRendering.h>
 
-#include <OpenGL/Shader/Shader.h>
-
 #include <Manager/ResourceManager.h>
 #include <rc/shader_resource.h>
 #include <rc/font_resource.h>
 
-TextRendering::TextRendering(const char* file_path, mat4* projection_matrix) : 
-    mpFile_path(file_path), mpProjectionMatrix(projection_matrix)
-{
-	mpShader = new Shader(
-        ResourceManager::GetResourceString(IDR_SHADER_TEXT_VS, Resource::SHADER),
-        ResourceManager::GetResourceString(IDR_SHADER_TEXT_FS, Resource::SHADER)
-        );
-
-    FT_Library ft;
-    FT_Face face;
-    FT_Init_FreeType(&ft);
-    FT_New_Face(ft, file_path, 0, &face);
-    FT_Set_Pixel_Sizes(face, 0, 50);
-    FT_Load_Char(face, 'X', FT_LOAD_RENDER);
-
-    glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
-
-    for (unsigned char c = 0; c < 128; c++)
-    {
-        if (FT_Load_Char(face, c, FT_LOAD_RENDER))
-        {
-            cout << "ERROR::FREETYTPE: Failed to load Glyph" << endl;
-            continue;
-        }
-        unsigned int texture;
-        glGenTextures(1, &texture);
-        glBindTexture(GL_TEXTURE_2D, texture);
-        glTexImage2D(
-            GL_TEXTURE_2D,
-            0,
-            GL_RED,
-            face->glyph->bitmap.width,
-            face->glyph->bitmap.rows,
-            0,
-            GL_RED,
-            GL_UNSIGNED_BYTE,
-            face->glyph->bitmap.buffer
-        );
-
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
-        Character character = {
-            texture,
-            ivec2(face->glyph->bitmap.width, face->glyph->bitmap.rows),
-            ivec2(face->glyph->bitmap_left, face->glyph->bitmap_top),
-            face->glyph->advance.x
-        };
-        Characters.insert(std::pair<char, Character>(c, character));
-    }
-    FT_Done_Face(face);
-    FT_Done_FreeType(ft);
-
-    glGenVertexArrays(1, &VAO);
-    glGenBuffers(1, &VBO);
-    glBindVertexArray(VAO);
-    glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 6 * 4, NULL, GL_DYNAMIC_DRAW);
-    glEnableVertexAttribArray(0);
-    glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 4 * sizeof(float), 0);
-    glBindBuffer(GL_ARRAY_BUFFER, 0);
-    glBindVertexArray(0);
-}
-
-TextRendering::TextRendering(UINT ID, mat4* projection_matrix) :
-    mpFile_path(0), mpProjectionMatrix(projection_matrix)
+TextRendering::TextRendering(UINT ID, mat4 projection_matrix, mat4 view_matrix) :
+    mpFile_path(0), mpProjectionMatrix(projection_matrix), mpViewMatrix(view_matrix)
 {
     mpShader = new Shader(
         ResourceManager::GetResourceString(IDR_SHADER_TEXT_VS, Resource::SHADER),
@@ -121,8 +53,8 @@ TextRendering::TextRendering(UINT ID, mat4* projection_matrix) :
 
         Character character = {
             texture,
-            ivec2(face->glyph->bitmap.width, face->glyph->bitmap.rows),
-            ivec2(face->glyph->bitmap_left, face->glyph->bitmap_top),
+            glm::ivec2(face->glyph->bitmap.width, face->glyph->bitmap.rows),
+            glm::ivec2(face->glyph->bitmap_left, face->glyph->bitmap_top),
             face->glyph->advance.x
         };
         Characters.insert(std::pair<char, Character>(c, character));
@@ -149,13 +81,13 @@ TextRendering::~TextRendering()
     NULLPTR_CHECK_DELETE(mpShader);
 }
 
-void TextRendering::RenderText(std::string text, float x, float y, float scale, vec3 color)
+void TextRendering::RenderText(std::string text, float x, float y, float scale, glm::vec3 color)
 {
-    if (mpProjectionMatrix == nullptr)
-        return;
+    glDisable(GL_DEPTH_TEST);
+
 
     mpShader->use();
-    mpShader->setMat4("projection", *mpProjectionMatrix);
+    mpShader->setMat4("projection", mpProjectionMatrix);
     mpShader->setVec3("textColor", color);
 
     glActiveTexture(GL_TEXTURE0);
@@ -192,9 +124,10 @@ void TextRendering::RenderText(std::string text, float x, float y, float scale, 
 
     glBindVertexArray(0);
     glBindTexture(GL_TEXTURE_2D, 0);
+    glEnable(GL_DEPTH_TEST);
 }
 
-void TextRendering::RenderText(std::string text, vec2 pos, float scale, vec3 color) 
-{ 
-    RenderText(text, pos.x,pos.y, scale, color); 
+void TextRendering::RenderText(std::string text, vec2 pos, float scale, glm::vec3 color)
+{
+    RenderText(text, pos.x, pos.y, scale, color);
 }

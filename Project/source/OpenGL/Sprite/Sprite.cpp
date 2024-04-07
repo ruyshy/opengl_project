@@ -8,7 +8,7 @@
 #include<OpenGL/Transform2D/Transform2D.h>
 
 Sprite::Sprite(shared_ptr<Shader> shader, const char* filename)
-	: mpShader(shader), ObjectBase(0, "Sprite"), mScreenX(0), mScreenY(0), mScreenW(800), mScreenH(600)
+	: mpShader(shader), ObjectBase(0, "Sprite"), mScreenX(0), mScreenY(0), mScreenW(800), mScreenH(600), mLastX(0), mLastY(0)
 {
 	mpTextured = make_shared<Texture2D>(TextureSystem::Generate(filename));
 	mpVertexBufferObject = make_shared<VertexBufferObject2D>(VertexBufferSystem2D::Generate());

@@ -13,6 +13,8 @@ void Bullets_dodge_Scene::initializeScene()
     mpBackGround->SetPosition(0,0);
     mpBackGround->SetScale(*mpGame->GetWindow()->GetWidth(), *mpGame->GetWindow()->GetHeight());
 
+    mpScore = make_unique<Score_dodge>(mpGame);
+
 	mpPlayer = make_shared<Player>(mpGame->GetTextureShader(), ".\\Image\\Player.png");
     mpPlayer->GetSprite()->SetScale(vec2(50, 50));
     mpPlayer->GetSprite()->SetPosition(vec2(*mpGame->GetWindow()->GetWidth() / 2, *mpGame->GetWindow()->GetHeight() / 2) - mpPlayer->GetSprite()->GetScale());
@@ -29,11 +31,15 @@ void Bullets_dodge_Scene::initializeScene()
 void Bullets_dodge_Scene::renderScene()
 {
     mpBackGround->Draw();
+
     for (int x = 0; x < mBullet_count; x++)
     {
         mpBullet[x]->Draw();
     }
 	mpPlayer->Draw();
+
+
+    mpScore->Draw(mScore);
 }
 
 void Bullets_dodge_Scene::updateScene()
@@ -44,6 +50,7 @@ void Bullets_dodge_Scene::updateScene()
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     mBulletCreateTimer += (timer / 2.0f);
+    mScore += timer;
     if (mBulletCreateTimer >= mBulletCreateTime)
     {
         bullet_create();
