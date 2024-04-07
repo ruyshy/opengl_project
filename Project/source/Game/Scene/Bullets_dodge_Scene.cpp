@@ -48,6 +48,10 @@ void Bullets_dodge_Scene::initializeScene()
     }
 
     mSprites = vector<shared_ptr<Sprite>>();
+
+    mScore = 0;
+    mGameStart = false;
+    mGameEnd = false;
 }
 
 void Bullets_dodge_Scene::renderScene()
@@ -65,12 +69,30 @@ void Bullets_dodge_Scene::renderScene()
             (*mpGame->GetWindow()->GetHeight() / 2),
             vec3(1, 1, 1));
     }
+    if (mGameEnd)
+    {
+        mpGameStartText->RenderText(mEndTextContexts,
+            (*mpGame->GetWindow()->GetWidth() / 2) - 220,
+            (*mpGame->GetWindow()->GetHeight() / 2),
+            vec3(1, 1, 1));
+    }
 
     mpScore->Draw(mScore);
 }
 
 void Bullets_dodge_Scene::updateScene()
 {
+    if (mGameEnd)
+    {
+        if (mpGame->GetWindow()->keyPressed(GLFW_KEY_ENTER) ||
+            mpGame->GetWindow()->keyPressed(GLFW_KEY_SPACE))
+        {
+            initializeScene();
+            mGameStart = true;
+            return;
+        }
+        return;
+    }
     if (!mGameStart)
     {
         if(mpGame->GetWindow()->keyPressed(GLFW_KEY_ENTER) ||
@@ -147,6 +169,7 @@ void Bullets_dodge_Scene::checkPlayerCollsions(shared_ptr<QuadTree> quadtree)
             continue;
 
         if (sprite->checkCollision(player, 15)) {
+            mGameEnd = true;
             cout << player->GetName() << " && " << sprite->GetName() << "충돌했습니다."  << endl;
         }
     }
