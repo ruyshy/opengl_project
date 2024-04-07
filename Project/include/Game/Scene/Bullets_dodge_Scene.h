@@ -24,6 +24,9 @@ private:
 	void checkCollisions(shared_ptr<QuadTree> quadtree);
 	void checkPlayerCollsions(shared_ptr<QuadTree> quadtree);
 
+	int randomInt(int min, int max);
+	float randomFloat(float min, float max);
+
 	void bullet_position_create(int num, vec2& start, vec2& end);
 	bool isIntersecting2D(vec2 rayOrigin, vec2 rayDirection);
 	void bullet_create();
@@ -39,7 +42,7 @@ private:
 	shared_ptr<QuadTree> mpQuadTree;
 	vector<shared_ptr<Sprite>> mSprites;
 	
-	random_device mRandomDevice1, mRandomDevice2, mRandomDevice3, mRandomDevice4;
+	std::mt19937 gen;
 	unique_ptr<dodge_bullet> mpBullet[2000];
 	const int mBulletMaxCount = 2000;
 	queue<int> mBulletEndIndexQueue;

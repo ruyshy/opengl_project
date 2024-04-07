@@ -13,10 +13,10 @@ void Bullets_dodge_Scene::initializeScene()
     boxMin = vec2(rect.x, rect.y);
     boxMax = vec2(rect.width, rect.height);
     
-    front_vec = vec4(rect.x - 5, rect.y - 5, rect.x + 5, rect.y + 5);
-    back_vec = vec4(rect.width + 5, rect.height + 5, rect.width + 5, rect.height + 5);
-    right_vec = vec4(rect.x - 5, rect.y - 5, rect.x, rect.height + 5);
-    left_vec = vec4(rect.width + 5, rect.y - 5, rect.width + 5, rect.height + 5);
+    front_vec = vec4(rect.x - 5, rect.y - 5, rect.x, rect.y);
+    back_vec = vec4(rect.width, rect.height, rect.width + 5, rect.height + 5);
+    right_vec = vec4(rect.x - 5, rect.y, rect.x, rect.height + 5);
+    left_vec = vec4(rect.width, rect.y, rect.width + 5, rect.height);
 
     mpBackGround = make_shared<Sprite>(mpGame->GetTextureShader(), ".\\Image\\back_ground.png");
     mpBackGround->SetPosition(0,0);
@@ -61,6 +61,14 @@ void Bullets_dodge_Scene::updateScene()
 
     for (int x = 0; x < mBullet_count; x++) 
     {
+        if (mpBullet[x]->EndGoal())
+        {
+            if (mpBullet[x]->GetState())
+                continue;
+
+            mpBullet[x]->SetState(true);
+            mBulletEndIndexQueue.push(mBullet_count);
+        }
         mpBullet[x]->Movement(mpGame->GetWindow()->getTimeDelta());
     }
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -111,48 +119,45 @@ void Bullets_dodge_Scene::checkPlayerCollsions(shared_ptr<QuadTree> quadtree)
     }
 }
 
+int Bullets_dodge_Scene::randomInt(int min, int max)
+{
+    std::uniform_int_distribution<int> dist(min, max);
+    return dist(gen); // 'gen'Àº 'std::mt19937' °´Ã¼
+
+}
+
+float Bullets_dodge_Scene::randomFloat(float min, float max)
+{
+    std::uniform_real_distribution<float> dist(min, max);
+    return dist(gen);
+}
+
+
 void Bullets_dodge_Scene::bullet_position_create(int num, vec2& start, vec2& end)
 {
-    mt19937 gen1(mRandomDevice1());
-    mt19937 gen2(mRandomDevice3());
-    mt19937 gen3(mRandomDevice2());
-    mt19937 gen4(mRandomDevice4());
-
-    if (num > 300 && num <= 400)
+    if (num > 30 && num <= 40)
     {
-        uniform_int_distribution<int> random_1(front_vec.x, front_vec.z);
-        uniform_int_distribution<int> random_2(front_vec.y, front_vec.w);
-        start = vec2(random_1(gen1), random_2(gen2));
-        uniform_int_distribution<int> random_3(back_vec.x, back_vec.z);
-        uniform_int_distribution<int> random_4(back_vec.x, back_vec.z);
-        end = vec2(random_3(gen3), random_4(gen4));
+        cout << "num : " << num << endl;
+        start = vec2(randomFloat(front_vec.x, front_vec.z), randomFloat(front_vec.y, front_vec.w));
+        end = vec2(randomFloat(back_vec.x, back_vec.z), randomFloat(back_vec.y, back_vec.w));
     }
-    else if (num > 200 && num <= 300)
+    else if (num > 20 && num <= 30)
     {
-        uniform_int_distribution<int> random_1(left_vec.x, left_vec.z);
-        uniform_int_distribution<int> random_2(left_vec.y, left_vec.w);
-        start = vec2(random_1(gen1), random_2(gen2));
-        uniform_int_distribution<int> random_3(right_vec.x, right_vec.z);
-        uniform_int_distribution<int> random_4(right_vec.x, right_vec.z);
-        end = vec2(random_3(gen3), random_4(gen4));
+        cout << "num : " << num << endl;
+        start = vec2(randomFloat(left_vec.x, left_vec.z), randomFloat(left_vec.y, left_vec.w));
+        end = vec2(randomFloat(right_vec.x, right_vec.z), randomFloat(right_vec.y, right_vec.w));
     }
-    else if (num > 100 && num <= 200)
+    else if (num > 10 && num <= 20)
     {
-        uniform_int_distribution<int> random_1(back_vec.x, back_vec.z);
-        uniform_int_distribution<int> random_2(back_vec.y, back_vec.w);
-        start = vec2(random_1(gen1), random_2(gen2));
-        uniform_int_distribution<int> random_3(front_vec.x, front_vec.z);
-        uniform_int_distribution<int> random_4(front_vec.x, front_vec.z);
-        end = vec2(random_3(gen3), random_4(gen4));
+        cout << "num : " << num << endl;
+        start = vec2(randomFloat(back_vec.x, back_vec.z), randomFloat(back_vec.y, back_vec.w));
+        end = vec2(randomFloat(front_vec.x, front_vec.z), randomFloat(front_vec.y, front_vec.w));
     }
-    else
+    else if( num > 0 && num <= 10)
     {
-        uniform_int_distribution<int> random_1(right_vec.x, right_vec.z);
-        uniform_int_distribution<int> random_2(right_vec.y, right_vec.w);
-        start = vec2(random_1(gen1), random_2(gen2));
-        uniform_int_distribution<int> random_3(left_vec.x, left_vec.z);
-        uniform_int_distribution<int> random_4(left_vec.x, left_vec.z);
-        end = vec2(random_3(gen3), random_4(gen4));
+        cout << "num : " << num << endl;
+        start = vec2(randomFloat(right_vec.x, right_vec.z), randomFloat(right_vec.y, right_vec.w));
+        end = vec2(randomFloat(left_vec.x, left_vec.z), randomFloat(left_vec.y, left_vec.w));
     }
 }
 
@@ -193,27 +198,18 @@ bool Bullets_dodge_Scene::isIntersecting2D(vec2 rayOrigin, vec2 rayDirection)
 
 void Bullets_dodge_Scene::bullet_create()
 {
-    mt19937 gen(mRandomDevice3());
-    uniform_int_distribution<int> random_count(6, 16);
+    uniform_int_distribution<int> random_count(16, 24);
     int random_number = random_count(gen);
     for (int x = 0; x < random_number; x++)
     {
         if (mBulletMaxCount <= mBullet_count)
             return;
 
-        mt19937 gen1(mRandomDevice2());
-        uniform_int_distribution<int> random_speed(100, 1000);
-        mt19937 gen2(mRandomDevice4());
-        uniform_int_distribution<int> random_position(0, 399);
-
         vec2 start, end;
-        while (true)
-        {
-            bullet_position_create(random_position(gen1), start, end);
-            if (isIntersecting2D(start, end))
-                break;
-        }
-        double speed = (static_cast<double>(random_speed(gen2)) / 10.0f);
+        bullet_position_create(randomInt(0, 40), start, end);
+        double speed = (static_cast<double>(randomInt(600, 2500)) / 10.0f);
+        cout << "start.x : " << start.x << " start.y : " << start.y << endl;
+        cout << "end.x : " << end.x << " end.y : " << end.y << endl;
 
         mpBullet[mBullet_count] = make_unique<dodge_bullet>(
             mpGame->GetTextureShader(),

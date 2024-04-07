@@ -53,7 +53,7 @@ void Camera::Update()
 
 	mViewMatrix = lookAt(
 		vec3(mPosition), // camera position
-		vec3(mPosition.x + mDirection.x, mPosition.y + mDirection.y, mDirection.z), // camera direction
+		vec3(mPosition.x + mDirection.x, mPosition.y + mDirection.y, mDirection.z), // camera mDirection
 		vec3(mUp)  // camera up flip 0 -1 0
 	);
 
