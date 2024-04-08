@@ -128,15 +128,8 @@ void Bullets_dodge_Scene::updateScene()
     }
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    mpQuadTree->clear();
-    for (shared_ptr<Sprite> sprite : mSprites) 
-    {
-        if (sprite->hasMoved()) 
-            mpQuadTree->insert(sprite);
-        sprite->update();
-    }
-    mpQuadTree->subdivide();
-    checkPlayerCollsions(mpQuadTree);
+    updateQuadTree(mpQuadTree, mSprites);
+    checkPlayerBulletCollisions(mpQuadTree, mpPlayer);
 }
 
 void Bullets_dodge_Scene::releaseScene()
@@ -144,41 +137,39 @@ void Bullets_dodge_Scene::releaseScene()
 
 }
 
-void Bullets_dodge_Scene::checkCollisions(shared_ptr<QuadTree> quadtree) {
-    std::vector<shared_ptr<Sprite>> potentialCollisions;
+void Bullets_dodge_Scene::updateQuadTree(shared_ptr<QuadTree> quadTree, const vector<shared_ptr<Sprite>>& bullets)
+{
+    quadTree->clear();
 
-    for (auto& sprite : mSprites) {
-        potentialCollisions.clear();
-        quadtree->retrieve(potentialCollisions, sprite);
-
-        for (auto& target : potentialCollisions) {
-            if (sprite != target && sprite->checkCollision(target)) {
-                std::cout << "Sprite " << sprite->GetName() << "와 Sprite " << target->GetName() << "가 충돌했습니다." << std::endl;
-            }
+    for (auto& bullet : bullets) 
+    {
+        if (bullet->hasMoved()) 
+        {
+            quadTree->insert(bullet);
+            bullet->update();
         }
     }
 }
 
-void Bullets_dodge_Scene::checkPlayerCollsions(shared_ptr<QuadTree> quadtree)
+void Bullets_dodge_Scene::checkPlayerBulletCollisions(shared_ptr<QuadTree> quadTree, shared_ptr<Player> player)
 {
-    auto player = mpPlayer->GetSprite();
-
-    for (auto& sprite : mSprites) 
+    vector<shared_ptr<Sprite>> candidateBullets;
+    quadTree->retrieve(candidateBullets, player->GetSprite());
+    for (auto& bullet : candidateBullets) 
     {
-        if (!sprite->hasScreen())
-            continue;
-
-        if (sprite->checkCollision(player, 15)) {
+        if (player->GetSprite()->checkCollision(bullet, 10))
+        {
             mGameEnd = true;
-            cout << player->GetName() << " && " << sprite->GetName() << "충돌했습니다."  << endl;
+            break;
         }
     }
+
 }
 
 int Bullets_dodge_Scene::randomInt(int min, int max)
 {
     std::uniform_int_distribution<int> dist(min, max);
-    return dist(gen); // 'gen'은 'std::mt19937' 객체
+    return dist(gen);
 
 }
 

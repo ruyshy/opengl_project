@@ -21,8 +21,8 @@ public:
 	void releaseScene()override;
 
 private:
-	void checkCollisions(shared_ptr<QuadTree> quadtree);
-	void checkPlayerCollsions(shared_ptr<QuadTree> quadtree);
+	void updateQuadTree(shared_ptr<QuadTree> quadTree, const vector<shared_ptr<Sprite>>& bullets);
+	void checkPlayerBulletCollisions(shared_ptr<QuadTree> quadTree, shared_ptr<Player> player);
 
 	int randomInt(int min, int max);
 	float randomFloat(float min, float max);
