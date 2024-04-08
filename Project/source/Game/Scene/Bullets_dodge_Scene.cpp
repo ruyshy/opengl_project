@@ -5,7 +5,7 @@
 #include <OpenGL/Quad/Quad.h>
 #include <utill/TimeMeasure.h>
 
-#include <rc/font_resource.h>
+#include <font_resource.h>
 
 void Bullets_dodge_Scene::initializeScene()
 {

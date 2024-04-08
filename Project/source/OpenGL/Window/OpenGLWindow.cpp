@@ -51,6 +51,12 @@ bool OpenGLWindow::createOpenGLWindow(const std::string& windowTitle, int majorV
     glfwSetMouseButtonCallback(_window, onMouseButtonPressedStatic);
     glfwSetScrollCallback(_window, onMouseWheelScrollStatic);
     _windows[_window] = this;
+
+    GLFWimage images[1];
+    images[0].pixels = stbi_load(".\\Image\\icon.png", &images[0].width, &images[0].height, 0, 4); //rgba channels 
+    glfwSetWindowIcon(this->getWindow(), 1, images);
+    stbi_image_free(images[0].pixels);
+
     return true;
 }
 

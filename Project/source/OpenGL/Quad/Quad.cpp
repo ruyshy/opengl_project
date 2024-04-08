@@ -3,7 +3,7 @@
 
 #include <OpenGL/Shader/Shader.h>
 #include <Manager/ResourceManager.h>
-#include <rc/shader_resource.h>
+#include <shader_resource.h>
 
 #include <OpenGL/Transform2D/Transform2D.h>
 

@@ -1,6 +1,6 @@
 // Microsoft Visual C++ generated resource script.
 //
-#include <rc/font_resource.h>
+#include "shader_resource.h"
 
 #define APSTUDIO_READONLY_SYMBOLS
 /////////////////////////////////////////////////////////////////////////////
@@ -27,7 +27,7 @@ LANGUAGE LANG_KOREAN, SUBLANG_DEFAULT
 
 1 TEXTINCLUDE 
 BEGIN
-    "font_resource.h\0"
+    "shader_resource.h\0"
 END
 
 2 TEXTINCLUDE 
@@ -47,10 +47,32 @@ END
 
 /////////////////////////////////////////////////////////////////////////////
 //
-// BINFONT
+// SHADER
 //
 
-IDB_FONT_ARIAL          BINFONT                 "Font\\arial.bin"
+IDR_SHADER_TEXTURED_FS  SHADER                  "Shader\\textured_fs.bin"
+
+IDR_SHADER_TEXTURED_VS  SHADER                  "Shader\\textured_vs.bin"
+
+IDR_SHADER_COLORED_FS   SHADER                  "Shader\\colored_fs.bin"
+
+IDR_SHADER_COLORED_VS   SHADER                  "Shader\\colored_vs.bin"
+
+IDR_SHADER_CHECKBOARD_FS SHADER                  "Shader\\checkboard_fs.bin"
+
+IDR_SHADER_CHECKBOARD_VS SHADER                  "Shader\\checkboard_vs.bin"
+
+IDR_NORMAL_VS           SHADER                  "Shader\\normal_vs.bin"
+
+IDR_NORMAL_FS           SHADER                  "Shader\\normal_fs.bin"
+
+IDR_SHADER_TEXT_VS      SHADER                  "Shader\\text_vs.bin"
+
+IDR_SHADER_TEXT_FS      SHADER                  "Shader\\text_fs.bin"
+
+IDR_SHADER_MODEL_LOADING_VS SHADER                  "Shader\\model_loading_vs.bin"
+
+IDR_SHADER_MODEL_LOADING_FS SHADER                  "Shader\\model_loading_fs.bin"
 
 #endif    // 한국어(대한민국) resources
 /////////////////////////////////////////////////////////////////////////////

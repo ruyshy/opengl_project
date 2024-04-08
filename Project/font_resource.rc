@@ -1,6 +1,6 @@
 // Microsoft Visual C++ generated resource script.
 //
-#include "rc/shader_resource.h"
+#include "font_resource.h"
 
 #define APSTUDIO_READONLY_SYMBOLS
 /////////////////////////////////////////////////////////////////////////////
@@ -27,7 +27,7 @@ LANGUAGE LANG_KOREAN, SUBLANG_DEFAULT
 
 1 TEXTINCLUDE 
 BEGIN
-    "shader_resource.h\0"
+    "font_resource.h\0"
 END
 
 2 TEXTINCLUDE 
@@ -47,32 +47,21 @@ END
 
 /////////////////////////////////////////////////////////////////////////////
 //
-// SHADER
+// BINFONT
 //
 
-IDR_SHADER_TEXTURED_FS  SHADER                  "Shader\\textured_fs.bin"
-
-IDR_SHADER_TEXTURED_VS  SHADER                  "Shader\\textured_vs.bin"
-
-IDR_SHADER_COLORED_FS   SHADER                  "Shader\\colored_fs.bin"
-
-IDR_SHADER_COLORED_VS   SHADER                  "Shader\\colored_vs.bin"
-
-IDR_SHADER_CHECKBOARD_FS SHADER                  "Shader\\checkboard_fs.bin"
-
-IDR_SHADER_CHECKBOARD_VS SHADER                  "Shader\\checkboard_vs.bin"
-
-IDR_NORMAL_VS           SHADER                  "Shader\\normal_vs.bin"
-
-IDR_NORMAL_FS           SHADER                  "Shader\\normal_fs.bin"
-
-IDR_SHADER_TEXT_VS      SHADER                  "Shader\\text_vs.bin"
-
-IDR_SHADER_TEXT_FS      SHADER                  "Shader\\text_fs.bin"
+IDB_FONT_ARIAL          BINFONT                 "Font\\arial.bin"
 
 
-IDR_SHADER_MODEL_LOADING_VS      SHADER       "Shader\\model_loading_vs.bin"
-IDR_SHADER_MODEL_LOADING_FS      SHADER       "Shader\\model_loading_fs.bin"
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_ICON1               ICON                    "Image\\icon.ico"
+
 #endif    // 한국어(대한민국) resources
 /////////////////////////////////////////////////////////////////////////////
 

@@ -8,7 +8,6 @@ MainWindow::MainWindow()
 	mpHeight = make_shared<int>(0);
 	
 	mpGame = make_unique<Game>(this);
-
 }
 
 MainWindow::~MainWindow()

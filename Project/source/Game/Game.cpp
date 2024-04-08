@@ -6,7 +6,7 @@
 #include <OpenGL/Sprite/Sprite.h>
 
 #include <Manager/ResourceManager.h>
-#include <rc/shader_resource.h>
+#include <shader_resource.h>
 
 
 #include <Game/Scene/SceneBase.h>
