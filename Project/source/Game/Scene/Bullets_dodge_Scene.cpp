@@ -25,7 +25,7 @@ void Bullets_dodge_Scene::initializeScene()
     mBulletMaxX = rect.width + 20;
     mBulletMaxY = rect.height + 20;
 
-    mpBackGround = make_shared<Sprite>(mpGame->GetTextureShader(), ".\\Image\\back_ground.png");
+    mpBackGround = make_shared<Sprite>(mpGame->GetTextureShader(), ".\\Image\\bullet_dodge_back_ground.png");
     mpBackGround->SetPosition(0,0);
     mpBackGround->SetScale(*mpGame->GetWindow()->GetWidth(), *mpGame->GetWindow()->GetHeight());
     mpScore = make_unique<Score_dodge>(mpGame);
@@ -67,14 +67,14 @@ void Bullets_dodge_Scene::renderScene()
         mpGameStartText->RenderText(mStartTextContexts,
             (*mpGame->GetWindow()->GetWidth() / 2) - 200,
             (*mpGame->GetWindow()->GetHeight() / 2),
-            vec3(1, 1, 1));
+            vec3(1, 1, 0));
     }
     if (mGameEnd)
     {
         mpGameStartText->RenderText(mEndTextContexts,
-            (*mpGame->GetWindow()->GetWidth() / 2) - 220,
+            (*mpGame->GetWindow()->GetWidth() / 2) - 260,
             (*mpGame->GetWindow()->GetHeight() / 2),
-            vec3(1, 1, 1));
+            vec3(1, 1, 0));
     }
 
     mpScore->Draw(mScore);

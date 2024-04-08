@@ -1,9 +1,7 @@
 #pragma once
+
 #ifndef QUADTREE_H_
 #define QUADTREE_H_
-
-const int MAX_CAPACITY = 100;
-const int MAX_DEPTH = 5;
 
 class QuadTree
 {
@@ -37,6 +35,10 @@ public:
     void subdivide();
 
 private:
+    
+    const int MAX_SPRITE = 100;
+    const int MAX_DEPTH = 5;
+
     int getIndex(const vec2& position);
 };
 

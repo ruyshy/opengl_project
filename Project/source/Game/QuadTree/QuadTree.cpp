@@ -14,7 +14,7 @@ QuadTree::~QuadTree()
 void QuadTree::insert(const shared_ptr<Sprite>& sprite)
 {
     if (!bounds.contains(sprite)) return;
-    if (sprites.size() < MAX_CAPACITY || depth >= MAX_DEPTH)
+    if (sprites.size() < MAX_SPRITE || depth >= MAX_DEPTH)
     {
         sprites.push_back(sprite);
         return;
