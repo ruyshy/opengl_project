@@ -50,7 +50,7 @@ private:
 	unique_ptr<dodge_bullet> mpBullet[1000];
 	const int mBulletMaxCount = 1000;
 	queue<int> mBulletEndIndexQueue;
-	const double mBulletCreateTime = 2.0f;
+	double mBulletCreateTime = 2.0f;
 	double mBulletCreateTimer = 100.0f;
 	int mBullet_count = 0;
 	vec2 boxMin, boxMax;

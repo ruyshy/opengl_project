@@ -89,15 +89,20 @@ void Bullets_dodge_Scene::updateScene()
         {
             initializeScene();
             mGameStart = true;
+            bullet_create();
             return;
         }
         return;
     }
     if (!mGameStart)
     {
-        if(mpGame->GetWindow()->keyPressed(GLFW_KEY_ENTER) ||
+        if (mpGame->GetWindow()->keyPressed(GLFW_KEY_ENTER) ||
             mpGame->GetWindow()->keyPressed(GLFW_KEY_SPACE))
+        {
             mGameStart = true;
+            bullet_create();
+        }
+
         return;
     }
 
@@ -112,6 +117,7 @@ void Bullets_dodge_Scene::updateScene()
     {
         bullet_create();
         mBulletCreateTimer = 0;
+        mBulletCreateTime = randomFloat(1.5, 3);
     }
 
     for (int x = 0; x < mBulletMaxCount; x++) 
