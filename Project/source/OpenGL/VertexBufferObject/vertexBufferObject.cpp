@@ -1,5 +1,5 @@
 #include <pch.h>
-#include <OpenGL/VertexBufferObject/vertexBufferObject.h>
+#include <OpenGL/VertexBufferObject/VertexBufferObject.h>
 
 void VertexBufferObject::createVBO(size_t reserveSizeBytes)
 {

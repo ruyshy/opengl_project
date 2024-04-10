@@ -19,6 +19,7 @@
 #include <algorithm>
 #include <stddef.h>
 #include <random>
+#include <mutex>
 
 #include <Windows.h>
 #include <cstring>
@@ -80,6 +81,7 @@ using namespace glm;
 
 
 // user utill
+#include <utill/string_utils.h>
 #include <utill/stb_image.h>
 
 #include <Macro/delete_macro.h>

@@ -166,7 +166,11 @@
     <ClCompile Include="source\Game\Object\ObjectBase.cpp" />
     <ClCompile Include="source\Game\Scene\SceneBase.cpp" />
     <ClCompile Include="source\Game\QuadTree\QuadTree.cpp" />
-    <ClCompile Include="source\OpenGL\VertexBufferObject\vertexBufferObject.cpp" />
+    <ClCompile Include="source\OpenGL\StaticMesh\AssimpModel.cpp" />
+    <ClCompile Include="source\OpenGL\StaticMesh\StaticMesh3D.cpp" />
+    <ClCompile Include="source\OpenGL\Texture\Texture.cpp" />
+    <ClCompile Include="source\OpenGL\Texture\TextureManager.cpp" />
+    <ClCompile Include="source\OpenGL\VertexBufferObject\VertexBufferObject.cpp" />
     <ClCompile Include="source\OpenGL\Animation2D\Animation2D.cpp" />
     <ClCompile Include="source\OpenGL\Line\Line.cpp" />
     <ClCompile Include="source\OpenGL\Camera\Camera.cpp" />
@@ -194,8 +198,12 @@
     <ClInclude Include="include\Game\Scene\SceneBase.h" />
     <ClInclude Include="include\Game\QuadTree\QuadTree.h" />
     <ClInclude Include="include\Game\Score\Score_dodge.h" />
+    <ClInclude Include="include\OpenGL\StaticMesh\AssimpModel.h" />
+    <ClInclude Include="include\OpenGL\StaticMesh\StaticMesh3D.h" />
+    <ClInclude Include="include\OpenGL\Texture\Texture.h" />
+    <ClInclude Include="include\OpenGL\Texture\TextureManager.h" />
     <ClInclude Include="include\OpenGL\VertexBuffer2D\VertexBufferObject\vertexBufferObject.h" />
-    <ClInclude Include="include\OpenGL\VertexBufferObject\vertexBufferObject.h" />
+    <ClInclude Include="include\OpenGL\VertexBufferObject\VertexBufferObject.h" />
     <ClInclude Include="include\Test\TestCameraScene.h" />
     <ClInclude Include="include\OpenGL\Animation2D\Animation2D.h" />
     <ClInclude Include="include\OpenGL\Camera\Camera.h" />
@@ -217,6 +225,7 @@
     <ClInclude Include="include\OpenGL\TextRender\TextRendering.h" />
     <ClInclude Include="include\OpenGL\Transform2D\Transform2D.h" />
     <ClInclude Include="include\OpenGL\VertexBuffer2D\VertexBuffer2D.h" />
+    <ClInclude Include="include\utill\string_utils.h" />
     <ClInclude Include="include\utill\TimeMeasure.h" />
   </ItemGroup>
   <ItemGroup>
