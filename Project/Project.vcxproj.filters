@@ -30,6 +30,8 @@
     <ClCompile Include="source\Game\Object\Player\Player.cpp" />
     <ClCompile Include="source\Game\QuadTree\QuadTree.cpp" />
     <ClCompile Include="source\Game\Object\dodge_bullet\dodge_bullet.cpp" />
+    <ClCompile Include="source\Game\Scene\PuzzleGameScene.cpp" />
+    <ClCompile Include="source\Game\Object\PuzzleGameBoard.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Manager\SoundManager.h" />
@@ -65,6 +67,8 @@
     <ClInclude Include="include\Game\Object\Player\Player.h" />
     <ClInclude Include="include\Game\QuadTree\QuadTree.h" />
     <ClInclude Include="include\Game\Object\dodge_bullet\dodge_bullet.h" />
+    <ClInclude Include="include\Game\Scene\PuzzleGameScene.h" />
+    <ClInclude Include="include\Game\Object\PuzzleGameBoard.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Shader\normal_fs.bin" />

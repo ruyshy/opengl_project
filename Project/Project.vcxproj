@@ -159,18 +159,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="source\Game\Object\dodge_bullet\dodge_bullet.cpp" />
-    <ClCompile Include="source\Game\Object\Enemy\Enemy.cpp" />
-    <ClCompile Include="source\Game\Object\Enemy\EnemyTrooper1.cpp" />
     <ClCompile Include="source\Game\Event\DemoEvent.cpp" />
     <ClCompile Include="source\Game\Event\Dispatcher.cpp" />
     <ClCompile Include="source\Game\Event\Event.cpp" />
     <ClCompile Include="source\Game\Game.cpp" />
-    <ClCompile Include="source\Game\Object\Player\Player.cpp" />
     <ClCompile Include="source\Game\Object\ObjectBase.cpp" />
+    <ClCompile Include="source\Game\Object\PuzzleGameBoard.cpp" />
+    <ClCompile Include="source\Game\Scene\PuzzleGameScene.cpp" />
     <ClCompile Include="source\Game\Scene\SceneBase.cpp" />
     <ClCompile Include="source\Game\QuadTree\QuadTree.cpp" />
-    <ClCompile Include="source\Test\TestCameraScene.cpp" />
     <ClCompile Include="source\OpenGL\Animation2D\Animation2D.cpp" />
     <ClCompile Include="source\OpenGL\Line\Line.cpp" />
     <ClCompile Include="source\OpenGL\Camera\Camera.cpp" />
@@ -194,14 +191,11 @@
     <ClInclude Include="include\Game\Event\Dispatcher.h" />
     <ClInclude Include="include\Game\Event\Event.h" />
     <ClInclude Include="include\Game\Game.h" />
-    <ClInclude Include="include\Game\Object\dodge_bullet\dodge_bullet.h" />
-    <ClInclude Include="include\Game\Object\Enemy\Enemy.h" />
-    <ClInclude Include="include\Game\Object\Enemy\EnemyTrooper1.h" />
-    <ClInclude Include="include\Game\Object\Player\Player.h" />
     <ClInclude Include="include\Game\Object\ObjectBase.h" />
+    <ClInclude Include="include\Game\Object\PuzzleGameBoard.h" />
+    <ClInclude Include="include\Game\Scene\PuzzleGameScene.h" />
     <ClInclude Include="include\Game\Scene\SceneBase.h" />
     <ClInclude Include="include\Game\QuadTree\QuadTree.h" />
-    <ClInclude Include="include\Test\TestCameraScene.h" />
     <ClInclude Include="include\OpenGL\Animation2D\Animation2D.h" />
     <ClInclude Include="include\OpenGL\Camera\Camera.h" />
     <ClInclude Include="include\Macro\delete_macro.h" />

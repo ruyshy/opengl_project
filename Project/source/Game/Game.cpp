@@ -10,7 +10,7 @@
 
 
 #include <Game/Scene/SceneBase.h>
-#include <Test/TestCameraScene.h>
+#include <Game/Scene/PuzzleGameScene.h>
 
 Game::Game(MainWindow* mainWindow)
 {
@@ -39,7 +39,7 @@ void Game::initialize()
 	mpCamera = make_unique<Camera>(mpTextureShader, mpMainWindow->GetWidth(), mpMainWindow->GetHeight());
 	
 	//mpScene = make_unique<TestCameraScene>(this, 1, "Test");
-	mpScene = make_unique<SceneBase>(this, 1, "Test");
+	mpScene = make_unique<PuzzleGameScene>(this, 1, "Puzzle");
 
 }
 
