@@ -6,7 +6,7 @@
 
 void PuzzleGameScene::initializeScene()
 {
-	mpPuzzleGameBoard = make_shared<PuzzleGameBoard>(mpGame,20, 20, 25, 25);
+	mpPuzzleGameBoard = make_shared<PuzzleGameBoard>(mpGame,15, 15, 30, 30);
 	//mpGame->GetWindow()->onMouseButtonPressed();
 }
 
@@ -29,7 +29,6 @@ void PuzzleGameScene::releaseScene()
 void PuzzleGameScene::onMouseButtonPressed(int button, int action)
 {
 	if (action == 1)
-	{
 		mpPuzzleGameBoard->SelectObject(*mpGame->GetWindow()->GetMouseX(), *mpGame->GetWindow()->GetMouseY());
-	}
+
 }

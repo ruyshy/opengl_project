@@ -24,6 +24,7 @@
 #include <cstring>
 #include <mmsystem.h>
 #include <time.h>
+#include <stdlib.h>
 
 #pragma comment(lib,"winmm.lib")
 

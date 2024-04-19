@@ -71,7 +71,6 @@ void MainWindow::onMouseButtonPressed(int button, int action)
 {
 	glfwGetCursorPos(getWindow(), &*mpMouseX, &*mpMouseY);
 	mpGame->onMouseButtonPressed(button, action);
-	cout << "mpMouseX:" << *mpMouseX << " mpMouseY:" << *mpMouseY << endl;
 }
 
 mat4* MainWindow::GetProjectionMatrix() { return mpProjectionMatrix; }
