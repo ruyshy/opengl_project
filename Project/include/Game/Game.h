@@ -14,6 +14,9 @@ public:
 	void Render() const;
 	void Update() const;
 
+	void onMouseButtonPressed(int button, int action);
+
+
 	MainWindow* GetWindow();
 	shared_ptr<Shader> GetTextureShader();
 	shared_ptr<Shader> GetNormalShader();

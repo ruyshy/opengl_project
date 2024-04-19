@@ -6,7 +6,9 @@ MainWindow::MainWindow()
 	mpProjectionMatrix = new mat4(1.0f);
 	mpWidth = make_shared<int>(0);
 	mpHeight = make_shared<int>(0);
-	
+	mpMouseX = make_shared<double>(0);
+	mpMouseY = make_shared<double>(0);
+
 	mpGame = make_unique<Game>(this);
 
 }
@@ -67,9 +69,13 @@ void MainWindow::onWindowSizeChanged(int width, int height)
 
 void MainWindow::onMouseButtonPressed(int button, int action)
 {
-
+	glfwGetCursorPos(getWindow(), &*mpMouseX, &*mpMouseY);
+	mpGame->onMouseButtonPressed(button, action);
+	cout << "mpMouseX:" << *mpMouseX << " mpMouseY:" << *mpMouseY << endl;
 }
 
 mat4* MainWindow::GetProjectionMatrix() { return mpProjectionMatrix; }
 shared_ptr<int> MainWindow::GetWidth() { return mpWidth; }
 shared_ptr<int> MainWindow::GetHeight() { return mpHeight; }
+shared_ptr<double> MainWindow::GetMouseX() { return mpMouseX; }
+shared_ptr<double> MainWindow::GetMouseY() { return mpMouseY; }

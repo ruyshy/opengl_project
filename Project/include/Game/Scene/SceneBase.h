@@ -22,6 +22,7 @@ public:
 	virtual void renderScene() {}
 	virtual void updateScene() {}
 	virtual void releaseScene() {}
+	virtual void onMouseButtonPressed(int button, int action) {}
 
 protected:
 	Game* mpGame;

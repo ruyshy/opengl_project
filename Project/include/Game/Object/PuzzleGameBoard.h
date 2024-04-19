@@ -13,6 +13,9 @@ public:
 	~PuzzleGameBoard();
 
 public:
+	void SelectObject(double x, double y);
+
+public:
 	void DrawBoard();
 
 

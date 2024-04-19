@@ -12,10 +12,12 @@ class PuzzleGameScene : public SceneBase
 public:
 	SceneCreator(PuzzleGameScene);
 
-	virtual void initializeScene();
-	virtual void renderScene();
-	virtual void updateScene();
-	virtual void releaseScene();
+	virtual void initializeScene() override;
+	virtual void renderScene() override;
+	virtual void updateScene() override;
+	virtual void releaseScene() override;
+
+	void onMouseButtonPressed(int button, int action) override;
 
 private:
 	shared_ptr<PuzzleGameBoard> mpPuzzleGameBoard;

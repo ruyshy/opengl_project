@@ -39,6 +39,14 @@ PuzzleGameBoard::~PuzzleGameBoard()
 
 }
 
+void PuzzleGameBoard::SelectObject(double x, double y)
+{
+	int xx = static_cast<int>(abs((mBoardPosition.x - x) / mGridX));
+	int yy = static_cast<int>(abs((mBoardPosition.y - y) / mGridY));
+
+	cout << "xx:" << xx << " yy:" << yy << endl;
+}
+
 void PuzzleGameBoard::DrawBoard()
 {
 	mpBoardSprite->Draw();

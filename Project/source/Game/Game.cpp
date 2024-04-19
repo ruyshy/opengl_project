@@ -65,6 +65,11 @@ void Game::Update() const
 	mpScene->updateScene();
 }
 
+void Game::onMouseButtonPressed(int button, int action)
+{
+	mpScene->onMouseButtonPressed(button, action);
+}
+
 MainWindow* Game::GetWindow() { return mpMainWindow; }
 shared_ptr<Shader> Game::GetTextureShader() { return mpTextureShader; }
 shared_ptr<Shader> Game::GetNormalShader() { return mpNormalShader; }
