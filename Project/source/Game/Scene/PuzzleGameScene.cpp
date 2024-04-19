@@ -7,7 +7,7 @@
 void PuzzleGameScene::initializeScene()
 {
 	mpPuzzleGameBoard = make_shared<PuzzleGameBoard>(mpGame,20, 20, 25, 25);
-
+	//mpGame->GetWindow()->onMouseButtonPressed();
 }
 
 void PuzzleGameScene::renderScene()
