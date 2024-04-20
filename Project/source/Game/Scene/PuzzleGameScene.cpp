@@ -28,7 +28,10 @@ void PuzzleGameScene::releaseScene()
 
 void PuzzleGameScene::onMouseButtonPressed(int button, int action)
 {
+	mPosX = *mpGame->GetWindow()->GetMouseX();
+	mPosY = *mpGame->GetWindow()->GetMouseY();
 	if (action == 1)
-		mpPuzzleGameBoard->SelectObject(*mpGame->GetWindow()->GetMouseX(), *mpGame->GetWindow()->GetMouseY());
-
+		mpPuzzleGameBoard->SelectObject(mPosX, mPosY);
+	//else if (action == 0)
+	//	mpPuzzleGameBoard->SelectObject(mPosX, mPosY);
 }

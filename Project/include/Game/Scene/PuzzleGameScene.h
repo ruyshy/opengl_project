@@ -21,6 +21,7 @@ public:
 
 private:
 	shared_ptr<PuzzleGameBoard> mpPuzzleGameBoard;
+	int mPosX, mPosY;
 
 };
 

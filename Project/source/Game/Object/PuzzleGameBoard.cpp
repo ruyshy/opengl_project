@@ -4,7 +4,7 @@
 #include <Game/Game.h>
 
 PuzzleGameBoard::PuzzleGameBoard(Game* game, int sizeX, int sizeY, int gridX, int gridY) :
-	mpGame(game), mSizeX(sizeX), mSizeY(sizeY), mGridX(gridX), mGridY(gridY),
+	mpGame(game), mSizeX(sizeX), mSizeY(sizeY), mGridX(gridX), mGridY(gridY), mSelect(false),
 	mpBoardContent(new unique_ptr<BoardContent[]>[mSizeX]),
 	mpBoardFrontContent(new BoardContent[mSizeX])
 {
@@ -12,10 +12,14 @@ PuzzleGameBoard::PuzzleGameBoard(Game* game, int sizeX, int sizeY, int gridX, in
 		mpBoardContent[i] = unique_ptr<BoardContent[]>(new BoardContent[mSizeY]);
 
 	mpBoardSprite = make_unique<Sprite>(mpGame->GetTextureShader(), ".\\Image\\BackGround.png");
+	mpBoardSelectSprite = make_unique<Sprite>(mpGame->GetTextureShader(), ".\\Image\\Select_Circle.png");
+
 	mpBoardSprite->SetScale(mSizeX * mGridX, mSizeY * mGridY);
-	vec2 scale = mpBoardSprite->GetScale();
-	mpBoardSprite->SetPosition((*mpGame->GetWindow()->GetWidth() / 2) - (scale.x / 2), 50);
+	mBoardScale = mpBoardSprite->GetScale();
+	mpBoardSprite->SetPosition((*mpGame->GetWindow()->GetWidth() / 2) - (mBoardScale.x / 2), 50);
 	mpBoardSprite->SetDepth(0.1);
+	mpBoardSelectSprite->SetDepth(0.3);
+
 	mBoardPosition = mpBoardSprite->GetPosition();
 
 	std::random_device rd;
@@ -54,14 +58,37 @@ PuzzleGameBoard::~PuzzleGameBoard()
 
 }
 
-void PuzzleGameBoard::SelectObject(double x, double y)
+void PuzzleGameBoard::SelectObject(int& x, int& y)
 {
-	int xx = static_cast<int>((x - mBoardPosition.x) / mGridX);
-	int yy = static_cast<int>((y - mBoardPosition.y) / mGridY);
-	if (0 > xx || xx >= mSizeX || 0 > yy || yy >= mSizeY)
+	int xx = static_cast<int>((x - mBoardPosition.x + mGridX) / mGridX);
+	int yy = static_cast<int>((y - mBoardPosition.y + mGridY) / mGridY);
+	x = -1;
+	y = -1;
+	if (0 >= xx || xx >= mSizeX || 0 >= yy || yy >= mSizeY)
 		return;
-	cout << "xx:" << xx << " yy:" << yy << endl;
+	x = xx - 1;
+	y = yy - 1;
+	mSelect = !mSelect;
+	if (mSelect)
+	{
+		mpBoardSelectSprite->SetPosition(mBoardPosition.x + (x * mGridX),
+			mBoardPosition.y + (y * mGridY));
+		mpBoardSelectSprite->SetScale(mGridX, mGridY);
+	}
+	else
+	{
+		mpBoardSelectSprite->SetPosition(-100, -100);
+	}
+
+	return;
 }
+
+vec2 PuzzleGameBoard::GetPosition() { return mBoardPosition; }
+vec2 PuzzleGameBoard::GetScale() { return mBoardScale; }
+int PuzzleGameBoard::GetSizeX() { return mSizeX; }
+int PuzzleGameBoard::GetSizeY() { return mSizeY; }
+int PuzzleGameBoard::GetGridX() { return mGridX; }
+int PuzzleGameBoard::GetGridY() { return mGridY; }
 
 void PuzzleGameBoard::DrawBoard()
 {
@@ -73,6 +100,10 @@ void PuzzleGameBoard::DrawBoard()
 			mpBoardContent[x][y].Draw();
 		}
 	}
+	
+	if (mSelect)
+		mpBoardSelectSprite->Draw();
+
 }
 
 void PuzzleGameBoard::BoardContent::Create(int id, shared_ptr<Shader> shader, const char* path)

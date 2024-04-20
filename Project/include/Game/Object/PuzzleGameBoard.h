@@ -13,7 +13,14 @@ public:
 	~PuzzleGameBoard();
 
 public:
-	void SelectObject(double x, double y);
+	void SelectObject(int& x, int& y);
+
+	vec2 GetPosition();
+	vec2 GetScale();
+	int GetSizeX();
+	int GetSizeY();
+	int GetGridX();
+	int GetGridY();
 
 public:
 	void DrawBoard();
@@ -21,7 +28,9 @@ public:
 
 private:
 	int mSizeX, mSizeY, mGridX, mGridY;
+	bool mSelect;
 	vec2 mBoardPosition;
+	vec2 mBoardScale;
 	struct BoardContent
 	{
 		int mID = 0;
@@ -40,7 +49,7 @@ private:
 	unique_ptr<BoardContent[]> mpBoardFrontContent;
 	unique_ptr<unique_ptr<BoardContent[]>[]> mpBoardContent;
 	unique_ptr<Sprite> mpBoardSprite;
-
+	unique_ptr<Sprite> mpBoardSelectSprite;
 	Game* mpGame;
 
 };
