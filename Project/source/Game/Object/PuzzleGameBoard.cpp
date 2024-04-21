@@ -5,20 +5,21 @@
 
 PuzzleGameBoard::PuzzleGameBoard(Game* game, int sizeX, int sizeY, int gridX, int gridY) :
 	mpGame(game), mSizeX(sizeX), mSizeY(sizeY), mGridX(gridX), mGridY(gridY), mSelect(false),
-	mpBoardContent(new unique_ptr<BoardContent[]>[mSizeX]),
+	mMovement(false),
+	mpBoardContent(new shared_ptr<BoardContent[]>[mSizeX]),
 	mpBoardFrontContent(new BoardContent[mSizeX])
 {
 	for (int i = 0; i < mSizeX; ++i)
-		mpBoardContent[i] = unique_ptr<BoardContent[]>(new BoardContent[mSizeY]);
+		mpBoardContent[i] = shared_ptr<BoardContent[]>(new BoardContent[mSizeY]);
 
-	mpBoardSprite = make_unique<Sprite>(mpGame->GetTextureShader(), ".\\Image\\BackGround.png");
-	mpBoardSelectSprite = make_unique<Sprite>(mpGame->GetTextureShader(), ".\\Image\\Select_Circle.png");
+	mpBoardSprite = make_shared<Sprite>(mpGame->GetTextureShader(), ".\\Image\\BackGround.png");
+	mpBoardSelectSprite = make_shared<Sprite>(mpGame->GetTextureShader(), ".\\Image\\Select_Circle.png");
 
 	mpBoardSprite->SetScale(mSizeX * mGridX, mSizeY * mGridY);
 	mBoardScale = mpBoardSprite->GetScale();
 	mpBoardSprite->SetPosition((*mpGame->GetWindow()->GetWidth() / 2) - (mBoardScale.x / 2), 50);
 	mpBoardSprite->SetDepth(0.1);
-	mpBoardSelectSprite->SetDepth(0.3);
+	mpBoardSelectSprite->SetDepth(0.3f);
 
 	mBoardPosition = mpBoardSprite->GetPosition();
 
@@ -78,6 +79,7 @@ void PuzzleGameBoard::SelectObject(int& x, int& y)
 	else
 	{
 		mpBoardSelectSprite->SetPosition(-100, -100);
+		mMovement = true;
 	}
 
 	return;
@@ -89,6 +91,7 @@ int PuzzleGameBoard::GetSizeX() { return mSizeX; }
 int PuzzleGameBoard::GetSizeY() { return mSizeY; }
 int PuzzleGameBoard::GetGridX() { return mGridX; }
 int PuzzleGameBoard::GetGridY() { return mGridY; }
+bool PuzzleGameBoard::GetSelect() { return mSelect; }
 
 void PuzzleGameBoard::DrawBoard()
 {
@@ -105,6 +108,26 @@ void PuzzleGameBoard::DrawBoard()
 		mpBoardSelectSprite->Draw();
 
 }
+
+void PuzzleGameBoard::ChangeContent(int x, int y, int xx, int yy)
+{
+	if (!mMovement || mSelect)
+		return;
+
+	if (x < 0 || x >= mSizeX || y < 0 || y >= mSizeY ||
+		xx < 0 || xx >= mSizeX || yy < 0 || y >= mSizeY)
+		return;
+
+	auto current_block = &mpBoardContent[x][y];
+	auto change_block = &mpBoardContent[xx][yy];
+
+	auto swap_object = current_block;
+	mpBoardContent[x][y].Swap(mpBoardContent[xx][yy]);
+
+
+	mMovement = false;
+	return;
+} 
 
 void PuzzleGameBoard::BoardContent::Create(int id, shared_ptr<Shader> shader, const char* path)
 {
@@ -123,4 +146,13 @@ vec2 PuzzleGameBoard::BoardContent::GetPosition() { return mSprite->GetPosition(
 void PuzzleGameBoard::BoardContent::Draw()
 {
 	mSprite->Draw();
+}
+
+void PuzzleGameBoard::BoardContent::Swap(BoardContent &content)
+{
+	vec2 swap = content.mSprite->GetPosition();
+	content.mSprite->SetPosition(this->GetPosition());
+	this->mSprite->SetPosition(swap);
+
+	std::swap(*this, content);
 }

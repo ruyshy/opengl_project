@@ -21,14 +21,17 @@ public:
 	int GetSizeY();
 	int GetGridX();
 	int GetGridY();
+	bool GetSelect();
 
 public:
 	void DrawBoard();
 
+public:
+	void ChangeContent(int x, int y, int xx, int yy);
 
 private:
 	int mSizeX, mSizeY, mGridX, mGridY;
-	bool mSelect;
+	bool mSelect, mMovement;
 	vec2 mBoardPosition;
 	vec2 mBoardScale;
 	struct BoardContent
@@ -45,11 +48,13 @@ private:
 		vec2 GetPosition();
 
 		void Draw();
+
+		void Swap(BoardContent &content);
 	};
-	unique_ptr<BoardContent[]> mpBoardFrontContent;
-	unique_ptr<unique_ptr<BoardContent[]>[]> mpBoardContent;
-	unique_ptr<Sprite> mpBoardSprite;
-	unique_ptr<Sprite> mpBoardSelectSprite;
+	shared_ptr<BoardContent[]> mpBoardFrontContent;
+	shared_ptr<shared_ptr<BoardContent[]>[]> mpBoardContent;
+	shared_ptr<Sprite> mpBoardSprite;
+	shared_ptr<Sprite> mpBoardSelectSprite;
 	Game* mpGame;
 
 };

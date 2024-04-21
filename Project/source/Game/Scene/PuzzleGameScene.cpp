@@ -19,6 +19,7 @@ void PuzzleGameScene::renderScene()
 void PuzzleGameScene::updateScene()
 {
 
+	mpPuzzleGameBoard->ChangeContent(mPreviousX, mPreviousY, mPosX, mPosY);
 }
 
 void PuzzleGameScene::releaseScene()
@@ -31,7 +32,14 @@ void PuzzleGameScene::onMouseButtonPressed(int button, int action)
 	mPosX = *mpGame->GetWindow()->GetMouseX();
 	mPosY = *mpGame->GetWindow()->GetMouseY();
 	if (action == 1)
+	{
 		mpPuzzleGameBoard->SelectObject(mPosX, mPosY);
+		if (mpPuzzleGameBoard->GetSelect())
+		{
+			mPreviousX = mPosX;
+			mPreviousY = mPosY;
+		}
+	}
 	//else if (action == 0)
 	//	mpPuzzleGameBoard->SelectObject(mPosX, mPosY);
 }
