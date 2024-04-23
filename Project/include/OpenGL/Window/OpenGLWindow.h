@@ -33,6 +33,8 @@ public:
     ivec2 getOpenGLCursorPosition() const;
     static OpenGLWindow* getDefaultWindow();
 
+    void Render();
+
 protected:
     virtual void onWindowSizeChanged(int width, int height) {}
     virtual void onMouseButtonPressed(int button, int action) {}

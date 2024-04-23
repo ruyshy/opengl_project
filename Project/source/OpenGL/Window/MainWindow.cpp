@@ -73,6 +73,11 @@ void MainWindow::onMouseButtonPressed(int button, int action)
 	mpGame->onMouseButtonPressed(button, action);
 }
 
+void MainWindow::Render()
+{
+	OpenGLWindow::Render();
+}
+
 mat4* MainWindow::GetProjectionMatrix() { return mpProjectionMatrix; }
 shared_ptr<int> MainWindow::GetWidth() { return mpWidth; }
 shared_ptr<int> MainWindow::GetHeight() { return mpHeight; }

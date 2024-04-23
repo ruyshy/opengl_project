@@ -17,6 +17,8 @@ public:
     void onWindowSizeChanged(int width, int height) override;
     void onMouseButtonPressed(int button, int action) override;
 
+    void Render();
+
 public:
     mat4* GetProjectionMatrix();
     shared_ptr<int> GetWidth();

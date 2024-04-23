@@ -48,8 +48,6 @@ private:
 		vec2 GetPosition();
 
 		void Draw();
-
-		void Swap(BoardContent &content);
 	};
 	shared_ptr<BoardContent[]> mpBoardFrontContent;
 	shared_ptr<shared_ptr<BoardContent[]>[]> mpBoardContent;

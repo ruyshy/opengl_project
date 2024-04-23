@@ -188,6 +188,14 @@ OpenGLWindow* OpenGLWindow::getDefaultWindow()
     return _windows.size() == 0 ? nullptr : (*_windows.begin()).second;
 }
 
+void OpenGLWindow::Render()
+{
+    renderScene();
+
+    glfwSwapBuffers(_window);
+    glfwPollEvents();
+}
+
 void OpenGLWindow::recalculateProjectionMatrix()
 {
     int width, height;

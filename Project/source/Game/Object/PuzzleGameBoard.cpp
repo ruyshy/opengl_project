@@ -121,10 +121,27 @@ void PuzzleGameBoard::ChangeContent(int x, int y, int xx, int yy)
 	auto current_block = &mpBoardContent[x][y];
 	auto change_block = &mpBoardContent[xx][yy];
 
-	auto swap_object = current_block;
-	mpBoardContent[x][y].Swap(mpBoardContent[xx][yy]);
+	vec2 position1 = current_block->GetPosition();
+	vec2 position2 = change_block->GetPosition();
+	vec2 direction = normalize(position2 - position1);
+	direction *= mpGame->GetWindow()->getTimeDelta() * 10;
+	double dist = distance(position1, position2);
+	while(dist > 1.0f)
+	{
+		vec2 _pos1 = current_block->GetPosition() + direction;
+		vec2 _pos2 = change_block->GetPosition() - direction;
 
+		current_block->SetPosition(_pos1);
+		change_block->SetPosition(_pos2);
 
+		mpGame->GetWindow()->Render();
+		dist = distance(current_block->GetPosition(), position2);
+	}
+
+	change_block->mSprite->SetPosition(position1);
+	current_block->mSprite->SetPosition(position2);
+
+	swap(*current_block, *change_block);
 	mMovement = false;
 	return;
 } 
@@ -148,11 +165,3 @@ void PuzzleGameBoard::BoardContent::Draw()
 	mSprite->Draw();
 }
 
-void PuzzleGameBoard::BoardContent::Swap(BoardContent &content)
-{
-	vec2 swap = content.mSprite->GetPosition();
-	content.mSprite->SetPosition(this->GetPosition());
-	this->mSprite->SetPosition(swap);
-
-	std::swap(*this, content);
-}
