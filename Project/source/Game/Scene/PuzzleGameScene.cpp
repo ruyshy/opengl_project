@@ -19,8 +19,7 @@ void PuzzleGameScene::renderScene()
 void PuzzleGameScene::updateScene()
 {
 	mpPuzzleGameBoard->ChangeContent(mPreviousX, mPreviousY, mPosX, mPosY);
-	bool a= mpPuzzleGameBoard->checkConsecutiveThree();
-	cout << "a" << a << endl;
+	mpPuzzleGameBoard->checkConsecutiveThree();
 }
 
 void PuzzleGameScene::releaseScene()

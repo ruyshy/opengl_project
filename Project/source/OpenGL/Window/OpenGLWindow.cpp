@@ -91,10 +91,8 @@ void OpenGLWindow::runApp()
     while (glfwWindowShouldClose(_window) == 0)
     {
         updateDeltaTimeAndFPS();
-        renderScene();
+        Render();
 
-        glfwSwapBuffers(_window);
-        glfwPollEvents();
         updateScene();
     }
 
