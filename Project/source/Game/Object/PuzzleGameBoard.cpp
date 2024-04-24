@@ -154,7 +154,41 @@ void PuzzleGameBoard::ChangeContent(int x, int y, int xx, int yy)
 	swap(*current_content, *change_content);
 	mMovement = false;
 	return;
-} 
+}
+
+bool PuzzleGameBoard::checkConsecutiveThree()
+{
+	// Check rows for consecutive three
+	for (int i = 0; i < mSizeX; i++) {
+		int count = 1;
+		for (int j = 1; j < mSizeY; j++) {
+			if (mpBoardContent[i][j].GetID() == mpBoardContent[i][j - 1].GetID()) {
+				count++;
+				if (count >= 3) return true;
+			}
+			else {
+				count = 1;
+			}
+		}
+	}
+
+	// Check columns for consecutive three
+	for (int j = 0; j < mSizeX; j++) {
+		int count = 1;
+		for (int i = 1; i < mSizeY; i++) {
+			if (mpBoardContent[i][j].GetID() == mpBoardContent[i - 1][j].GetID()) {
+				count++;
+				if (count >= 3) return true;
+			}
+			else {
+				count = 1;
+			}
+		}
+	}
+
+	return false;
+}
+
 
 void PuzzleGameBoard::BoardContent::Create(int id, shared_ptr<Shader> shader, const char* path)
 {
