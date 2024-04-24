@@ -23,6 +23,8 @@ PuzzleGameBoard::PuzzleGameBoard(Game* game, int sizeX, int sizeY, int gridX, in
 
 	mBoardPosition = mpBoardSprite->GetPosition();
 
+	mMoveSpeed = 25.0f;
+
 	std::random_device rd;
 	std::mt19937 mt(rd());
 	std::uniform_int_distribution<int> dist(0, 499);
@@ -65,10 +67,11 @@ void PuzzleGameBoard::SelectObject(int& x, int& y)
 	int yy = static_cast<int>((y - mBoardPosition.y + mGridY) / mGridY);
 	x = -1;
 	y = -1;
-	if (0 >= xx || xx >= mSizeX || 0 >= yy || yy >= mSizeY)
+	if (0 >= xx || xx > mSizeX || 0 >= yy || yy > mSizeY)
 		return;
 	x = xx - 1;
 	y = yy - 1;
+
 	mSelect = !mSelect;
 	if (mSelect)
 	{
@@ -115,33 +118,40 @@ void PuzzleGameBoard::ChangeContent(int x, int y, int xx, int yy)
 		return;
 
 	if (x < 0 || x >= mSizeX || y < 0 || y >= mSizeY ||
-		xx < 0 || xx >= mSizeX || yy < 0 || y >= mSizeY)
+		xx < 0 || xx >= mSizeX || yy < 0 || yy >= mSizeY)
 		return;
 
-	auto current_block = &mpBoardContent[x][y];
-	auto change_block = &mpBoardContent[xx][yy];
+	auto current_content = &mpBoardContent[x][y];
+	auto change_content = &mpBoardContent[xx][yy];
 
-	vec2 position1 = current_block->GetPosition();
-	vec2 position2 = change_block->GetPosition();
+	vec2 position1 = current_content->GetPosition();
+	vec2 position2 = change_content->GetPosition();
+
 	vec2 direction = normalize(position2 - position1);
-	direction *= mpGame->GetWindow()->getTimeDelta() * 10;
-	double dist = distance(position1, position2);
-	while(dist > 1.0f)
-	{
-		vec2 _pos1 = current_block->GetPosition() + direction;
-		vec2 _pos2 = change_block->GetPosition() - direction;
+	direction *= mpGame->GetWindow()->getTimeDelta() * mMoveSpeed;
 
-		current_block->SetPosition(_pos1);
-		change_block->SetPosition(_pos2);
+	double dist = abs(distance(position1, position2));
+	double max_dist = dist;
+
+	while(dist > (mpGame->GetWindow()->getTimeDelta() * mMoveSpeed) * 2.5)
+	{
+		vec2 _pos1 = current_content->GetPosition() + direction;
+		vec2 _pos2 = change_content->GetPosition() - direction;
+
+		current_content->SetPosition(_pos1);
+		change_content->SetPosition(_pos2);
 
 		mpGame->GetWindow()->Render();
-		dist = distance(current_block->GetPosition(), position2);
+		dist = abs(distance(_pos1, position2));
+		
+		if (max_dist + 0.1f <= dist)
+			break;
 	}
 
-	change_block->mSprite->SetPosition(position1);
-	current_block->mSprite->SetPosition(position2);
+	change_content->mSprite->SetPosition(position1);
+	current_content->mSprite->SetPosition(position2);
 
-	swap(*current_block, *change_block);
+	swap(*current_content, *change_content);
 	mMovement = false;
 	return;
 } 

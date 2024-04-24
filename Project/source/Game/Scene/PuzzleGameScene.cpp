@@ -18,8 +18,8 @@ void PuzzleGameScene::renderScene()
 
 void PuzzleGameScene::updateScene()
 {
-
 	mpPuzzleGameBoard->ChangeContent(mPreviousX, mPreviousY, mPosX, mPosY);
+
 }
 
 void PuzzleGameScene::releaseScene()

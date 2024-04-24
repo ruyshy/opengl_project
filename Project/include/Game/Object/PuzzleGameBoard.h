@@ -31,6 +31,7 @@ public:
 
 private:
 	int mSizeX, mSizeY, mGridX, mGridY;
+	double mMoveSpeed;
 	bool mSelect, mMovement;
 	vec2 mBoardPosition;
 	vec2 mBoardScale;
