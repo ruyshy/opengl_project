@@ -24,22 +24,22 @@ void Player::Movement(std::function<bool(int)> keyFunction, double delta_time)
 	vec2 movement = mpSprite->GetPosition();
 	vec2 scale = mpSprite->GetScale();
 
-	if (keyFunction(GLFW_KEY_W) && movement.y + scale.y >= (screen.y + (scale.y * correction)))
+	if (keyFunction(GLFW_KEY_UP) || keyFunction(GLFW_KEY_W) && movement.y + scale.y >= (screen.y + (scale.y * correction)))
 	{
 		movement = movement + vec2(0, -speed);
 		mpSprite->SetPosition(movement);
 	}
-	if (keyFunction(GLFW_KEY_S) && movement.y <= (screen.w - (scale.y * correction)))
+	if (keyFunction(GLFW_KEY_DOWN) || keyFunction(GLFW_KEY_S) && movement.y <= (screen.w - (scale.y * correction)))
 	{
 		movement = movement + vec2(0, speed);
 		mpSprite->SetPosition(movement);
 	}
-	if (keyFunction(GLFW_KEY_A) && movement.x + scale.x >= (screen.x + (scale.x * correction)))
+	if (keyFunction(GLFW_KEY_LEFT) || keyFunction(GLFW_KEY_A) && movement.x + scale.x >= (screen.x + (scale.x * correction)))
 	{
 		movement = movement + vec2(-speed, 0);
 		mpSprite->SetPosition(movement);
 	}
-	if (keyFunction(GLFW_KEY_D) && movement.x <= (screen.z - (scale.x * correction)))
+	if (keyFunction(GLFW_KEY_RIGHT) || keyFunction(GLFW_KEY_D) && movement.x <= (screen.z - (scale.x * correction)))
 	{
 		movement = movement + vec2(speed, 0);
 		mpSprite->SetPosition(movement);

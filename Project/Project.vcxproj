@@ -93,7 +93,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>.\include;$(IncludePath)</IncludePath>
+    <IncludePath>.\;.\include;$(IncludePath)</IncludePath>
     <IntDir>$(SolutionDir)Build\$(Configuration)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -151,11 +151,12 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>NotSet</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
       <LinkTimeCodeGeneration>UseFastLinkTimeCodeGeneration</LinkTimeCodeGeneration>
+      <AdditionalOptions>/NODEFAULTLIB:LIBCMT %(AdditionalOptions)</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -201,6 +202,8 @@
     <ClInclude Include="include\Game\Object\ObjectBase.h" />
     <ClInclude Include="include\Game\Scene\SceneBase.h" />
     <ClInclude Include="include\Game\QuadTree\QuadTree.h" />
+    <ClInclude Include="include\Game\Score\Score_dodge.h" />
+    <ClInclude Include="include\rc\shader_resource.h" />
     <ClInclude Include="include\Test\TestCameraScene.h" />
     <ClInclude Include="include\OpenGL\Animation2D\Animation2D.h" />
     <ClInclude Include="include\OpenGL\Camera\Camera.h" />
@@ -212,7 +215,6 @@
     <ClInclude Include="include\OpenGL\Quad\Quad.h" />
     <ClInclude Include="include\rc\font_resource.h" />
     <ClInclude Include="include\Manager\SoundManager.h" />
-    <ClInclude Include="include\rc\shader_resource.h" />
     <ClInclude Include="include\Manager\ResourceManager.h" />
     <ClInclude Include="include\OpenGL\Shader\Shader.h" />
     <ClInclude Include="include\OpenGL\Sprite\Sprite.h" />
@@ -242,6 +244,9 @@
     <None Include="Shader\textured_vs.bin" />
     <None Include="Shader\text_fs.bin" />
     <None Include="Shader\text_vs.bin" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Image\icon.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

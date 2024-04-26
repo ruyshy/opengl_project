@@ -19,6 +19,7 @@
 #include <algorithm>
 #include <stddef.h>
 #include <random>
+#include <thread>
 
 #include <Windows.h>
 #include <cstring>

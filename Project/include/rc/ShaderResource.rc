@@ -1,6 +1,6 @@
 // Microsoft Visual C++ generated resource script.
 //
-#include "rc/shader_resource.h"
+#include "shader_resource.h"
 
 #define APSTUDIO_READONLY_SYMBOLS
 /////////////////////////////////////////////////////////////////////////////
@@ -70,9 +70,10 @@ IDR_SHADER_TEXT_VS      SHADER                  "Shader\\text_vs.bin"
 
 IDR_SHADER_TEXT_FS      SHADER                  "Shader\\text_fs.bin"
 
+IDR_SHADER_MODEL_LOADING_VS SHADER                  "Shader\\model_loading_vs.bin"
 
-IDR_SHADER_MODEL_LOADING_VS      SHADER       "Shader\\model_loading_vs.bin"
-IDR_SHADER_MODEL_LOADING_FS      SHADER       "Shader\\model_loading_fs.bin"
+IDR_SHADER_MODEL_LOADING_FS SHADER                  "Shader\\model_loading_fs.bin"
+
 #endif    // 한국어(대한민국) resources
 /////////////////////////////////////////////////////////////////////////////
 
