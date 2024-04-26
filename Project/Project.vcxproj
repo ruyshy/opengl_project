@@ -205,7 +205,6 @@
     <ClInclude Include="include\Game\Scene\SceneBase.h" />
     <ClInclude Include="include\Game\QuadTree\QuadTree.h" />
     <ClInclude Include="include\Game\Score\Score_dodge.h" />
-    <ClInclude Include="include\rc\shader_resource.h" />
     <ClInclude Include="include\Test\TestCameraScene.h" />
     <ClInclude Include="include\Game\Scene\Bullets_dodge_Scene.h" />
     <ClInclude Include="include\OpenGL\Animation2D\Animation2D.h" />
@@ -216,7 +215,7 @@
     <ClInclude Include="include\OpenGL\Window\OpenGLWindow.h" />
     <ClInclude Include="include\pch.h" />
     <ClInclude Include="include\OpenGL\Quad\Quad.h" />
-    <ClInclude Include="include\rc\font_resource.h" />
+    <ClInclude Include="font_resource.h" />
     <ClInclude Include="include\Manager\SoundManager.h" />
     <ClInclude Include="include\Manager\ResourceManager.h" />
     <ClInclude Include="include\OpenGL\Shader\Shader.h" />
@@ -230,8 +229,8 @@
     <ClInclude Include="include\utill\TimeMeasure.h" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="include\rc\font_resource.rc" />
-    <ResourceCompile Include="include\rc\ShaderResource.rc" />
+    <ResourceCompile Include="font_resource.rc" />
+    <ResourceCompile Include="ShaderResource.rc" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Font\arial.bin" />
