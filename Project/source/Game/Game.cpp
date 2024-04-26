@@ -10,6 +10,7 @@
 
 
 #include <Game/Scene/SceneBase.h>
+#include <Game/Scene/Bullets_dodge_Scene.h>
 #include <Test/TestCameraScene.h>
 #include <Game/Scene/Bullets_dodge_Scene.h>
 
@@ -39,6 +40,7 @@ void Game::initialize()
 
 	mpCamera = make_unique<Camera>(mpTextureShader, mpMainWindow->GetWidth(), mpMainWindow->GetHeight());
 	
+
 	mpScene = make_unique<Bullets_dodge_Scene>(this, 1, "Test");
 	//mpScene = make_unique<SceneBase>(this, 1, "Test");
 
