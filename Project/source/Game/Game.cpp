@@ -11,6 +11,7 @@
 
 #include <Game/Scene/SceneBase.h>
 #include <Test/TestCameraScene.h>
+#include <Game/Scene/Bullets_dodge_Scene.h>
 
 Game::Game(MainWindow* mainWindow)
 {
