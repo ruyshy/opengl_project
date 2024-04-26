@@ -2,8 +2,8 @@
 
 #include <Manager/ResourceManager.h>
 
-#include <shader_resource.h>
-#include <font_resource.h>
+#include <rc/shader_resource.h>
+#include <rc/font_resource.h>
 
 
 #include <winnt.h>

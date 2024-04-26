@@ -4,7 +4,7 @@
 #include <Game/Score/Score_dodge.h>
 
 #include <Manager/ResourceManager.h>
-#include <font_resource.h>
+#include <rc/font_resource.h>
 
 Score_dodge::Score_dodge(Game* game)
 {

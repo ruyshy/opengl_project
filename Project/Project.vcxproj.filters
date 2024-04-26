@@ -35,8 +35,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Manager\SoundManager.h" />
-    <ClInclude Include="shader_resource.h" />
-    <ClInclude Include="font_resource.h" />
+    <ClInclude Include="include\rc\font_resource.h" />
     <ClInclude Include="include\OpenGL\Quad\Quad.h" />
     <ClInclude Include="include\OpenGL\Sprite\Sprite.h" />
     <ClInclude Include="include\OpenGL\TextRender\TextRendering.h" />
@@ -69,6 +68,7 @@
     <ClInclude Include="include\Game\QuadTree\QuadTree.h" />
     <ClInclude Include="include\Game\Object\dodge_bullet\dodge_bullet.h" />
     <ClInclude Include="include\Game\Score\Score_dodge.h" />
+    <ClInclude Include="include\rc\shader_resource.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Shader\normal_fs.bin" />
@@ -86,8 +86,8 @@
     <None Include="Shader\model_loading_vs.bin" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="ShaderResource.rc" />
-    <ResourceCompile Include="font_resource.rc" />
+    <ResourceCompile Include="include\rc\ShaderResource.rc" />
+    <ResourceCompile Include="include\rc\font_resource.rc" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Image\icon.ico" />
