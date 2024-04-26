@@ -2,8 +2,8 @@
 #include <OpenGL/TextRender/TextRendering.h>
 
 #include <Manager/ResourceManager.h>
-#include <shader_resource.h>
-#include <font_resource.h>
+#include <rc/shader_resource.h>
+#include <rc/font_resource.h>
 
 TextRendering::TextRendering(UINT ID, mat4 projection_matrix, mat4 view_matrix, vec2 position, float scale) :
     mpFile_path(0), mpProjectionMatrix(projection_matrix), mpViewMatrix(view_matrix), mTextScale(scale), mPosition(position)
