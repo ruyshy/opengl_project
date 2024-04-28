@@ -14,7 +14,8 @@ int main(int argc, char* path[])
 {
 	//_CrtSetBreakAlloc(1345);
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);	
-	::ShowWindow(::GetConsoleWindow(), SW_HIDE);
+	//::ShowWindow(::GetConsoleWindow(), SW_HIDE);
+	::ShowWindow(::GetConsoleWindow(), SW_SHOW);
 
 	const std::string& windowTitle = "Title";
 	int majorVersion = 4;

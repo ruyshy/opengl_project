@@ -66,6 +66,11 @@ using namespace glm;
 
 #pragma comment(lib, "fmod_vc.lib")
 
+//Assimp
+#include <assimp/Importer.hpp>
+#include <assimp/scene.h>
+#include <assimp/postprocess.h>
+
 // user include
 #include <OpenGL/Window/OpenGLWindow.h>
 #include <OpenGL/Window/MainWindow.h>

@@ -12,7 +12,7 @@
 #include <Game/Scene/SceneBase.h>
 #include <Game/Scene/Bullets_dodge_Scene.h>
 #include <Test/TestCameraScene.h>
-#include <Game/Scene/Bullets_dodge_Scene.h>
+#include <Test/Test3DScene.h>
 
 Game::Game(MainWindow* mainWindow)
 {
@@ -33,6 +33,9 @@ void Game::initialize()
 	mpTextureShader = make_shared<Shader>(
 		ResourceManager::GetResourceString(IDR_SHADER_TEXTURED_VS, Resource::SHADER),
 		ResourceManager::GetResourceString(IDR_SHADER_TEXTURED_FS, Resource::SHADER));
+	mpModelShader = make_shared<Shader>(
+ 		ResourceManager::GetResourceString(IDR_SHADER_MODEL_LOADING_VS, Resource::SHADER),
+		ResourceManager::GetResourceString(IDR_SHADER_MODEL_LOADING_FS, Resource::SHADER));
 	mpNormalShader = make_shared<Shader>(
 		ResourceManager::GetResourceString(IDR_NORMAL_VS, Resource::SHADER),
 		ResourceManager::GetResourceString(IDR_NORMAL_FS, Resource::SHADER));
@@ -41,8 +44,8 @@ void Game::initialize()
 	mpCamera = make_unique<Camera>(mpTextureShader, mpMainWindow->GetWidth(), mpMainWindow->GetHeight());
 	
 
-	mpScene = make_unique<Bullets_dodge_Scene>(this, 1, "Test");
-	//mpScene = make_unique<SceneBase>(this, 1, "Test");
+	//mpScene = make_unique<Bullets_dodge_Scene>(this, 1, "Test");
+	mpScene = make_unique<Test3DScene>(this, 1, "Test");
 
 }
 
@@ -60,6 +63,11 @@ void Game::Render() const
 	mpNormalShader->setMat4("projection", mpCamera->GetProjectionMatrix());
 	mpNormalShader->setMat4("view_matrx", mpCamera->GetViewMatrix());
 
+	mpModelShader->use();
+	mpModelShader->setMat4("projection", mpCamera->GetProjectionMatrix());
+	mpModelShader->setMat4("model", scale(mat4(1), vec3(0, 0, 0)));
+	mpModelShader->setMat4("view", mpCamera->GetViewMatrix());
+
 	mpScene->renderScene();
 }
 
@@ -70,5 +78,6 @@ void Game::Update() const
 
 MainWindow* Game::GetWindow() { return mpMainWindow; }
 shared_ptr<Shader> Game::GetTextureShader() { return mpTextureShader; }
+shared_ptr<Shader> Game::GetModelShader() { return mpModelShader; }
 shared_ptr<Shader> Game::GetNormalShader() { return mpNormalShader; }
 shared_ptr<Camera> Game::GetCamera() { return mpCamera; }

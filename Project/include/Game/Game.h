@@ -16,11 +16,13 @@ public:
 
 	MainWindow* GetWindow();
 	shared_ptr<Shader> GetTextureShader();
+	shared_ptr<Shader> GetModelShader();
 	shared_ptr<Shader> GetNormalShader();
 	shared_ptr<Camera> GetCamera();
 private:
 	unique_ptr<Shader> mpCheckboardShader;
 	shared_ptr<Shader> mpTextureShader;
+	shared_ptr<Shader> mpModelShader;
 	shared_ptr<Shader> mpNormalShader;
 	unique_ptr<VertexBufferObject2D> mpCheckboard;
 
